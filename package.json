@@ -2,7 +2,7 @@
   "name": "anoopkcn",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://anoopkcn.com/anoopkcn/",
+  "homepage": "http://anoopkcn.github.io/anoopkcn",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
