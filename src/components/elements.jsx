@@ -1,5 +1,4 @@
 import {
-  Flex,
   Grid,
   GridItem,
   HStack,
@@ -8,10 +7,10 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
+import React from "react";
 import { IconButton } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { GrStatusPlaceholderSmall } from "react-icons/gr";
-import React from "react";
+import { FiMinus } from "react-icons/fi";
 import { Box, Text } from "@chakra-ui/react";
 
 // Switch between dark and light mode
@@ -50,38 +49,48 @@ export const MenuItem = ({ children, to = "/", ...rest }) => {
   );
 };
 
-export const TitleTag = ({
-  title,
-  icon = GrStatusPlaceholderSmall,
-  role = "",
-  date = "",
-  type = "",
-  ...rest
-}) => {
+// Project section
+
+export const ProjectItem = ({ data }) => {
+  const bg = useColorModeValue("#A8C0D1", "#26476D");
   const typeColor = useColorModeValue("#363971", "#ACACCA");
   return (
-    <Grid
+    <GridItem p="5" bg={bg} borderRadius="3">
+       <Grid
       templateRows="repeat(1, 1fr)"
       templateColumns="repeat(3, 1fr)"
       gap={4}
     >
       <GridItem colSpan={2}>
         <HStack>
-          <Icon as={icon} display="block" w="5" h="5" />
-          <Text as="b">{title}</Text>
+        <Icon as={data.icon} display="block" w="5" h="5" />
+          <Text as="b">{data.title}</Text>
         </HStack>
       </GridItem>
       <GridItem>
         <Box>
           <Text textAlign="right" color={typeColor}>
-            {type}
+            {data.type}
           </Text>
         </Box>
       </GridItem>
     </Grid>
+    {data.text}
+    </GridItem>
   );
 };
 
+// Skills section
+export const SkillsItem =({data}) =>{
+  const bg = useColorModeValue("#A4BEB1", "#11515B");
+  return (
+    <GridItem p="5" bg={bg}  borderRadius="3">
+        {data.text}   
+    </GridItem>
+  )
+}
+
+// experiances section
 export const TimelineItem = ({ data }) => {
   const bg = useColorModeValue("#E9AA94", "#E36A41");
   return (
@@ -95,7 +104,7 @@ export const TimelineItem = ({ data }) => {
           bg={bg}
           fontWeight="500"
         >
-          {data.meta.from} - {data.meta.to}
+          {data.meta.from} <Icon as={FiMinus} w="5" h="5" /> {data.meta.to}
         </Box>
         <Box>{data.meta.place}</Box>
         <Box>{data.meta.position}</Box>

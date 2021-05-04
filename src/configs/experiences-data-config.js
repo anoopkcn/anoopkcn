@@ -4,7 +4,7 @@ export const timelineData = [
       meta: {
         place: "PGI-1",
         position: "PhD",
-        from: "18.10.2018",
+        from: "Oct,2018",
         to: "Present",
         color: "#018f69",
         link: {

@@ -36,7 +36,7 @@ const GithubIcon = (props) => (
 
 export default function About(props) {
   return (
-    <Box pt="10" pb="10" id="about">
+    <Box pt="10" pb="5" id="about">
       <Flex>
         <Box w="30%">
           <Center>
