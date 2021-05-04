@@ -5,3 +5,7 @@ html {
 .is-current-page{
     color: blue;
 }
+
+.emph{
+    font-weight:800
+}

@@ -1,24 +1,17 @@
 import './App.css';
 import Header from './components/header'
-import About from './components/about'
-import Container from './components/container';
-import Skills from './components/skills';
-import Projects from './components/projects';
+import Footer from './components/footer'
 import { VStack } from '@chakra-ui/layout';
+import Home from './components/home';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <VStack>
-      <Header></Header>
-      <Container>
-        <About></About>
-        <Projects></Projects>
-        <Skills></Skills>
-      </Container>
+        <Header/>
+        <Home/>
+        <Footer/>
       </VStack>
     </div>
   );
 }
-
-export default App;

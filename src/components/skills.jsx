@@ -1,53 +1,46 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Center, Heading, Grid, GridItem} from "@chakra-ui/layout";
 import React from "react";
+import { useColorModeValue } from "@chakra-ui/react";
 
-function About(props) {
+export default function Skills(props) {
+  const bg = useColorModeValue("#A4BEB1", "#11515B");
   return (
-    <Box id ="skills">
-      <span style={{color:"red"}}>Skills</span>site down for maintenance Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Veritatis porro dolorem quasi debitis doloremque enim
-      recusandae voluptatibus maxime eos, dicta numquam, pariatur laborum eaque!
-      Repellendus nam minus perspiciatis explicabo rerum! Lorem ipsum dolor sit
-      amet consectetur adipisicing elit. Quaerat voluptatem iure facilis
-      voluptates voluptatum in excepturi ipsum, molestias illum enim mollitia
-      blanditiis inventore atque odio voluptatibus iste deserunt recusandae
-      dignissimos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ipsum porro perspiciatis libero maiores pariatur quis. Temporibus ipsa
-      quas dicta ipsam molestias quasi quaerat facilis quia accusantium? Illo
-      odit iste incidunt.site down for maintenance Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Veritatis porro dolorem quasi debitis
-      doloremque enim recusandae voluptatibus maxime eos, dicta numquam,
-      pariatur laborum eaque! Repellendus nam minus perspiciatis explicabo
-      rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-      voluptatem iure facilis voluptates voluptatum in excepturi ipsum,
-      molestias illum enim mollitia blanditiis inventore atque odio voluptatibus
-      iste deserunt recusandae dignissimos. Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Ipsum porro perspiciatis libero maiores
-      pariatur quis. Temporibus ipsa quas dicta ipsam molestias quasi quaerat
-      facilis quia accusantium? Illo odit iste incidunt.
-      facilis quia accusantium? Illo odit iste incidunt.
-      facilis quia accusantium? Illo odit iste incidunt.site down for maintenance Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Veritatis porro dolorem quasi debitis doloremque enim
-      recusandae voluptatibus maxime eos, dicta numquam, pariatur laborum eaque!
-      Repellendus nam minus perspiciatis explicabo rerum! Lorem ipsum dolor sit
-      amet consectetur adipisicing elit. Quaerat voluptatem iure facilis
-      voluptates voluptatum in excepturi ipsum, molestias illum enim mollitia
-      blanditiis inventore atque odio voluptatibus iste deserunt recusandae
-      dignissimos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ipsum porro perspiciatis libero maiores pariatur quis. Temporibus ipsa
-      quas dicta ipsam molestias quasi quaerat facilis quia accusantium? Illo
-      odit iste incidunt.site down for maintenance Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Veritatis porro dolorem quasi debitis
-      doloremque enim recusandae voluptatibus maxime eos, dicta numquam,
-      pariatur laborum eaque! Repellendus nam minus perspiciatis explicabo
-      rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-      voluptatem iure facilis voluptates voluptatum in excepturi ipsum,
-      molestias illum enim mollitia blanditiis inventore atque odio voluptatibus
-      iste deserunt recusandae dignissimos. Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Ipsum porro perspiciatis libero maiores
-      pariatur quis. Temporibus ipsa quas dicta ipsam molestias quasi quaerat
+    <Box py="10" id ="skills">
+      <Center mb="10">
+          <Heading as="h5" size="sm">
+            Skills
+          </Heading>
+      </Center>
+      <Grid
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(4, 1fr)"
+        gap={4}
+      >
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+        <GridItem p="5" bg={bg} >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil repellendus iusto vitae perferendis inventore eligendi culpa, pariatur magnam totam voluptates atque laudantium qui debitis reiciendis consequuntur eveniet officiis. Expedita, dolor!
+        </GridItem>
+      </Grid>
     </Box>
   );
 }
-
-export default About;

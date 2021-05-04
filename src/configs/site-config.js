@@ -1,13 +1,15 @@
 const baseUrl = "https://anoopkcn.com"
 
 const siteConfig = {
-  copyright: `Copyright © ${new Date().getFullYear()} Anoop K Cahndran. All Rights Reserved.`,
+  copyright: `Copyright © ${new Date().getFullYear()} Anoop K. Chandran. All Rights Reserved.`,
 
   author: {
     name: "Anoop Chandran",
     github: "https://github.com/anoopkcn",
     twitter: "https://twitter.com/anoopkcn",
     email: "anoopkcn@gmail.com",
+    mailto: "mailto:anoopkcn@gmail.com",
+    instagram: "https://www.instagram.com/anoopkcn/"
   },
   repo: {
     url: baseUrl
