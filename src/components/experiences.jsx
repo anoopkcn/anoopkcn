@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Center, Heading } from "@chakra-ui/layout";
 import { TimelineItem } from "../components/elements";
-import { timelineData } from "../configs/experiences-data-config";
+import { timelineData } from "../configs/data-experiences-config";
 
 const Timeline = () =>
   timelineData.length > 0 && (
@@ -16,7 +16,7 @@ export default function Experiences() {
   return (
     <Box py="10" id="experiences">
       <Center mb="10">
-        <Heading as="h5" size="sm">
+        <Heading as="h4" size="md">
           Experiences
         </Heading>
       </Center>

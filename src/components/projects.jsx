@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Center, Grid, Heading } from "@chakra-ui/layout";
 import { ProjectItem } from "../components/elements";
-import { projectData } from "../configs/project-data-config";
+import { projectData } from "../configs/data-project-config";
 
 const ProjectDescription = () =>
   projectData.length > 0 && (
@@ -20,7 +20,7 @@ export default function Projects(props) {
   return (
     <Box py="10" id="projects">
       <Center mb="10">
-        <Heading as="h5" size="sm">
+        <Heading as="h4" size="md">
           Projects
         </Heading>
       </Center>

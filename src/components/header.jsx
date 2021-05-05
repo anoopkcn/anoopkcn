@@ -21,14 +21,14 @@ function HeaderContent() {
       <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
         <Flex align="center">
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-            <MenuItem to="/#about">About</MenuItem>
+            <MenuItem to="/">About</MenuItem>
             <MenuItem to="/#projects">Projects</MenuItem>
             <MenuItem to="/#skills">Skills</MenuItem>
             <MenuItem to="/#experiences">Experiences</MenuItem>
             <Center height="2.0rem">
               <Divider orientation="vertical" />
             </Center>
-            <MenuItem to="/#">Posts</MenuItem>
+            <MenuItem to="/posts">Posts</MenuItem>
           </HStack>
         </Flex>
 

@@ -1,6 +1,6 @@
 import { Box, Center, Heading, Grid } from "@chakra-ui/layout";
 import React from "react";
-import { skillsData } from "../configs/skills-data-config";
+import { skillsData } from "../configs/data-skills-config";
 import { SkillsItem } from "../components/elements";
 
 const SkillsDescription = () =>
@@ -20,7 +20,7 @@ export default function Skills(props) {
   return (
     <Box py="10" id="skills">
       <Center mb="10">
-        <Heading as="h5" size="sm">
+        <Heading as="h4" size="md">
           Skills
         </Heading>
       </Center>
