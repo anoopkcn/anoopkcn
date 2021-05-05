@@ -4,6 +4,7 @@ import Footer from './components/footer'
 import { VStack } from '@chakra-ui/layout';
 import Home from './components/home';
 import Posts from './components/posts'
+import RenderPost from './components/render-post'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function App() {
@@ -14,7 +15,8 @@ export default function App() {
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/posts" component={Posts} />
+            <Route path="/posts" exact component={Posts} />
+            <Route path="/posts/:id" component={RenderPost} />
           </Switch>
           <Footer />
         </VStack>

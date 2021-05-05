@@ -21,7 +21,7 @@ function HeaderContent() {
       <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
         <Flex align="center">
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-            <MenuItem to="/">About</MenuItem>
+            <MenuItem to="/#about">About</MenuItem>
             <MenuItem to="/#projects">Projects</MenuItem>
             <MenuItem to="/#skills">Skills</MenuItem>
             <MenuItem to="/#experiences">Experiences</MenuItem>

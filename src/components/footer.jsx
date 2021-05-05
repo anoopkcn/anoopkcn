@@ -10,8 +10,10 @@ import {
 import React from "react";
 import { MenuItem } from "./elements";
 import siteConfig from "../configs/site-config";
+import { SocialMedia }  from '../components/elements'
 
 function FooterContent() {
+  const mediaIconColor=useColorModeValue("#363B72", "#ABACCA")
   return (
     <>
       <Flex w="100%" h="100%" px="6">
@@ -23,6 +25,7 @@ function FooterContent() {
           <MenuItem to="/#projects">Projects</MenuItem>
           <MenuItem to="/#skills">Skills</MenuItem>
           <MenuItem to="/#">Experiences</MenuItem>
+          <SocialMedia color={mediaIconColor}/>
         </Box>
         <Spacer />
         <Box w="60%">
@@ -45,11 +48,11 @@ function FooterContent() {
 function Footer(props) {
   const bg = useColorModeValue("gray.200", "gray.700");
   return (
-    <chakra.header bg={bg} pt="20" pb="10" width="full" {...props}>
+    <chakra.footer bg={bg} pt="20" pb="10" width="full" {...props}>
       <chakra.div mx="auto" maxW={{ base: "xl", md: "7xl" }}>
         <FooterContent />
       </chakra.div>
-    </chakra.header>
+    </chakra.footer>
   );
 }
 
