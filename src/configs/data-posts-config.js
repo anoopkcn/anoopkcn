@@ -3,8 +3,23 @@ import { MdComputer } from "react-icons/md";
 import OneLiners from '../posts//useful-oneliners'
 import PortListening from '../posts/port-listening'
 import CudaFortran from '../posts/cuda-fortran'
+import CrossrefBib from "../posts/crossref-bib";
 
 const PostsData = [
+    {
+        id:"crossref-bib",
+        content: <CrossrefBib />,
+        icon: MdComputer,
+        title: "Using crossref for building a bib",
+        date: "06-05-2018",
+        summary: "Crossref API can be used to build a simple bash function which can be used to easily manipulate the details of an article. This bash function can be extended to view the details, tags,etc., for references when writing an article",
+        bib:[
+            {
+                link:"https://www.crossref.org",
+                text:"The online service of crossref",
+            },
+        ]
+    },
     {
         id:"useful-oneliners",
         content: <OneLiners />,

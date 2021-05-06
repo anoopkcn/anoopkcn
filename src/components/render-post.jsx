@@ -37,7 +37,7 @@ export default function RenderPost({ match }) {
         <Heading as="h4" size="md">
           {data.title}
         </Heading>
-        <Box mb="10" mt="3" color="gray.500">
+        <Box mb="2" mt="3" color="gray.500">
           {data.date}
         </Box>
         <Box>{data.content}</Box>

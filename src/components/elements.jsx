@@ -38,7 +38,7 @@ export const Li = ({children, href}) => {
 };
 
 export const H4 =({children}) => (
-  <Heading as="h4" size="sm" pb="4">{children}</Heading>
+  <Heading as="h4" size="sm" py="4">{children}</Heading>
 )
 
 // Switch between dark and light mode
