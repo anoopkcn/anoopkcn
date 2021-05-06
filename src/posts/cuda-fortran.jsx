@@ -22,7 +22,6 @@ There are a number of good programming practices to be observed when moving data
 
 The <Code>allocate()</Code> command and the assignment operator's are overloaded in the CUDA Fortran model so that it can also allow allocation of the device memory (using <Code>device</Code> attribute) and data transfer between the host and device memory spaces. The Fortran2003 source allocation construct, <Code>allocate(A, source=B)</Code>, for cloning <Code>A</Code> to <Code>B</Code> is also extended. In CUDA Fortran, if the <Code>A</Code> array is defined as a device array and <Code>B</Code> is defined as host array, then contents of <Code>B</Code> will be copied over the PCI bus to <Code>A</Code>. These methods of data transfer are all blocking transfers, in that control is not returned to the CPU thread until the transfer is complete. This prevents the possibility of overlapping data transfers with computation on both the host and device. For concurrent computation one might employ CUDA API function <Code>cudaMemcpyAsync()</Code> to perform asynchronous data transfers
 
-<br/>
 Kernels, or subroutines are typically invoked in host code just as any subroutine is called, but since the kernel code is executed by many threads in parallel an additional execution configuration has to be provided to indicate thread specifications.
 Data elements are mapped to threads using the automatically defined variables <Code>threadIdx</Code>, <Code>blockIdx</Code>, <Code>blockDim</Code>, and <Code>gridDim</Code>.
 

@@ -1,33 +1,39 @@
-import { RiComputerLine } from "react-icons/ri";
+import { MdComputer } from "react-icons/md";
 
-import TestExample from '../posts/test-example'
-import TestExample2 from '../posts/test-example2'
+import OneLiners from '../posts//useful-oneliners'
+import PortListening from '../posts/port-listening'
 import CudaFortran from '../posts/cuda-fortran'
 
 const PostsData = [
     {
-        id:"test-example",
-        icon: RiComputerLine,
-        title: "This is a title",
-        date: "02-12-2020",
-        summary: "this is a summary of the post",
-        content: <TestExample />
-    },
-    {
-        id:"test-example2",
-        icon: RiComputerLine,
-        title: "This is a title2",
-        date: "02-12-2020",
-        summary: "this is a summary of the post2",
-        content: <TestExample2 />
+        id:"useful-oneliners",
+        content: <OneLiners />,
+        icon: MdComputer,
+        title: "Useful One Liners when scripting",
+        date: "05-05-2018",
+        summary: "Useful One Liner code snippets",
+        bib:[
+            {
+                link:"https://www.youtube.com/watch?v=OSGv2VnC0go",
+                text:"Raymond Hettinger's talk: Transforming Code into Beautiful, Idiomatic Python",
+            },
+            {
+                link:"https://stackoverflow.com/a/3452888",
+                text:"From a stackoverflow",
+            },
+            {
+                link:"https://github.com/connermcd",
+                text:"Courtesy of Conner McDaniel",
+            }
+        ]
     },
     {
         id:"cuda-fortran",
         content: <CudaFortran />,
-        icon: RiComputerLine,
+        icon: MdComputer,
         title: "CUDA Programming Model and CUDA Fortran",
         date: "18-04-2018",
-        summary: "A quick dive into CUDA Fortran programming model to convert fortran code to a GPU compatible code with fewer modifications",
+        summary: "A quick dive into CUDA Fortran programming model to convert Fortran code to a GPU compatible code with fewer modifications",
         section: "tech",
         bib:[
             {
@@ -43,7 +49,30 @@ const PostsData = [
                 text:"Graphene tight binding model for porting to fortran and then to  gpu"
             }
         ],
-    }
+    },
+    {
+        id:"port-listening",
+        content: <PortListening />,
+        icon: MdComputer,
+        title: "Port listening from a cluster",
+        date: "19-11-2017",
+        summary: "Port listening can come handy on many occasions, primarily when working with a remote machine. Some of the services that would consume a lot of memory, ram and other resources are most often handled using a cluster or a workstation",
+        bib:[
+            {
+                link:"http://www.penguintutor.com/linux/network-services-ports",
+                text:"TCP/IP and UDP/IP</a> details of service port"
+            },
+            {
+                link:"https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/",
+                text:"Jupyter notebook tips tricks shortcuts"
+            },
+            {
+                link:"https://hub.docker.com/r/strivetobelazy/archlinux/",
+                text:"Docker image for testing c,c++,fortran,go,etc.."
+            }
+        ]
+    },
+ 
 ]
 
 export default PostsData;

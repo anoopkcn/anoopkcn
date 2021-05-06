@@ -10,6 +10,7 @@ import {
   Spacer,
   useColorMode,
   useColorModeValue,
+  Heading,
 } from "@chakra-ui/react";
 import React from "react";
 import { IconButton } from "@chakra-ui/react";
@@ -25,6 +26,20 @@ import {
   atomOneLight,
   atomOneDark,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+
+export const Li = ({children, href}) => {
+  const linkColor = useColorModeValue("#11515B", "#A4BEB1");
+  return (
+    <CLink color={linkColor} href={href} isExternal>
+     {children} <ExternalLinkIcon mx="2px" />
+    </CLink>
+  )
+};
+
+export const H4 =({children}) => (
+  <Heading as="h4" size="sm" pb="4">{children}</Heading>
+)
 
 // Switch between dark and light mode
 export function AccentSwitch() {
