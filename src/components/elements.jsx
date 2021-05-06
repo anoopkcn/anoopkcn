@@ -16,11 +16,15 @@ import { IconButton } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { FiMinus } from "react-icons/fi";
 import { Box, Text } from "@chakra-ui/react";
-import { HashLink as Link } from 'react-router-hash-link';
+import { HashLink as Link } from "react-router-hash-link";
 import siteConfig from "../configs/site-config";
 import { FaTwitter } from "react-icons/fa";
 import { GrMail, GrInstagram } from "react-icons/gr";
-
+import SyntaxHighlighter from "react-syntax-highlighter";
+import {
+  atomOneLight,
+  atomOneDark,
+} from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 // Switch between dark and light mode
 export function AccentSwitch() {
@@ -48,7 +52,21 @@ export function Logo(props) {
   );
 }
 
-
+export const Script = ({ language = "bash", code, number = true }) => {
+  const bg = useColorModeValue(atomOneLight, atomOneDark);
+  return (
+    <Box my="5">
+      <SyntaxHighlighter
+        language={language}
+        style={bg}
+        showLineNumbers={number}
+        wrapLines={true}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </Box>
+  );
+};
 
 const DiscordIcon = (props) => (
   <svg viewBox="0 0 146 146" {...props}>
@@ -69,14 +87,10 @@ const GithubIcon = (props) => (
   </svg>
 );
 
-export const SocialMedia = ({color}) =>{
+export const SocialMedia = ({ color }) => {
   return (
     <HStack spacing="5" color={color} display={{ base: "none", md: "flex" }}>
-      <CLink
-        isExternal
-        aria-label="Email"
-        href={siteConfig.author.mailto}
-      >
+      <CLink isExternal aria-label="Email" href={siteConfig.author.mailto}>
         <Icon
           as={GrMail}
           display="block"
@@ -86,11 +100,7 @@ export const SocialMedia = ({color}) =>{
           _hover={{ color: "gray.600" }}
         />
       </CLink>
-      <CLink
-        isExternal
-        aria-label="GitHub page"
-        href={siteConfig.github.url}
-      >
+      <CLink isExternal aria-label="GitHub page" href={siteConfig.github.url}>
         <Icon
           as={GithubIcon}
           display="block"
@@ -139,10 +149,10 @@ export const SocialMedia = ({color}) =>{
         />
       </CLink>
     </HStack>
-  )
+  );
 };
 
-export const MenuItem = ({ children, to = "/", hash="", ...rest }) => {
+export const MenuItem = ({ children, to = "/", hash = "", ...rest }) => {
   return (
     <Link to={to}>
       <Text display="block" {...rest}>
@@ -205,7 +215,14 @@ export const SkillsItem = ({ data }) => {
 export const TimelineItem = ({ data }) => {
   const bg = useColorModeValue("#E9AA94", "#E36A41");
   return (
-    <Box borderWidth="2px" borderRadius="lg" borderColor="RGB(183, 44, 49, 0.2)" p="5" mt="5" mb="10">
+    <Box
+      borderWidth="2px"
+      borderRadius="lg"
+      borderColor="RGB(183, 44, 49, 0.2)"
+      p="5"
+      mt="5"
+      mb="10"
+    >
       <Box position="relative">
         <Box
           position="absolute"
@@ -224,7 +241,10 @@ export const TimelineItem = ({ data }) => {
             <Box fontWeight="500" fontSize="large" color="RGB(183, 44, 49)">
               {data.meta.place}
             </Box>
-            <Box fontWeight="500">{data.meta.icon && <Icon as={data.meta.icon} w="7" h="7" />} {data.meta.position}</Box>
+            <Box fontWeight="500">
+              {data.meta.icon && <Icon as={data.meta.icon} w="7" h="7" />}{" "}
+              {data.meta.position}
+            </Box>
             <Box pb="3" fontStyle="italic" color="gray.500">
               {data.meta.address}
             </Box>
@@ -247,4 +267,3 @@ export const TimelineItem = ({ data }) => {
     </Box>
   );
 };
-
