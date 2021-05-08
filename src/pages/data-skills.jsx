@@ -159,7 +159,7 @@ export function AiiDA() {
 
 export function NodeJS() {
   return <Box>
-    NodeJs is used for developing Verdiweb. I also use it for small projects and developing desktop applications using electron.
+    NodeJs is used for developing verdiweb. I also use it for small projects and developing desktop applications using electron.
      <FF>Package manager</FF>
   </Box>;
 }
