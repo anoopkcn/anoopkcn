@@ -111,8 +111,8 @@ export function Fortran() {
 export function GO() {
   return (
     <Box>
-      Clip library is developed with the Golang. It's concurrency
-      feature makes programming seamless.
+      Clip library is developed with the Golang. It's easy to implement concurrency
+      feature makes code run faster.
       <br />
       <FF>Concurrency</FF>
     </Box>
@@ -189,7 +189,7 @@ export function OperatingSystems() {
 export function Tools() {
   return (
     <Box>
-      <Text>BASH, Sed, Awk</Text>
+      <Text>BASH, Sed, Awk, vim, vscode</Text>
     </Box>
   );
 }

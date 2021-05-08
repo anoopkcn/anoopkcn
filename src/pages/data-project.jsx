@@ -112,7 +112,7 @@ export function FiniteElement() {
 export function VerdiWeb() {
   return (
     <Box>
-      A GUI implementation of monitoring AiiDA nodes. This package includes a flexible REST API implementation of aiida database and a REACT front end. 
+      A GUI implementation for monitoring AiiDA nodes. This package includes a flexible REST API implementation of aiida database and a REACT front end. 
     </Box>
   );
 }
