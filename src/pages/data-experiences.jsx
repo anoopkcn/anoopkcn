@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/layout";
 import React from "react";
+import { Li } from "../components/elements";
 
 export default function TextExperiences(place) {
   switch (place) {
@@ -20,8 +21,9 @@ export default function TextExperiences(place) {
 export function PGI1() {
     return (
         <Box>
-          PGI-1::
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consectetur, veniam obcaecati sapiente iusto dignissimos sed libero reiciendis illo nesciunt voluptate neque rem recusandae at autem est deleniti esse eaque?
+          Thesis: Photovoltaic Device inspired Materials Search: Focus on Metal-Halide Perovskites
+          <br />
+          Supervisors: Irene Aguilera, Christoph Friedrich, Thomas Kirchartz, Prof. Uwe Rau, Prof. Stefan Blügel
         </Box>
     )
 }
@@ -29,8 +31,9 @@ export function PGI1() {
 export function SISSA() {
   return (
       <Box>
-        SISSA::
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consectetur, veniam obcaecati sapiente iusto dignissimos sed libero reiciendis illo nesciunt voluptate neque rem recusandae at autem est deleniti esse eaque?
+        Work: Improving the performace of Kohn-Sham Solvers implemented in Quantum Espresso
+        <br />
+        Supervisors: Prof. Stefano de Gironcoli
       </Box>
   )
 }
@@ -38,8 +41,9 @@ export function SISSA() {
 export function ICTP() {
   return (
       <Box>
-        ICTP::
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consectetur, veniam obcaecati sapiente iusto dignissimos sed libero reiciendis illo nesciunt voluptate neque rem recusandae at autem est deleniti esse eaque?
+        Thesis: A performance study of Quantum ESPRESSO’s diagonalization methods on cutting edge computer technology for high-performance computing.
+        <br />
+        Supervisors: Prof. Stefano de Gironcoli, Ivan Girotto, Filippo Spiga
       </Box>
   )
 }
@@ -47,8 +51,9 @@ export function ICTP() {
 export function IITH() {
   return (
       <Box>
-        IITH::
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consectetur, veniam obcaecati sapiente iusto dignissimos sed libero reiciendis illo nesciunt voluptate neque rem recusandae at autem est deleniti esse eaque?
+        Thesis: <Li href="https://www.sciencedirect.com/science/article/abs/pii/S0022459616303395?via%3Dihub">Structural and thermoelectric properties of zintl-phase CaLiPn</Li>
+        <br />
+        Supervisors: Prof. V Kanchana
       </Box>
   )
 }

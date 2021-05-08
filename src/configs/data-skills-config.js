@@ -1,14 +1,20 @@
 
 import { FaPython, FaReact, FaGitAlt } from "react-icons/fa";
+import {GrStatusPlaceholder} from "react-icons/gr"
 import { SiJavascript } from "react-icons/si"
 import TextSkills from "../pages/data-skills"
+import go from "../images/go.png"
+import clang from "../images/clang.svg"
+import aiida from "../images/aiida.png"
+import pytorch from "../images/pytorch.png"
+import cuf from "../images/cuf.jpg"
 
 export const skillsData = [
     {
         title: "Git",
         icon: FaGitAlt,
         type: "VSC",
-        text: TextSkills('text')
+        text: TextSkills('git')
     },
     {
         title: "Python",
@@ -17,135 +23,99 @@ export const skillsData = [
         text: TextSkills('python')
     },
     {
-        title: "C++",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
-    },
-    {
-        title: "C",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
+        title: "C and C++",
+        image: clang,
+        type: "language",
+        text: TextSkills('cpp')
     },
     {
         title: "Fortran",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
+        icon: GrStatusPlaceholder,
+        type: "language",
+        text: TextSkills('fortran')
     },
     {
         title: "GO",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
+        image: go,
+        type: "language",
+        text: TextSkills('go')
     },
     {
         title: "JavaScript",
         icon: SiJavascript,
         type: "language",
-        text: TextSkills('text')
+        text: TextSkills('js')
     },
     {
         title: "CUDA-Fortran",
-        icon: '',
+        image: cuf,
         type: "language",
-        text: TextSkills('text')
+        text: TextSkills('cuf')
     },
     {
-        title: "CUDA-C",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
-    },
-    {
-        title: "MPI",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
-    },
-    {
-        title: "OPENMP",
-        icon: '',
-        type: "academic",
-        text: TextSkills('text')
+        title: "MPI and OPENMP",
+        icon: GrStatusPlaceholder,
+        type: "language",
+        text: TextSkills('mpi')
     },
     {
         title: "PyTorch",
-        icon: '',
+        image: pytorch,
         type: "library",
-        text: TextSkills('text')
+        text: TextSkills('pytorch')
     },
     {
         title: "AiiDA",
-        icon: '',
+        image: aiida,
         type: "library",
-        text: TextSkills('text')
-    },
-    {
-        title: "Sklearn",
-        icon: '',
-        type: "library",
-        text: TextSkills('text')
+        text: TextSkills('aiida')
     },
     {
         title: "NodeJS",
         icon: FaReact,
         type: "library",
-        text: TextSkills('text')
+        text: TextSkills('nodejs')
     },
     {
         title: "React",
         icon: FaReact,
         type: "library",
-        text: TextSkills('text')
-    },
-    {
-        title: "Databases",
-        icon: '',
-        type: "",
-        text: TextSkills('text')
+        text: TextSkills('react')
     },
     {
         title: "REST",
-        icon: '',
+        icon: GrStatusPlaceholder,
         type: "",
-        text: TextSkills('text')
-    },
-    {
-        title: "Operating Systems",
-        icon: '',
-        type: "OS",
-        text: TextSkills('text')
+        text: TextSkills('rest')
     },
     {
         title: "Tools",
-        icon: '',
+        icon: GrStatusPlaceholder,
         type: "Scripting",
-        text: TextSkills('text')
+        text: TextSkills('tools')
     },
     {
         title: "Design Tools",
-        icon: '',
+        icon: GrStatusPlaceholder,
         type: "",
-        text: TextSkills('text')
+        text: TextSkills('dtools')
     },
     {
         title: "Web",
-        icon: '',
+        icon: GrStatusPlaceholder,
         type: "",
-        text: TextSkills('text')
+        text: TextSkills('web')
     },
     {
         title: "DFT & related codes",
-        icon: '',
+        icon: GrStatusPlaceholder,
         type: "code",
-        text: TextSkills('text')
+        text: TextSkills('dftcodes')
     },
     {
         title: "Not in regular use",
-        icon: '',
+        icon: GrStatusPlaceholder,
         type: "",
-        text: TextSkills('text')
+        text: TextSkills('notused')
     },
 ]

@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Text, UnorderedList, ListItem } from "@chakra-ui/react";
+import { Box 
+ } from "@chakra-ui/react";
 import { Script, Li, H4 } from "../components/elements";
 import { Code } from "@chakra-ui/react";
 

@@ -8,7 +8,7 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import React from "react";
-import { MenuItem } from "./elements";
+import { Li, MenuItem } from "./elements";
 import siteConfig from "../configs/site-config";
 import { SocialMedia }  from '../components/elements'
 
@@ -18,24 +18,24 @@ function FooterContent() {
     <>
       <Flex w="100%" h="100%" px="6">
         <Box w="30%">
-          <Heading as="h5" size="sm">
+          <Heading as="h5" pb="2" size="sm">
             Navigation
           </Heading>
-          <MenuItem to="/#about">About</MenuItem>
-          <MenuItem to="/#projects">Projects</MenuItem>
-          <MenuItem to="/#skills">Skills</MenuItem>
-          <MenuItem to="/#">Experiences</MenuItem>
-          <SocialMedia color={mediaIconColor}/>
+          <MenuItem pb="2" to="/#about">About</MenuItem>
+          <MenuItem pb="2" to="/#projects">Projects</MenuItem>
+          <MenuItem pb="2" to="/#skills">Skills</MenuItem>
+          <MenuItem pb="2" to="/#">Experiences</MenuItem>
+          <MenuItem to="/posts">Posts</MenuItem>
         </Box>
         <Spacer />
         <Box w="60%">
-          <Heading as="h5" size="sm">
+          <Heading as="h5" pb="2" size="sm">
             Contact
           </Heading>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam
-          culpa voluptatum consequatur mollitia vitae, dolores amet obcaecati
-          quae sapiente dolorum quisquam distinctio consectetur adipisci ipsa
-          quod. Repellat nostrum reprehenderit aliquid!
+          <Text pb="2">Anoop K. chandran</Text>
+          <Text pb="2">Affiliation: <Li href="https://www.fz-juelich.de/portal/DE/Home/home_node.html">Forschungszentrum Jülich</Li> </Text>
+          <Text pb="5">Email: anoopkcn@gmail.com</Text>
+          <SocialMedia color={mediaIconColor}/>
           <Box pt="5" color="gray.500">
             <Text fontSize="small">{siteConfig.copyright}</Text>
           </Box>
