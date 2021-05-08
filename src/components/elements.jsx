@@ -28,18 +28,23 @@ import {
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-export const Li = ({children, href}) => {
-  const linkColor = useColorModeValue("#11515B", "#A4BEB1");
+export const Li = ({ children, href, color }) => {
+  var linkColor = useColorModeValue("#11515B", "#A4BEB1");
+  if (color){
+    linkColor= color
+  }
   return (
     <CLink color={linkColor} href={href} isExternal>
-     {children} <ExternalLinkIcon mx="2px" />
+      {children} <ExternalLinkIcon mx="2px" />
     </CLink>
-  )
+  );
 };
 
-export const H4 =({children}) => (
-  <Heading as="h4" size="sm" py="4">{children}</Heading>
-)
+export const H4 = ({ children }) => (
+  <Heading as="h4" size="sm" py="4">
+    {children}
+  </Heading>
+);
 
 // Switch between dark and light mode
 export function AccentSwitch() {
@@ -66,6 +71,17 @@ export function Logo(props) {
     </Box>
   );
 }
+
+export const MenuItem = ({ children, to = "/", hash = "", ...rest }) => {
+  const linkColor = useColorModeValue("#11515B", "#A4BEB1");
+  return (
+    <Link to={to}>
+      <Text color={linkColor} as="b" display="block" {...rest}>
+        {children}
+      </Text>
+    </Link>
+  );
+};
 
 export const Script = ({ language = "bash", code, number = true }) => {
   const bg = useColorModeValue(atomOneLight, atomOneDark);
@@ -167,33 +183,29 @@ export const SocialMedia = ({ color }) => {
   );
 };
 
-export const MenuItem = ({ children, to = "/", hash = "", ...rest }) => {
-  return (
-    <Link to={to}>
-      <Text display="block" {...rest}>
-        {children}
-      </Text>
-    </Link>
-  );
-};
-
 export const ItemHead = ({ data }) => {
   const typeColor = useColorModeValue("#363971", "#ACACCA");
+  var logo;
+  if (data.image){
+    logo=<Image borderRadius="2" src={data.image} h="5" alt="logo" />
+  }else{
+    logo=<Icon as={data.icon} display="block"  h="5" />
+  }
   return (
     <Grid
       templateRows="repeat(1, 1fr)"
-      templateColumns="repeat(3, 1fr)"
-      gap={4}
+      templateColumns="repeat(4, 1fr)"
+      gap={1}
       mb="2"
     >
-      <GridItem colSpan={2}>
+      <GridItem colSpan={3}>
         <HStack>
-          <Icon as={data.icon} display="block" w="5" h="5" />
+          {logo}
           <Text as="b">{data.title}</Text>
         </HStack>
       </GridItem>
       <GridItem>
-        <Box>
+        <Box w="full" height="2.0rem">
           <Text textAlign="right" color={typeColor}>
             {data.type}
           </Text>
@@ -207,10 +219,33 @@ export const ItemHead = ({ data }) => {
 
 export const ProjectItem = ({ data }) => {
   const bg = useColorModeValue("#A8C0D1", "#26476D");
+  const ibg = useColorModeValue("#26476D", "#A8C0D1");
+  const roleColor= useColorModeValue("white", "black");
+  var showlink = "";
+  if (data.link) {
+    showlink = (
+      <Li href={data.link} color={bg}>
+        <Icon as={data.linkicon} w="5" h="5" /> {data.linktext}
+      </Li>
+    );
+  }
   return (
-    <GridItem p="5" bg={bg} borderRadius="3">
+    <GridItem p="5" bg={bg} borderRadius="3" position="relative">
       <ItemHead data={data} />
-      <Box mt="2">{data.text}</Box>
+      <Box mt="2">
+        {data.text}
+        <Flex 
+        position="absolute"
+        p="1" 
+        borderLeftRadius="3"
+        bottom="0" 
+        right="0" 
+        bg={ibg}>
+          <Flex>
+            <Text px="2" color={roleColor}>{data.role}</Text>{" "}{showlink}
+          </Flex>
+        </Flex>
+      </Box>
     </GridItem>
   );
 };
@@ -219,9 +254,9 @@ export const ProjectItem = ({ data }) => {
 export const SkillsItem = ({ data }) => {
   const bg = useColorModeValue("#A4BEB1", "#11515B");
   return (
-    <GridItem p="5" bg={bg} borderRadius="3">
+    <GridItem p="5" bg={bg} borderRadius="3" position="relative">
       <ItemHead data={data} />
-      <Box mt="2">{data.text}</Box>
+      <Box mt="2" mb="5">{data.text}</Box>
     </GridItem>
   );
 };
