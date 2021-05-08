@@ -49,8 +49,6 @@ export default function TextSkills(id) {
       return <NodeJS />;
     case "react":
       return <ReactJS />;
-    case "Databases":
-      return <Databases />;
     case "rest":
       return <REST />;
     case "os":
@@ -133,50 +131,49 @@ export function JavaScript() {
 
 export function CUDAFortran() {
   return <Box>
+    CUF kernels are used for developing qe-gpu during masters project
      <FF>Easy integration</FF>
   </Box>;
 }
 
-export function CUDAC() {
-  return <Box></Box>;
-}
-
 export function MPI() {
   return <Box>
+    Proficient in parallel computation architectures 
     <FF>Multi-node communication</FF>
   </Box>;
 }
 
 export function PyTorch() {
   return <Box>
+    Machine learning models are developed using pytorch library. Its autograd function helps back-propagation easier to implement. 
     <FF>Dynamic Graph Layout</FF>
   </Box>;
 }
 
 export function AiiDA() {
   return <Box>
+    AiiDA is used in my research project to create reproducible high-throughput workflows. I also developed AiiDa-SPEX plugin for AiiDA. 
      <FF>Query feature</FF>
   </Box>;
 }
 
 export function NodeJS() {
   return <Box>
+    NodeJs is used for developing Verdiweb. I also use it for small projects and developing desktop applications using electron.
      <FF>Package manager</FF>
   </Box>;
 }
 
 export function ReactJS() {
   return <Box>
+    React is used to develop this website.
     <FF>Component based</FF>
   </Box>;
 }
 
-export function Databases() {
-  return <Box></Box>;
-}
-
 export function REST() {
   return <Box>
+    Proficient using and developing REST API's. The backend of verdiweb is using such an implementation. 
     <FF>🤔</FF>
   </Box>;
 }
