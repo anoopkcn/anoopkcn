@@ -173,7 +173,7 @@ export function ReactJS() {
 
 export function REST() {
   return <Box>
-    Proficient using and developing REST API's. The backend of verdiweb is using such an implementation. 
+    Proficient in using and developing REST API's. The backend of verdiweb is using such an implementation. 
     <FF>🤔</FF>
   </Box>;
 }
