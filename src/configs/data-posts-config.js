@@ -4,8 +4,31 @@ import OneLiners from '../posts//useful-oneliners'
 import PortListening from '../posts/port-listening'
 import CudaFortran from '../posts/cuda-fortran'
 import CrossrefBib from "../posts/crossref-bib";
+import ParallelProgramming from "../posts/parallel-programming-paradigm";
 
 const PostsData = [
+    {
+        id:"parallel-programming-paradigm",
+        content: <ParallelProgramming />,
+        icon: MdComputer,
+        title: "A short introduction to Parallel Programming Paradigm",
+        date: "07-07-2018",
+        summary: "Scope, justification and advantages of parallel programming for High-Performance exascale computing",
+        bib:[
+            {
+                link:"https://www.mpi-forum.org/docs/mpi-1.1/mpi-11-html/node182.html",
+                text:"MPI reference functions",
+            },
+            {
+                link:"https://en.wikipedia.org/wiki/Message_Passing_Interface",
+                text: "Description of MPI-Wiki",
+            },
+            {
+                link:"https://www.openmp.org/",
+                text:"OpenMP homepage",
+            }
+        ]
+    },
     {
         id:"crossref-bib",
         content: <CrossrefBib />,
