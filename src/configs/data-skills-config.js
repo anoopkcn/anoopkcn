@@ -53,7 +53,7 @@ export const skillsData = [
         text: TextSkills('cuf')
     },
     {
-        title: "MPI and OPENMP",
+        title: "MPI and OpenMP",
         icon: GrStatusPlaceholder,
         type: "language",
         text: TextSkills('mpi')
