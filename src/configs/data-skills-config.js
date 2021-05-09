@@ -13,7 +13,7 @@ export const skillsData = [
     {
         title: "Git",
         icon: FaGitAlt,
-        type: "VSC",
+        type: "VCS",
         text: TextSkills('git')
     },
     {
