@@ -75,7 +75,7 @@ export function Logo(props) {
 export const MenuItem = ({ children, to = "/", hash = "", ...rest }) => {
   const linkColor = useColorModeValue("#11515B", "#A4BEB1");
   return (
-    <Link to={to}>
+    <Link replace to={to}>
       <Text color={linkColor} as="b" display="block" {...rest}>
         {children}
       </Text>
@@ -120,7 +120,7 @@ const GithubIcon = (props) => (
 
 export const SocialMedia = ({ color }) => {
   return (
-    <HStack spacing="5" color={color} display={{ base: "none", md: "flex" }}>
+    <HStack spacing="5" color={color}>
       <CLink isExternal aria-label="Email" href={siteConfig.author.mailto}>
         <Icon
           as={GrMail}

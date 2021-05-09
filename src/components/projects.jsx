@@ -1,19 +1,17 @@
 import React from "react";
-import { Box, Center, Grid, Heading } from "@chakra-ui/layout";
+import { Box, Center, SimpleGrid, Heading } from "@chakra-ui/layout";
 import { ProjectItem } from "../components/elements";
 import { projectData } from "../configs/data-project-config";
 
 const ProjectDescription = () =>
   projectData.length > 0 && (
-    <Grid
-      templateRows={`repeat(${projectData.length / 2}, 1fr)`}
-      templateColumns="repeat(2, 1fr)"
+    <SimpleGrid columns={["1","1","2","2"]}
       gap={4}
     >
       {projectData.map((data, idx) => (
         <ProjectItem data={data} key={idx} />
       ))}
-    </Grid>
+    </SimpleGrid>
   );
 
 export default function Projects(props) {

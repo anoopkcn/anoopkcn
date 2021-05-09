@@ -20,7 +20,7 @@ const PostsList = () =>{
               <Text pl="3" fontWeight="600">
                  {data.title}
               </Text>
-              <Box ml="3" color="gray.500">
+              <Box ml="3" color="gray.500" display={{base:"none", md:"flex"}}>
                 {data.date}
               </Box>
             </Flex>

@@ -20,7 +20,7 @@ function HeaderContent() {
     <>
       <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
         <Flex align="center">
-          <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+          <HStack spacing="5"  display={["none","none","flex","flex"]}>
             <MenuItem to="/#about">About</MenuItem>
             <MenuItem to="/#projects">Projects</MenuItem>
             <MenuItem to="/#skills">Skills</MenuItem>
@@ -30,6 +30,16 @@ function HeaderContent() {
             </Center>
             <MenuItem to="/posts">Posts</MenuItem>
           </HStack>
+
+          {/* For mobile devices */}
+          <HStack spacing="5" display={["flex","flex","none","none"]} >
+            <MenuItem to="/#about">Home</MenuItem>
+            <Center height="2.0rem">
+              <Divider orientation="vertical" />
+            </Center>
+            <MenuItem to="/posts">Posts</MenuItem>
+          </HStack>
+
         </Flex>
 
         <Flex
@@ -82,7 +92,7 @@ function Header(props) {
       width="full"
       {...props}
     >
-      <chakra.div height="4.5rem" mx="auto" maxW={{ base: "xl", md: "7xl" }}>
+      <chakra.div height={{base:"auto", md:"4.5rem"}} mx="auto" maxW={{ base: "xl", md: "7xl" }}>
         <HeaderContent />
       </chakra.div>
     </chakra.header>

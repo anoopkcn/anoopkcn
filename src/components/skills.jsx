@@ -1,19 +1,17 @@
-import { Box, Center, Heading, Grid } from "@chakra-ui/layout";
+import { Box, Center, Heading, SimpleGrid } from "@chakra-ui/layout";
 import React from "react";
 import { skillsData } from "../configs/data-skills-config";
 import { SkillsItem } from "../components/elements";
 
 const SkillsDescription = () =>
   skillsData.length > 0 && (
-    <Grid
-      templateRows={`repeat(${skillsData.length / 3}, 1fr)`}
-      templateColumns="repeat(3, 1fr)"
+    <SimpleGrid columns={["1","1","3","3"]}
       gap={4}
     >
       {skillsData.map((data, idx) => (
         <SkillsItem data={data} key={idx} />
       ))}
-    </Grid>
+    </SimpleGrid>
   );
 
 export default function Skills(props) {
