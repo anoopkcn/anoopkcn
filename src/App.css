@@ -2,16 +2,3 @@
 html {
     scroll-padding-top: 4.6rem; /* height of sticky header */
   }
-.is-current-page{
-    color: blue;
-}
-
-.emph{
-    font-weight:800
-}
-icode{
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #E36A41;
-    border-radius: 4px;
-}
