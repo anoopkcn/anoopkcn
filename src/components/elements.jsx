@@ -299,7 +299,7 @@ export const TimelineItem = ({ data }) => {
             </Box>
             {data.text}
           </Box>
-          <Box m="auto" borderRadius="5" bg="white" w={{base:"30%", md:"10%"}}>
+          <Box m="auto" p="4" borderRadius="5" bg="white" w={{base:"30%", md:"10%"}}>
               <CLink
                 isExternal
                 aria-label={data.meta.link.text}
