@@ -24,7 +24,7 @@ function FooterContent() {
           <MenuItem pb="2" to="/#about">About</MenuItem>
           <MenuItem pb="2" to="/#projects">Projects</MenuItem>
           <MenuItem pb="2" to="/#skills">Skills</MenuItem>
-          <MenuItem pb="2" to="/#">Experiences</MenuItem>
+          <MenuItem pb="2" to="/#experiences">Experiences</MenuItem>
           <MenuItem to="/posts">Posts</MenuItem>
         </Box>
         <Spacer />

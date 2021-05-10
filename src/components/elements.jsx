@@ -1,5 +1,4 @@
 import {
-  Center,
   Flex,
   Grid,
   GridItem,
@@ -7,7 +6,6 @@ import {
   Image,
   HStack,
   Link as CLink,
-  Spacer,
   useColorMode,
   useColorModeValue,
   Heading,
@@ -261,14 +259,15 @@ export const SkillsItem = ({ data }) => {
   );
 };
 
-// experiances section
+// Experiences section
 export const TimelineItem = ({ data }) => {
   const bg = useColorModeValue("#E9AA94", "#E36A41");
+  const bColor = useColorModeValue("RGB(183, 44, 49, 0.2)","#E36A41")
   return (
     <Box
       borderWidth="2px"
       borderRadius="lg"
-      borderColor="RGB(183, 44, 49, 0.2)"
+      borderColor={bColor}
       p="5"
       mt="5"
       mb="10"
@@ -286,8 +285,8 @@ export const TimelineItem = ({ data }) => {
         >
           {data.meta.from} <Icon as={FiMinus} w="5" h="5" /> {data.meta.to}
         </Box>
-        <Flex>
-          <Box w="85%" mt="2">
+        <Flex direction={["column", "column", "row", "row"]}>
+          <Box w={{base:"100%", md:"85%"}} my="2">
             <Box fontWeight="500" fontSize="large" color="RGB(183, 44, 49)">
               {data.meta.place}
             </Box>
@@ -300,9 +299,7 @@ export const TimelineItem = ({ data }) => {
             </Box>
             {data.text}
           </Box>
-          <Spacer />
-          <Center w="10%" p="3" borderRadius="8" bg="white">
-            <Box>
+          <Box m="auto" borderRadius="5" bg="white" w={{base:"30%", md:"10%"}}>
               <CLink
                 isExternal
                 aria-label={data.meta.link.text}
@@ -310,8 +307,7 @@ export const TimelineItem = ({ data }) => {
               >
                 <Image src={data.meta.image} alt="image" />
               </CLink>
-            </Box>
-          </Center>
+          </Box>
         </Flex>
       </Box>
     </Box>
