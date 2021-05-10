@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a36b7035.chunk.css",
+    "main.js": "/static/js/main.71f46365.chunk.js",
+    "main.js.map": "/static/js/main.71f46365.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8ebf94d3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8ebf94d3.js.map",
+    "static/js/2.1a274aee.chunk.js": "/static/js/2.1a274aee.chunk.js",
+    "static/js/2.1a274aee.chunk.js.map": "/static/js/2.1a274aee.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.a36b7035.chunk.css.map": "/static/css/main.a36b7035.chunk.css.map",
+    "static/js/2.1a274aee.chunk.js.LICENSE.txt": "/static/js/2.1a274aee.chunk.js.LICENSE.txt",
+    "static/media/MPI_mixed_arch.7c7ed5b4.png": "/static/media/MPI_mixed_arch.7c7ed5b4.png",
+    "static/media/MPI_numa.acbebdb0.png": "/static/media/MPI_numa.acbebdb0.png",
+    "static/media/MPI_parallel.36071e90.png": "/static/media/MPI_parallel.36071e90.png",
+    "static/media/MPI_serial.cdca4b60.png": "/static/media/MPI_serial.cdca4b60.png",
+    "static/media/MPI_simple_program.0f4b1169.png": "/static/media/MPI_simple_program.0f4b1169.png",
+    "static/media/MPI_two_algo.baa2bd6e.png": "/static/media/MPI_two_algo.baa2bd6e.png",
+    "static/media/MPI_two_cpu.d1100753.png": "/static/media/MPI_two_cpu.d1100753.png",
+    "static/media/aiida.96e38dd1.png": "/static/media/aiida.96e38dd1.png",
+    "static/media/clang.b5b009fd.svg": "/static/media/clang.b5b009fd.svg",
+    "static/media/cuf.f1ad412e.jpg": "/static/media/cuf.f1ad412e.jpg",
+    "static/media/fzjLogo.ce6f16ca.png": "/static/media/fzjLogo.ce6f16ca.png",
+    "static/media/go.e6dce75e.png": "/static/media/go.e6dce75e.png",
+    "static/media/ictpLogo.920bb02b.png": "/static/media/ictpLogo.920bb02b.png",
+    "static/media/iithLogo.bf1367e2.png": "/static/media/iithLogo.bf1367e2.png",
+    "static/media/pytorch.2aaa7627.png": "/static/media/pytorch.2aaa7627.png",
+    "static/media/qe.afa18d5c.png": "/static/media/qe.afa18d5c.png",
+    "static/media/self.cecc38a5.svg": "/static/media/self.cecc38a5.svg",
+    "static/media/sissaLogo.375a1a94.png": "/static/media/sissaLogo.375a1a94.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8ebf94d3.js",
+    "static/js/2.1a274aee.chunk.js",
+    "static/css/main.a36b7035.chunk.css",
+    "static/js/main.71f46365.chunk.js"
+  ]
+}
