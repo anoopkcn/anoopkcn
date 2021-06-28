@@ -5,8 +5,23 @@ import PortListening from '../posts/port-listening'
 import CudaFortran from '../posts/cuda-fortran'
 import CrossrefBib from "../posts/crossref-bib";
 import ParallelProgramming from "../posts/parallel-programming-paradigm";
+import SolarAbsorbers from "../posts/solar-absorbers";
 
 const PostsData = [
+    {
+        id:"solar-absorbers",
+        content: <SolarAbsorbers />,
+        icon: MdComputer,
+        title: "Solar absorbers(not-complete)",
+        date: "07-07-2018",
+        summary: "draft",
+        bib:[
+            {
+                link:"#",
+                text:"#",
+            }
+        ]
+    },
     {
         id:"parallel-programming-paradigm",
         content: <ParallelProgramming />,
