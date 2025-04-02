@@ -1,0 +1,11 @@
+---
+.title = "Blog",
+.date = @date("2020-07-06T00:00:00"),
+.author = "Anoop K Chandran",
+.layout = "page.shtml",
+.draft = false,
+---
+## Item 1
+text
+## Igem 2
+text
