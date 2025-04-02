@@ -1,0 +1,10 @@
+---
+.title = "Home",
+.date = @date("2025-04-03T00:57:20"),
+.author = "Anoop K Chandran",
+.layout = "index.shtml",
+.draft = false,
+.tags = ["foo", "bar", "baz"],
+---
+# Anoop K Chandran
+ short **intro**
