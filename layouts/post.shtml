@@ -1,6 +1,10 @@
 <extend template="base.shtml">
 <head id="head">
   <style>
+    .post h1{
+      margin-top:0;
+    }
+
     #prev-next {
      display: flex;
      flex-direction: row;
