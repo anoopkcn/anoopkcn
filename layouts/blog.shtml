@@ -1,9 +1,6 @@
 <extend template="base.shtml">
 <head id="head">
   <style>
-    .post-list{
-        margin-top:30px;
-    }
     .post-item{
         margin-bottom: 30px;
     }

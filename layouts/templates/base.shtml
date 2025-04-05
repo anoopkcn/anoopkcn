@@ -23,10 +23,10 @@
            	&nbsp; • &nbsp;
             <a href="$site.page('blog').link()">Blog</a>
            	&nbsp; • &nbsp;
-            <a href="https://github.com/anoopkcn" target="_blank">Code</a>
+            <a href="https://github.com/anoopkcn" target="_blank">Github</a>
         </div>
         <div class="right">
-            Anoop K Chandran
+            <a href="$site.page('').link()">Anoop K Chandran</a>
         </div>
     </nav>
     <super>
