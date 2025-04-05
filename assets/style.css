@@ -41,7 +41,7 @@ nav {
     flex-direction: row;
     justify-content: space-between;
     font-size: 1em;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 nav a {
     text-decoration: none;
