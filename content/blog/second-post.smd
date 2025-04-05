@@ -7,7 +7,7 @@
 .draft = false,
 ---
 
-## hi :)
+# hi :)
 
 Here's a math formula defined as a code block:
 ```=katex

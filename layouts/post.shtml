@@ -8,6 +8,12 @@
      margin-top: 40px;
     }
 
+    #prev-next a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #769DCE;
+    }
+
     figure {
       align-self: center;
       text-align: center;
