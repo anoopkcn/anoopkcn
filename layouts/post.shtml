@@ -21,7 +21,6 @@
   </style>
 </head>
 <body id="body">
-  <!-- <h1 :text="$page.title"></h1> -->
   <div class="post" :html="$page.content()"></div>
   <div id="prev-next">
     <div :if="$page.prevPage?()">

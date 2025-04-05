@@ -16,9 +16,9 @@ a {
 }
 
 html {
-    font-family: "ZedSans", serif;
-    background-color: #141418;
-    color: #94979f;
+    font-family: "ZedSans", sans-serif;
+    background-color: #292C32;
+    color: #B9BDC6;
     font-size: 1.2em;
     display: flex;
     flex-direction: row;
@@ -26,9 +26,9 @@ html {
 }
 
 body {
-    font-family: "ZedSans", serif;
-    background-color: #141418;
-    color: #94979f;
+    font-family: "ZedSans", sans-serif;
+    background-color: #292C32;
+    color: #B9BDC6;
     width: 800px;
     padding: 15px;
     display: flex;

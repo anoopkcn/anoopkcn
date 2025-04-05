@@ -1,6 +1,7 @@
 :root {
   --light-yellow: #e5c07b;
   --dark-yellow: #d19a66;
+  --dark-green: #98c379;
   --blue: #61afef;
   --cyan: #56b6c2;
   --light-red: #e06c75;
@@ -10,28 +11,28 @@
 }
 
 pre {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid #94979f;
+  border-bottom: 1px solid #94979f;
   padding: 10px 5px;
 }
 
-code.ziggy {
+code.ziggy, code.py {
   color: var(--cyan);
 }
 
 code.ziggy .keyword,
-code.ziggy .type {
+code.ziggy .type, code.py .keyword, code.py .type {
   color: var(--light-yellow);
 }
 
-code.ziggy .string {
-  color: var(--dark-yellow);
+code.ziggy .string, code.py .string {
+  color: var(--dark-green);
 }
 
-code.ziggy .numeric.constant {
+code.ziggy .numeric.constant, code.py .numeric.constant {
   color: var(--magenta);
 }
 
-code.ziggy .function {
+code.ziggy .function, code.py .function {
   color: var(--blue);
 }
