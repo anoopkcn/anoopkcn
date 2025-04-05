@@ -1,9 +1,9 @@
 ---
 .title = "Second Post",
 .date = @date("1990-01-02T00:00:00"),
-.author = "Sample Author",
+.author = "Anoop K Chandran",
 .layout = "post.shtml",
-.custom = {"abstract":"A brief introduction to Zine site sections, page lists and code"},
+.custom = {"abstract":"A brief introduction to  site sections, page lists and code"},
 .draft = false,
 ---
 
