@@ -6,6 +6,7 @@ Site {
     .assets_dir_path = "assets",
     .static_assets = [
         "CNAME",
+        "favicon.ico",
         "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extendedextrabold.ttf",
