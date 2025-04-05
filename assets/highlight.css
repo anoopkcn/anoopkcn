@@ -10,35 +10,192 @@
     --magenta: #c678dd;
 }
 
-pre {
+/* pre {
     border-top: 1px solid #94979f;
     border-bottom: 1px solid #94979f;
     padding: 10px 5px;
+} */
+
+code .comment {
+  color: var(--comment-gray);
 }
 
-code.ziggy,
-code.py {
-    color: var(--cyan);
+
+code.html {}
+
+code.html .string {
+  color: var(--dark-yellow);
+}
+
+code.html .tag {
+  color: var(--blue);
+}
+
+code.html .constant {
+  color: var(--light-red);
+}
+
+code.html .attribute {
+  color: var(--light-yellow);
+}
+
+code.html .punctuation {
+  color: var(--cyan);
+}
+
+
+code.zig {
+  color: var(--cyan);
+}
+
+code.zig .punctuation {
+  color: var(--cyan);
+}
+
+code.zig .string {
+  color: var(--dark-yellow);
+}
+
+code.zig .variable,
+code.zig .parameter,
+code.zig .exception,
+code.zig .field {
+  color: var(--light-yellow);
+}
+
+code.zig .keyword.function {
+  color: var(--light-red);
+}
+
+code.zig .bracket {
+  color: var(--cyan);
+}
+
+code.zig .function {
+  color: var(--blue);
+}
+
+code.zig .builtin {
+  color: var(--magenta);
+}
+
+code.zig .number {
+  color: var(--magenta);
+}
+
+code.zig .operator,
+code.zig .qualifier,
+code.zig .keyword,
+code.zig .attribute {
+  color: var(--light-red);
+}
+
+code.ziggy {
+  color: var(--cyan);
 }
 
 code.ziggy .keyword,
-code.ziggy .type,
-code.py .keyword,
-code.py .type {
-    color: var(--light-yellow);
+code.ziggy .type {
+  color: var(--light-yellow);
 }
 
-code.ziggy .string,
-code.py .string {
-    color: var(--dark-green);
+code.ziggy .string {
+  color: var(--dark-yellow);
 }
 
-code.ziggy .numeric.constant,
-code.py .numeric.constant {
-    color: var(--magenta);
+code.ziggy .numeric.constant {
+  color: var(--magenta);
 }
 
-code.ziggy .function,
-code.py .function {
-    color: var(--blue);
+code.ziggy .function {
+  color: var(--blue);
+}
+
+code.json {
+  color: var(--cyan);
+}
+
+
+code.json .string {
+  color: var(--dark-yellow);
+}
+
+
+
+code.python {
+  color: var(--cyan);
+}
+
+code.python .punctuation {
+  color: var(--cyan);
+}
+
+code.python .string {
+  color: var(--dark-yellow);
+}
+
+code.python .variable,
+code.python .parameter,
+code.python .exception,
+code.python .field {
+  color: var(--light-yellow);
+}
+
+code.python .keyword.function {
+  color: var(--light-red);
+}
+
+code.python .bracket {
+  color: var(--cyan);
+}
+
+code.python .function {
+  color: var(--blue);
+}
+
+code.python .builtin {
+  color: var(--magenta);
+}
+
+code.python .number {
+  color: var(--magenta);
+}
+
+code.python .operator,
+code.python .qualifier,
+code.python .keyword,
+code.python .attribute {
+  color: var(--light-red);
+}
+
+
+
+code.markdown {
+  color: #ccc;
+}
+
+
+code.markdown .text.title {
+  color: var(--light-red);
+}
+
+code.markdown .punctuation {
+  color: var(--light-red);
+}
+
+
+code.diff .keyword {
+  color: var(--light-red);
+}
+
+code.diff .string {
+  color: var(--cyan);
+}
+
+code.diff .builtin {
+  color: var(--blue);
+}
+
+code.diff .attribute {
+  color: var(--dark-yellow);
 }
