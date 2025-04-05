@@ -3,12 +3,11 @@
 .date = @date("1990-01-02T00:00:00"),
 .author = "Sample Author",
 .layout = "post.shtml",
+.custom = {"abstract":"A brief introduction to Zine site sections, page lists and code"},
 .draft = false,
 ---
 
-This second post is here just to show you that you can also create single file
-posts for convenience.
-
+## hi :)
 
 Here's a math formula defined as a code block:
 ```=katex
