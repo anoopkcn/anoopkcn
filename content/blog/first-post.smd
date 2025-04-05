@@ -1,14 +1,36 @@
 ---
-.title = "First Post: What's A Zine?",
+.title = "First Post: What's this?",
 .date = @date("1990-01-01T00:00:00"),
 .author = "Sample Author",
 .layout = "post.shtml",
+.custom = {"abstract":"Introduction to site sections, page lists and code"},
 .draft = false,
 ---
 
-This is a sample first post for your blog.
+## Test
 
-Another interesting thing about this post is that it uses the `layouts/post.shtml`
-template which adds at the bottom page navigation within the blog section.
+This page defines the blog section and lists all posts in it.
 
-Enough about Zine, let's talk about zines.
+A "site section" in Zine is a group of pages that form a logical subtree of the
+website. It's related to directory structure, but it's not an entirely 1:1 mapping.
+
+```py
+def hello():
+    print("hello")
+```
+
+Take also a look at `layouts/blog.shtml` to get an idea of how to render a page
+list in a SuperHTML template.
+
+```=katex
+H\psi = E\psi
+```
+alternatives
+
+```ziggy
+.alternatives = [{
+    .name = "rss",
+    .layout = "rss.xml",
+    .output = "index.xml",
+}],
+```
