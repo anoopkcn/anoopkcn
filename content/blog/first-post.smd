@@ -1,7 +1,7 @@
 ---
 .title = "First Post: What's this?",
 .date = @date("1990-01-01T00:00:00"),
-.author = "Sample Author",
+.author = "Anoop K Chandran",
 .layout = "post.shtml",
 .custom = {"abstract":"Introduction to site sections, page lists and code"},
 .draft = false,

@@ -1,7 +1,7 @@
 ---
 .title = "Blog",
 .date = @date("1990-01-01T00:00:00"),
-.author = "Sample Author",
+.author = "Anoop K Chandran",
 .layout = "blog.shtml",
 .alternatives = [{
     .name = "rss",
