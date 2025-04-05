@@ -2,6 +2,7 @@
 
 ### Occupation
 Researcher at Applied Machine Learning Lab - [Forschungszentrum Jülich](https://www.fz-juelich.de/en)
+
 I specialize in machine learning applications for material science.
 
 ### Text & Video
