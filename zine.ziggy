@@ -1,0 +1,20 @@
+Site {
+    .title = "anoopkc",
+    .host_url = "https://anoopkc.com",
+    .content_dir_path = "content",
+    .layouts_dir_path = "layouts",
+    .assets_dir_path = "assets",
+    .static_assets = [
+        "CNAME",
+        "zed-sans-extended.ttf",
+        "zed-sans-extended.ttf",
+        "zed-sans-extendedextrabold.ttf",
+        "zed-sans-extendedlight.ttf",
+        "zed-sans-extendedbold.ttf",
+        "zed-sans-extendedextrabolditalic.ttf",
+        "zed-sans-extendedlightitalic.ttf",
+        "zed-sans-extendedbolditalic.ttf",
+        "zed-sans-extendeditalic.ttf",
+        "zed-mono-extended.ttf",
+    ],
+}

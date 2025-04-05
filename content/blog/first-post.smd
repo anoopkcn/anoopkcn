@@ -1,0 +1,14 @@
+---
+.title = "First Post: What's A Zine?",
+.date = @date("1990-01-01T00:00:00"),
+.author = "Sample Author",
+.layout = "post.shtml",
+.draft = false,
+---
+
+This is a sample first post for your blog.
+
+Another interesting thing about this post is that it uses the `layouts/post.shtml`
+template which adds at the bottom page navigation within the blog section.
+
+Enough about Zine, let's talk about zines.

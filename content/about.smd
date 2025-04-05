@@ -1,10 +1,12 @@
 ---
 .title = "About",
-.date = @date("2020-07-06T00:00:00"),
+.date = @date("1990-01-01T00:00:00"),
 .author = "Sample Author",
-.layout = "page.shtml",
+.layout = "index.shtml",
 .draft = false,
 ---
+
 ## About
 
-hello, checkback in a few weeks :)
+># [NOTE]($block)
+>Check back in a few weeks.
