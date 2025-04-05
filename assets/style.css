@@ -6,13 +6,13 @@ h5 {
     font-family: "ZedSans", sans-serif;
 }
 
+a {
+    color: #bcbec2;
+}
+
 b,
 strong {
     color: #c9cbcf;
-}
-
-a {
-    color: #bcbec2;
 }
 
 html {
