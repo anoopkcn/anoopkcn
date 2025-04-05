@@ -20,7 +20,7 @@ html {
     background-color: #292c32;
     color: #b9bdc6;
     font-size: 1.1em;
-    line-height: 1.5em;
+    line-height: 1.6em;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -40,9 +40,8 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* justify-content: left; */
     font-size: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 nav a {
     text-decoration: none;
@@ -110,11 +109,11 @@ pre > code {
 
 pre {
     color: #b1b4bc;
+    font-size: 0.9em;
     border-radius: 5px;
     margin: 0;
     padding: 0;
     background-color: #22252a !important;
-    font-size: 0.8em;
     overflow: auto;
 }
 
