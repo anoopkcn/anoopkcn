@@ -9,13 +9,32 @@
      display: flex;
      flex-direction: row;
      justify-content: space-between;
+     align-items: flex-start;
      margin-top: 40px;
+     gap: 2.0rem;
+    }
+
+    #prev-next > .prev,
+    #prev-next > .next {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .arrow {
+        font-weight: bold;
+        color: #769DCE;
+        flex-shrink: 0;
     }
 
     #prev-next a {
         text-decoration: none;
         font-weight: bold;
         color: #769DCE;
+    }
+
+    #prev-next > .next{
+        text-align: right;
     }
 
     figure {
@@ -31,19 +50,19 @@
   </style>
 </head>
 <body id="body">
-  <div class="post" :html="$page.content()"></div>
-  <div id="prev-next">
-    <div :if="$page.prevPage?()">
-      <a href="$if.link()">
-        ←
-        <span :text="$if.title"></span>
-      </a>
+    <div class="post" :html="$page.content()"></div>
+    <div id="prev-next">
+    <div class="prev" :if="$page.prevPage?()">
+        <span class="arrow">←</span>
+        <a href="$if.link()">
+        <span class="link-text" :text="$if.title"></span>
+        </a>
     </div>
-    <div :if="$page.nextPage?()">
-      <a href="$if.link()">
-        <span :text="$if.title"></span>
-        →
-      </a>
+    <div class="next" :if="$page.nextPage?()">
+        <a href="$if.link()">
+        <span class="link-text" :text="$if.title"></span>
+        </a>
+        <span class="arrow">→</span>
     </div>
-  </div>
+    </div>
 </body>
