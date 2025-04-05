@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head id="head">
-    <meta charset="UTF-8">
-    <meta name="description" content="anoopkcn: Personal Blog and Profile">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="$page.title.suffix(' | anoopkcn')">
-    <!-- <meta property="og:image" content="$site.host_url.addPath($site.asset('preview.png').link())"> -->
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title id="title">
-      <super> - Anoop K Chandran
-    </title>
-    <link rel="stylesheet" type="text/css" href="$site.asset('fonts.css').link()">
-    <link rel="stylesheet" type="text/css" href="$site.asset('style.css').link()">
-    <link rel="stylesheet" type="text/css" href="$site.asset('highlight.css').link()">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title :text="$site.title"></title>
+    <link type="text/css" rel="stylesheet" href="$site.asset('fonts.css').link()">
+    <link type="text/css" rel="stylesheet" href="$site.asset('style.css').link()">
+    <link type="text/css" rel="stylesheet" href="$site.asset('highlight.css').link()">
+    <!-- katex -->
+    <link type="text/css" rel="stylesheet" href="$site.asset('katex0.16.21.css').link()">
+    <script defer src="$site.asset('katex0.16.21.js').link()"></script>
+    <script defer src="$site.asset('katex-tag.js').link()"></script>
+    <!-- /katex -->
     <super>
   </head>
-  <body>
-    <nav id="menu" class="centered">
-      <a href="/">Home</a>
-      •
+  <body id="body">
+    <!-- <h1 class="site-title" :text="$site.title"></h1> -->
+    <nav>
+      <a href="$site.page('').link()">Home</a>
+      	&nbsp; • &nbsp;
       <a href="$site.page('about').link()">About</a>
-      •
+      	&nbsp; • &nbsp;
       <a href="$site.page('blog').link()">Blog</a>
-      •
+     	&nbsp; • &nbsp;
       <a href="https://github.com/anoopkcn" target="_blank">Code</a>
+      <!-- <ctx :if="$site.page('devlog').subpages().first?()">
+        	&nbsp; • &nbsp;
+        <a href="$if.link()">Devlog</a>
+      </ctx> -->
     </nav>
-    <div id="content">
-      <super>
-    </div>
+    <super>
+    <footer>
+      <hr>
+      <h5>SITE UNDER CONSTRUCTION</h5>
+      <img src="$site.asset('under-construction.gif').link()" width=90>
+    </footer>
   </body>
 </html>

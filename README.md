@@ -1,2 +1,0 @@
-# Anoop K. Chandran
-hi :)

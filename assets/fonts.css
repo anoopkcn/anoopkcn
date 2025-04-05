@@ -1,57 +1,57 @@
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extended.ttf') format('truetype');
+  src: url('zed-sans-extended.ttf') format('truetype');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendedextrabold.ttf ') format('truetype');
+  src: url('zed-sans-extendedextrabold.ttf ') format('truetype');
   font-weight: bolder;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendedextrabolditalic.ttf') format('truetype');
+  src: url('zed-sans-extendedextrabolditalic.ttf') format('truetype');
   font-weight: bolder;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendedbold.ttf') format('truetype');
+  src: url('zed-sans-extendedbold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendedbolditalic.ttf ') format('truetype');
+  src: url('zed-sans-extendedbolditalic.ttf ') format('truetype');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendeditalic.ttf') format('truetype');
+  src: url('zed-sans-extendeditalic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendedlight.ttf') format('truetype');
+  src: url('zed-sans-extendedlight.ttf') format('truetype');
   font-weight: light;
 }
 
 @font-face {
   font-family: 'ZedSans';
-  src: url('fonts/zed/zed-sans-extendedlightitalic.ttf') format('truetype');
+  src: url('zed-sans-extendedlightitalic.ttf') format('truetype');
   font-weight: light;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'ZedMono';
-  src: url('fonts/zed/zed-mono-extended.ttf') format('truetype');
+  src: url('zed-mono-extended.ttf') format('truetype');
   font-weight: normal;
 }
