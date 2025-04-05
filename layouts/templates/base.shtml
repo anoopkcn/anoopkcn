@@ -16,13 +16,18 @@
   </head>
   <body id="body">
     <nav>
-      <a href="$site.page('').link()">Home</a>
-      	&nbsp; • &nbsp;
-      <a href="$site.page('about').link()">About</a>
-      	&nbsp; • &nbsp;
-      <a href="$site.page('blog').link()">Blog</a>
-     	&nbsp; • &nbsp;
-      <a href="https://github.com/anoopkcn" target="_blank">Code</a>
+        <div class="left">
+            <a href="$site.page('').link()">Home</a>
+           	&nbsp; • &nbsp;
+            <a href="$site.page('about').link()">About</a>
+           	&nbsp; • &nbsp;
+            <a href="$site.page('blog').link()">Blog</a>
+           	&nbsp; • &nbsp;
+            <a href="https://github.com/anoopkcn" target="_blank">Code</a>
+        </div>
+        <div class="right">
+            Anoop K Chandran
+        </div>
     </nav>
     <super>
     <footer>

@@ -13,7 +13,7 @@
     }
     .title h3{
       margin-top: 0;
-      margin-bottom: 5px;
+      margin-bottom: 0;
     }
     .abstract{
         font-size: 0.9em;
