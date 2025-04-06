@@ -7,14 +7,14 @@
 .draft = false,
 ---
 
-# hi hi hi
+# Second Post: hi hi hi
 
 Here's a math formula defined as a code block:
 
 $$
 \begin{align}
 a &= x+\sqrt{1-x^2} \\\\
-  &= \frac{x^2}{1-x}
+b &= \frac{x^2}{1-x}
 \end{align}
 $$
 
