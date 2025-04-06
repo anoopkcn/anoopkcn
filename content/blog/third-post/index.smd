@@ -1,5 +1,5 @@
 ---
-.title = "Third Post lslkdfmls  contains more interesting content",
+.title = "Third post contains more interesting content",
 .date = @date("2025-04-06T00:32:00"),
 .author = "Anoop K Chandran",
 .layout = "post.shtml",
@@ -7,6 +7,6 @@
 .draft = false,
 ---
 
-# Heloooooooooooo
+# 3rd : Heloooooooooooo
 
 The first post contains more interesting content.
