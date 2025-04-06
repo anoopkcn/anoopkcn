@@ -11,23 +11,36 @@
 
 Here's a math formula defined as a code block:
 
-$$
+```=html
+<tex>
 \begin{align}
-a &= x+\sqrt{1-x^2} \\\\
+a &= x+\sqrt{1-x^2} \\
 b &= \frac{x^2}{1-x}
 \end{align}
-$$
+</tex>
+```
 
-This: $x+\sqrt{1-x^2}$ is an inline formula instead!
+This: [x+\sqrt{1-x^2}]($text.id('tex')) is an inline formula instead!
 
 
-$$
+```=html
+<tex>
 \begin{pmatrix}
     x \\
     y \\
     z
 \end{pmatrix}
-$$
+</tex>
+```
 
 
 The first post contains more interesting content.
+
+```=html
+<tex>
+\begin{align}
+a &= x+\sqrt{1-x^2} \\
+b &= \frac{x^2}{1-x}
+\end{align}
+</tex>
+```

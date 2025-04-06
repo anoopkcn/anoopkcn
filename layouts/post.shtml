@@ -2,13 +2,16 @@
 <head id="head">
     <ctx :if="$page.custom.getOr('math', false)">
         <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
-        <script defer src="$site.asset('temml.min.js').link()"
-            onload="temml.renderMathInElement(document.querySelector('main'), {
-                delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false}
-                ]
-            })">
+        <script>
+            function mathRender() {
+                let elem = document.querySelectorAll("span#tex, tex");
+                for (let i = elem.length - 1; i >= 0; i--) {
+                    let src = elem[i].textContent;
+                    elem[i].outerHTML = temml.renderToString(src, { displayMode: '\n' == src[src.length-1]});
+                }
+            }
+        </script>
+        <script defer src="$site.asset('temml.min.js').link()" onload="mathRender()">
         </script>
     </ctx>
   <style>

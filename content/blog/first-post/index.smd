@@ -25,7 +25,7 @@ Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing di
 a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti.
 Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien.
 
-$$H\psi = E\psi$$
+[H\psi = E\psi]($text.id('tex'))
 
 alternatives
 
