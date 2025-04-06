@@ -3,13 +3,23 @@
     <ctx :if="$page.custom.getOr('math', false)">
         <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
         <script>
-            function mathRender() {
-                let elem = document.querySelectorAll("span#tex, tex");
-                for (let i = elem.length - 1; i >= 0; i--) {
-                    let src = elem[i].textContent;
-                    elem[i].outerHTML = temml.renderToString(src, { displayMode: '\n' == src[src.length-1]});
-                }
+        function mathRender() {
+          const mathElements = document.querySelectorAll("span#tex, tex");
+
+          mathElements.forEach(element => {
+            try {
+              const texContent = element.textContent;
+              const isDisplayMode = texContent.endsWith('\n');
+
+              element.outerHTML = temml.renderToString(
+                texContent,
+                { displayMode: isDisplayMode }
+              );
+            } catch (error) {
+              console.error("Error rendering math:", error, element);
             }
+          });
+        }
         </script>
         <script defer src="$site.asset('temml.min.js').link()" onload="mathRender()">
         </script>
