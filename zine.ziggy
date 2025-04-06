@@ -7,6 +7,7 @@ Site {
     .static_assets = [
         "CNAME",
         "favicon.ico",
+        "Temml.woff2",
         "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extendedextrabold.ttf",
@@ -17,11 +18,5 @@ Site {
         "fonts/zed/zed-sans-extendedbolditalic.ttf",
         "fonts/zed/zed-sans-extendeditalic.ttf",
         "fonts/zed/zed-mono-extended.ttf",
-        "fonts/katex/KaTeX_Main-Regular.ttf",
-        "fonts/katex/KaTeX_Main-Regular.woff",
-        "fonts/katex/KaTeX_Main-Regular.woff2",
-        "fonts/katex/KaTeX_Math-Italic.ttf",
-        "fonts/katex/KaTeX_Math-Italic.woff",
-        "fonts/katex/KaTeX_Math-Italic.woff2",
     ],
 }

@@ -3,18 +3,31 @@
 .date = @date("1990-01-02T00:00:00"),
 .author = "Anoop K Chandran",
 .layout = "post.shtml",
-.custom = {"abstract":"A brief introduction to  site sections, page lists and code"},
+.custom = {"math": true, "abstract":"A brief introduction to  site sections, page lists and code"},
 .draft = false,
 ---
 
 # hi hi hi
 
 Here's a math formula defined as a code block:
-```=katex
-x+\sqrt{1-x^2}
-```
 
-This: [`x+\sqrt{1-x^2}`]($katex) is an inline formula instead!
+$$
+\begin{align}
+a &= x+\sqrt{1-x^2} \\\\
+  &= \frac{x^2}{1-x}
+\end{align}
+$$
+
+This: $x+\sqrt{1-x^2}$ is an inline formula instead!
+
+
+$$
+\begin{pmatrix}
+    x \\
+    y \\
+    z
+\end{pmatrix}
+$$
 
 
 The first post contains more interesting content.

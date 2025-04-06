@@ -1,5 +1,16 @@
 <extend template="base.shtml">
 <head id="head">
+    <ctx :if="$page.custom.getOr('math', false)">
+            <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
+            <script defer src="$site.asset('temml.min.js').link()"
+                    onload="temml.renderMathInElement(document.querySelector('main'), {
+                      delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                      ]
+                    })">
+            </script>
+        </ctx>
   <style>
     .post h1{
       margin-top:0;
@@ -50,19 +61,21 @@
   </style>
 </head>
 <body id="body">
-    <div class="post" :html="$page.content()"></div>
-    <div id="prev-next">
-    <div class="prev" :if="$page.prevPage?()">
-        <span class="arrow">←</span>
-        <a href="$if.link()">
-        <span class="link-text" :text="$if.title"></span>
-        </a>
-    </div>
-    <div class="next" :if="$page.nextPage?()">
-        <a href="$if.link()">
-        <span class="link-text" :text="$if.title"></span>
-        </a>
-        <span class="arrow">→</span>
-    </div>
-    </div>
+    <main>
+        <div class="post" :html="$page.content()"></div>
+        <div id="prev-next">
+        <div class="prev" :if="$page.prevPage?()">
+            <span class="arrow">←</span>
+            <a href="$if.link()">
+            <span class="link-text" :text="$if.title"></span>
+            </a>
+        </div>
+        <div class="next" :if="$page.nextPage?()">
+            <a href="$if.link()">
+            <span class="link-text" :text="$if.title"></span>
+            </a>
+            <span class="arrow">→</span>
+        </div>
+        </div>
+    </main>
 </body>
