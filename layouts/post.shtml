@@ -1,16 +1,16 @@
 <extend template="base.shtml">
 <head id="head">
     <ctx :if="$page.custom.getOr('math', false)">
-            <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
-            <script defer src="$site.asset('temml.min.js').link()"
-                    onload="temml.renderMathInElement(document.querySelector('main'), {
-                      delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
-                      ]
-                    })">
-            </script>
-        </ctx>
+        <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
+        <script defer src="$site.asset('temml.min.js').link()"
+            onload="temml.renderMathInElement(document.querySelector('main'), {
+                delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+                ]
+            })">
+        </script>
+    </ctx>
   <style>
     .post h1{
       margin-top:0;
