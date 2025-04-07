@@ -8,6 +8,7 @@ Site {
         "CNAME",
         "favicon.ico",
         "Temml.woff2",
+        "404.html",
         "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extendedextrabold.ttf",
