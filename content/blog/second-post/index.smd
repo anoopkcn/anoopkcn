@@ -25,11 +25,13 @@ This: [x+\sqrt{1-x^2}]($text.id('tex')) is an inline formula instead!
 
 ```=html
 <tex>
+\begin{equation}
 \begin{pmatrix}
     x \\
     y \\
     z
 \end{pmatrix}
+\end{equation}
 </tex>
 ```
 
