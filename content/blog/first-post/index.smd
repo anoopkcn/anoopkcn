@@ -12,7 +12,7 @@
 This page defines the blog section and lists all posts in it.
 
 A "site section" in Zine is a group of pages that form a logical subtree of the
-website. It's related to directory structure, but it's not an entirely 1:1 mapping.
+website. It's related to directory structure, [this is a link]($link.page('blog/second-post')) but it's not an entirely 1:1 mapping.
 
 ```python
 def hello():
