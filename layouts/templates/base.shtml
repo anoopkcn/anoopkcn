@@ -13,13 +13,10 @@
   <body id="body">
     <nav>
         <div class="left">
-            <a href="$site.page('').link()">Home</a>
-           	&nbsp; • &nbsp;
-            <a href="$site.page('about').link()">About</a>
-           	&nbsp; • &nbsp;
-            <a href="$site.page('blog').link()">Blog</a>
-           	&nbsp; • &nbsp;
-            <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
+            <div><a href="$site.page('').link()">Home</a></div>
+            <div><a href="$site.page('about').link()">About</a></div>
+            <div><a href="$site.page('blog').link()">Blog</a></div>
+            <div><a href="https://github.com/anoopkcn" target="_blank">GitHub</a></div>
         </div>
         <div class="right myname">
             <a href="$site.page('').link()">Anoop K Chandran</a>
