@@ -1,6 +1,6 @@
 ---
 .title = "About",
-.date = @date("2025-04-07T06:07:43"),
+.date = @date("2025-04-07T20:53:35"),
 .author = "Anoop K Chandran",
 .layout = "index.shtml",
 .draft = false,
