@@ -3,26 +3,8 @@
     <link type="text/css" rel="stylesheet" href="$site.asset('post.css').link()">
     <ctx :if="$page.custom.getOr('math', false)">
         <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
-        <script>
-        function mathRender() {
-          const mathElements = document.querySelectorAll("span#tex, tex");
-
-          mathElements.forEach(element => {
-            try {
-              const texContent = element.textContent;
-              const isDisplayMode = texContent.endsWith('\n');
-
-              element.outerHTML = temml.renderToString(
-                texContent, { displayMode: isDisplayMode }
-              );
-            } catch (error) {
-              console.error("Error rendering math:", error, element);
-            }
-          });
-        }
-        </script>
-        <script defer src="$site.asset('temml.min.js').link()" onload="mathRender()">
-        </script>
+        <script defer src="$site.asset('temml.min.js').link()"></script>
+        <script defer src="$site.asset('render-mathtex.js').link()"></script>
     </ctx>
 </head>
 <body id="body">
