@@ -31,9 +31,9 @@ jobs:
       - name: Setup Zine
         uses: kristoff-it/setup-zine@v1
         with:
-          version: v0.10.0-preview
+          version: v0.10.0
 
-      - name: Release
+      - name: Build
         run: zine release
 
       - name: Setup Pages
