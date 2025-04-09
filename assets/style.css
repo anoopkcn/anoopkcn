@@ -37,8 +37,6 @@ body {
     flex-direction: column;
 }
 
-img { height: auto; }
-
 nav {
     display: flex;
     flex-direction: row;
