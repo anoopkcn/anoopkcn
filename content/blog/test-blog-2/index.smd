@@ -1,0 +1,17 @@
+---
+.title  = "Example: this is the title of the blogpost",
+.date   = @date("2025-04-07T20:54:00"),
+.author = "Anoop K Chandran",
+.layout = "post.shtml",
+.custom = {"math": true, "abstract":"Example short description"},
+.draft  = false,
+---
+
+# Example:: this is the title of the blogpost
+this is a new and improved
+
+[size(200,50)]($image.asset('tcat.jpeg').size(200,50))
+
+[size(200,0)]($image.asset('tcat.jpeg').size(200,0))
+
+[size(0,50)]($image.asset('tcat.jpeg').size(0,50))
