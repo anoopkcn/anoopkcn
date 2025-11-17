@@ -1,10 +1,10 @@
 ---
 .title = "Homepage",
-.date = @date("2025-05-11T19:09:57"),
+.date = @date("2025-11-17T15:56:21"),
 .author = "Anoop K Chandran",
 .layout = "index.shtml",
 .draft = false,
 ---
 
 ># [NOTE]($block)
->Check back in a few weeks. Last updated: @date("2025-05-11T19:09:57")
+>Check back in a few weeks.
