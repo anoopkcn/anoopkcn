@@ -1,0 +1,27 @@
+---
+.title  = "this is the title of the blogpost",
+.date   = @date("2025-04-07T20:53:56"),
+.author = "Anoop K Chandran",
+.layout = "post.shtml",
+.custom = {"math": true, "abstract":"short description"},
+.draft  = false,
+---
+
+# this is the title of the blogpost
+this is a new and improved
+
+```=mathtex
+\begin{equation}
+x = \frac{1}{2}
+\end{equation}
+```
+
+is an inline math eqn [`x+\sqrt{1-x^2}`]($mathtex),
+[`a=b`]($mathtex) is inline aswell [`e=i`]($mathtex)
+
+
+```=mathtex
+\begin{equation}
+H\psi = E\psi
+\end{equation}
+```

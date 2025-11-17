@@ -3,7 +3,7 @@
 .date   = @date("2025-04-11T10:46:29"),
 .author = "Anoop K Chandran",
 .layout = "post.shtml",
-.custom = {"math": true, "abstract":"Example short description"},
+.custom = {"math": false, "abstract":"Example short description"},
 .draft  = false,
 ---
 

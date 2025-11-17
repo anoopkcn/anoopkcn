@@ -1,0 +1,35 @@
+---
+.title  = "this is the title of the blogpost for sure",
+.date   = @date("2025-04-07T20:54:03"),
+.author = "Anoop K Chandran",
+.layout = "post.shtml",
+.custom = {"math": true, "abstract":"short description"},
+.draft  = false,
+---
+
+# this is the title of the blogpost for sure
+this is a new and improved
+
+```=mathtex
+\begin{align}
+x &= \frac{1.2e^{-4x/3}}{x-2} \\
+y &= x-2
+\end{align}
+```
+this is a new and improved
+```=mathtex
+\begin{equation}
+\begin{split}
+A & = \frac{\pi r^2}{2} \\
+ & = \frac{1}{2} \pi r^2
+\end{split}
+\end{equation}
+```
+this is a new and improved
+```=mathtex
+\begin{align*}
+x&=y           &  w &=z              &  a&=b+c\\
+2x&=-y         &  3w&=\frac{1}{2}z   &  a&=b\\
+-4 + 5x&=2+y   &  w+2&=-1+w          &  ab&=cb
+\end{align*}
+```
