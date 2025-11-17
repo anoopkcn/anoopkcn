@@ -7,7 +7,7 @@
 .draft  = false,
 ---
 
-# Example: this is the title of the blogpost
+# Example: this is the title of the blog post
 this is a new and improved
 
 [size(200,50)]($image.asset('tcat.jpeg').size(200,50))

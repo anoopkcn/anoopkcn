@@ -1,13 +1,13 @@
 ---
-.title  = "this is the title of the blogpost for sure",
-.date   = @date("2025-04-07T20:54:03"),
+.title  = "this is the title of the blogpost",
+.date   = @date("2025-11-17T17:44:34"),
 .author = "Anoop K Chandran",
 .layout = "post.shtml",
 .custom = {"math": true, "abstract":"short description"},
 .draft  = false,
 ---
 
-# this is the title of the blogpost for sure
+# this is the title of the blog post
 this is a new and improved
 
 ```=mathtex
