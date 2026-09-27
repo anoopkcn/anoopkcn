@@ -263,19 +263,19 @@ def fig_vae():
 def cards():
     """Rasterise the talk's PDF figures onto an off-white card."""
     single = {
-        "tabletop_examples": "fig-tabletop.png",
-        "curse_of_dimensionality": "fig-curse.png",
-        "prep_rgb_depth_scaling": "fig-scaling.png",
-        "pca_two_pixels": "fig-pca-two-pixels.png",
-        "pca_images": "fig-pca-images.png",
-        "ica_unmix_photos": "fig-ica.png",
-        "embeddings": "fig-embeddings.png",
-        "ae_vs_pca": "fig-ae-vs-pca.png",
-        "pixel_correlations": "fig-pixel-correlations.png",
-        "aggregation": "fig-aggregation.png",
-        "relieff": "fig-relieff.png",
-        "forward_selection": "fig-forward-selection.png",
-        "stability_vs_accuracy": "fig-stability.png",
+        "tabletop_examples": "fig-tabletop.webp",
+        "curse_of_dimensionality": "fig-curse.webp",
+        "prep_rgb_depth_scaling": "fig-scaling.webp",
+        "pca_two_pixels": "fig-pca-two-pixels.webp",
+        "pca_images": "fig-pca-images.webp",
+        "ica_unmix_photos": "fig-ica.webp",
+        "embeddings": "fig-embeddings.webp",
+        "ae_vs_pca": "fig-ae-vs-pca.webp",
+        "pixel_correlations": "fig-pixel-correlations.webp",
+        "aggregation": "fig-aggregation.webp",
+        "relieff": "fig-relieff.webp",
+        "forward_selection": "fig-forward-selection.webp",
+        "stability_vs_accuracy": "fig-stability.webp",
     }
     tmp = OUT / "_tmp"
     tmp.mkdir(exist_ok=True)
@@ -293,12 +293,12 @@ def cards():
             cmd.append(str(s))
         if len(srcs) > 1:
             cmd += ["-gravity", "center", "+append", "+repage"]
-        cmd += ["-flatten", "-bordercolor", CARD, "-border", "36", "-strip", str(OUT / out)]
+        cmd += ["-flatten", "-bordercolor", CARD, "-border", "36", "-strip", "-quality", "90", str(OUT / out)]
         subprocess.run(cmd, check=True)
 
     for stem, out in single.items():
         card([raster(stem)], out)
-    card([raster("pca_cumulative_variance"), raster("pca_reconstruction")], "fig-pca-keep.png")
+    card([raster("pca_cumulative_variance"), raster("pca_reconstruction")], "fig-pca-keep.webp")
     for f in tmp.iterdir():
         f.unlink()
     tmp.rmdir()

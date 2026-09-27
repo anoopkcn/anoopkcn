@@ -36,7 +36,7 @@ Two cameras look at each scene. One takes a colour photo, the other a depth
 image that stores the distance from the camera along each pixel's ray. Both
 are 64 x 64 pixels.
 
-[Six scenes from tabletop. Top row: the colour photo. Bottom row: the depth image of the same scene.](<$image.asset('fig-tabletop.png').alt('Six colour photos of objects on a table with the matching depth images below them')>)
+[Six scenes from tabletop. Top row: the colour photo. Bottom row: the depth image of the same scene.](<$image.asset('fig-tabletop.webp').alt('Six colour photos of objects on a table with the matching depth images below them')>)
 
 The full grid of factors gives 294,912 photos. I use a subset of 6,144 that
 is still a complete grid on its own: 4 colours (red, lime, cyan and violet),
@@ -78,7 +78,7 @@ for. The plot below places 500 uniformly random points in a cube of growing
 dimension. For 20 query points, it compares the distance to the nearest point
 with the distance to the farthest.
 
-[The ratio of nearest to farthest distance for uniform random points. At 12,288 dimensions, the size of one photo, it reaches 0.97.](<$image.asset('fig-curse.png').size(560,0).alt('Line chart: nearest over farthest distance rises from near 0 in 2 dimensions to 0.97 at 12,288 dimensions')>)
+[The ratio of nearest to farthest distance for uniform random points. At 12,288 dimensions, the size of one photo, it reaches 0.97.](<$image.asset('fig-curse.webp').size(560,0).alt('Line chart: nearest over farthest distance rises from near 0 in 2 dimensions to 0.97 at 12,288 dimensions')>)
 
 In two dimensions the nearest point is close compared with the farthest. At
 12,288 dimensions the nearest point is 97% as far away as the farthest one
@@ -199,7 +199,7 @@ Most reduction methods follow the largest variance. Joined as stored, depth
 holds 87% of the variance with a third as many features, so depth decides
 what the method sees.
 
-[1,500 random photos in the first two principal components, coloured by the table they stand on. Left: the cameras joined as stored. Right: each camera scaled first.](<$image.asset('fig-scaling.png').alt('Two scatter plots; on the left the beige and grey-blue tables overlap, on the right they separate')>)
+[1,500 random photos in the first two principal components, coloured by the table they stand on. Left: the cameras joined as stored. Right: each camera scaled first.](<$image.asset('fig-scaling.webp').alt('Two scatter plots; on the left the beige and grey-blue tables overlap, on the right they separate')>)
 
 In the colour photos alone, the table is the largest source of variation. The
 depth camera cannot see the table at all. Joined unscaled, the table vanishes
@@ -256,7 +256,7 @@ For plots with no test set, fitting on all samples is fine.
 Start with two pixels, three rows apart, across all 6,144 photos. They move
 together, with a correlation of 0.92.
 
-[Two pixels three rows apart. The first principal component points along the diagonal and carries 96% of their joint variance.](<$image.asset('fig-pca-two-pixels.png').size(480,0).alt('Scatter plot of two pixel values with PC1 along the diagonal at 96 percent and PC2 across it at 4 percent')>)
+[Two pixels three rows apart. The first principal component points along the diagonal and carries 96% of their joint variance.](<$image.asset('fig-pca-two-pixels.webp').size(480,0).alt('Scatter plot of two pixel values with PC1 along the diagonal at 96 percent and PC2 across it at 4 percent')>)
 
 Principal component analysis (PCA) [[5]](https://doi.org/10.1098/rsta.2015.0202)
 finds the direction of largest variance in the data, then the direction of
@@ -284,7 +284,7 @@ For images, the weights of a component form an image themselves. You can see
 what a component does by starting from the mean photo and adding or
 subtracting a multiple of it.
 
-[The mean photo minus (top) and plus (bottom) three standard deviations of each of the first six components. The label above each column is the factor that explains most of that component's variance.](<$image.asset('fig-pca-images.png').alt('Six columns of blurry photos; PC1 turns the table from blue to beige, PC2 and PC3 move the object, PC4 changes the light, PC6 changes its colour')>)
+[The mean photo minus (top) and plus (bottom) three standard deviations of each of the first six components. The label above each column is the factor that explains most of that component's variance.](<$image.asset('fig-pca-images.webp').alt('Six columns of blurry photos; PC1 turns the table from blue to beige, PC2 and PC3 move the object, PC4 changes the light, PC6 changes its colour')>)
 
 The factor names come from the data. For each component I checked which of
 the seven factors explains most of its variance; for PC1 the table explains
@@ -300,7 +300,7 @@ what anyone wants to study.
 The cumulative explained variance tells you how much each additional
 component adds.
 
-[Left: cumulative explained variance. Right: photos rebuilt from their first k components.](<$image.asset('fig-pca-keep.png').alt('Cumulative variance curve reaching 50 percent at 5, 75 percent at 17 and 90 percent at 88 components, next to photos rebuilt from 5, 20 and 100 components')>)
+[Left: cumulative explained variance. Right: photos rebuilt from their first k components.](<$image.asset('fig-pca-keep.webp').alt('Cumulative variance curve reaching 50 percent at 5, 75 percent at 17 and 90 percent at 88 components, next to photos rebuilt from 5, 20 and 100 components')>)
 
 Five components reach 50% of the variance, 17 reach 75%, and 88 reach 90%.
 So 90% of the variance of a 12,288-number photo fits in 88 numbers.
@@ -318,7 +318,7 @@ solves a different problem. Imagine two people talking at a party and two
 microphones, each recording a different mix of both voices. ICA recovers the
 two voices from the two recordings.
 
-[The cocktail party with photos. Two source photos are mixed twice with different weights. ICA recovers both, in its own order.](<$image.asset('fig-ica.png').size(460,0).alt('Two source photos, two blended mixtures of them, and the two photos recovered by ICA in swapped order')>)
+[The cocktail party with photos. Two source photos are mixed twice with different weights. ICA recovers both, in its own order.](<$image.asset('fig-ica.webp').size(460,0).alt('Two source photos, two blended mixtures of them, and the two photos recovered by ICA in swapped order')>)
 
 Here the voices are two photos. I mixed their table regions with weights
 0.6/0.4 and 0.35/0.65, and ICA recovered both photos almost exactly. It
@@ -346,7 +346,7 @@ and UMAP [[9]](https://arxiv.org/abs/1802.03426) are nonlinear methods built
 to preserve neighbourhoods: photos that are close in the original 12,288
 numbers should stay close in the 2-D map.
 
-[The same photos in three 2-D maps, drawn in the object's colour with a marker for its shape. t-SNE uses perplexity 30, UMAP 15 neighbours, both with fixed seeds.](<$image.asset('fig-embeddings.png').alt('Three scatter plots of the photos: PCA, t-SNE and UMAP, coloured by object colour with markers for shape')>)
+[The same photos in three 2-D maps, drawn in the object's colour with a marker for its shape. t-SNE uses perplexity 30, UMAP 15 neighbours, both with fixed seeds.](<$image.asset('fig-embeddings.webp').alt('Three scatter plots of the photos: PCA, t-SNE and UMAP, coloured by object colour with markers for shape')>)
 
 To compare the three maps, I counted **neighbours kept**: of each photo's 10
 nearest neighbours in the original space, the share that are still among its
@@ -393,7 +393,7 @@ With the same budget of 8 numbers per photo, the autoencoder rebuilds far
 better than PCA. Its reconstruction error is 22.7 per photo (squared error
 summed over the pixels), against 63.0 for PCA with 8 components.
 
-[The same 8 numbers per photo. PCA blurs the object away; the autoencoder keeps it.](<$image.asset('fig-ae-vs-pca.png').size(300,0).alt('Three rows of photos: the original, the PCA reconstruction and the autoencoder reconstruction')>)
+[The same 8 numbers per photo. PCA blurs the object away; the autoencoder keeps it.](<$image.asset('fig-ae-vs-pca.webp').size(300,0).alt('Three rows of photos: the original, the PCA reconstruction and the autoencoder reconstruction')>)
 
 Architecture matters at this size. A dense first layer of 128 units on a
 64 × 64 × 3 photo already has 12,288 × 128 + 128 = 1,572,992 weights and
@@ -476,7 +476,7 @@ interpret. **Data-driven** groups come from clustering the features by how
 they change together. They can find structure you did not expect, but a
 cluster may not have a name.
 
-[Correlations between pixels, sorted into the 8 clusters found by k-medoids. Pixels in one cluster correlate 0.59 on average, against 0.17 overall.](<$image.asset('fig-pixel-correlations.png').size(400,0).alt('Correlation heatmap of pixels with eight bright blocks along the diagonal')>)
+[Correlations between pixels, sorted into the 8 clusters found by k-medoids. Pixels in one cluster correlate 0.59 on average, against 0.17 overall.](<$image.asset('fig-pixel-correlations.webp').size(400,0).alt('Correlation heatmap of pixels with eight bright blocks along the diagonal')>)
 
 For the data-driven groups I clustered the 4,096 pixel positions with
 [`k`]($mathtex)-medoids [[11]](https://doi.org/10.1002/9780470316801). Each
@@ -507,7 +507,7 @@ pixels. CLARA [[11]](https://doi.org/10.1002/9780470316801) runs PAM on a few
 random samples of the pixels, assigns every pixel to the nearest medoid from
 each sample, and keeps the set of medoids with the lowest total cost.
 
-[Left: averaging blocks of pixels, with accuracy on an unseen object colour. Right: the 8 pixel groups found by k-medoids; each colour becomes one new feature.](<$image.asset('fig-aggregation.png').alt('A red cube at full resolution, 4 by 4 blocks and 8 by 8 blocks with 99, 98 and 90 percent accuracy, next to a map of eight pixel groups')>)
+[Left: averaging blocks of pixels, with accuracy on an unseen object colour. Right: the 8 pixel groups found by k-medoids; each colour becomes one new feature.](<$image.asset('fig-aggregation.webp').alt('A red cube at full resolution, 4 by 4 blocks and 8 by 8 blocks with 99, 98 and 90 percent accuracy, next to a map of eight pixel groups')>)
 
 Downsampling a photo is knowledge-based aggregation: we know that
 neighbouring pixels belong together. To measure what it costs, I trained a
@@ -563,7 +563,7 @@ and updates the score of every pixel [`f`]($mathtex):
 A pixel gains score when it differs between the classes and agrees within
 one.
 
-[The ReliefF score map, and the top 20 pixels drawn on a cube and a sphere.](<$image.asset('fig-relieff.png').size(580,0).alt('A score map tracing the outline of the object, and two photos with the top 20 pixels marked near the lower edge of the object')>)
+[The ReliefF score map, and the top 20 pixels drawn on a cube and a sphere.](<$image.asset('fig-relieff.webp').size(580,0).alt('A score map tracing the outline of the object, and two photos with the top 20 pixels marked near the lower edge of the object')>)
 
 The score map traces the outline of the cube and its shadow, which is where
 cubes and spheres differ. All of the top 20 pixels sit together near the
@@ -584,7 +584,7 @@ a decision tree. Each step tries every remaining block, trains a model on each
 candidate set, scores it on the three inner validation colours, and keeps the
 best.
 
-[The first three blocks chosen with red held out. Block 1, at the base of the object, is picked first in all four folds.](<$image.asset('fig-forward-selection.png').size(480,0).alt('A cube and a sphere with three numbered pixel blocks marked')>)
+[The first three blocks chosen with red held out. Block 1, at the base of the object, is picked first in all four folds.](<$image.asset('fig-forward-selection.webp').size(480,0).alt('A cube and a sphere with three numbered pixel blocks marked')>)
 
 The number of features is now a hyperparameter, so it needs **nested**
 cross-validation: an inner loop chooses the features, and an outer loop tests
@@ -663,7 +663,7 @@ discuss measures with better properties.
 The next figure runs the elastic net across a range of penalties and plots
 accuracy and stability side by side.
 
-[Accuracy and selection stability of the elastic net as the penalty changes. Points are the mean over the four folds; bars span the minimum and maximum. The dashed line marks the best accuracy plus stability.](<$image.asset('fig-stability.png').alt('Two panels, cube versus sphere and cylinder versus capsule, with accuracy near 1 and stability between 0.45 and 0.8 across values of C')>)
+[Accuracy and selection stability of the elastic net as the penalty changes. Points are the mean over the four folds; bars span the minimum and maximum. The dashed line marks the best accuracy plus stability.](<$image.asset('fig-stability.webp').alt('Two panels, cube versus sphere and cylinder versus capsule, with accuracy near 1 and stability between 0.45 and 0.8 across values of C')>)
 
 For cubes and spheres, compare [`C = 0.05`]($mathtex) and
 [`C = 0.2`]($mathtex). The accuracy ranges sit on top of each other, so
