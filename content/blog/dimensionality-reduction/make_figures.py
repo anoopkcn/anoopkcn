@@ -1,7 +1,7 @@
 """Build the figures for the "Dimensionality reduction" post.
 
 Run from anywhere:  python3 make_figures.py
-Needs pdftocairo (poppler) and ImageMagick's `magick` on the PATH.
+Needs pdftocairo (poppler), ImageMagick's `magick` and ffmpeg on the PATH.
 
 Two kinds of figure:
 - Data figures come from the talk's own figure script. They are PDFs made for
@@ -9,6 +9,11 @@ Two kinds of figure:
   Set DIMRED_TALK to point at the talk folder if it moves.
 - Diagrams are drawn here as SVG in the site's dark palette. The autoencoder
   and VAE diagrams embed the talk's generated reconstructions.
+
+The k-medoids animation (K-medoids.mp4) comes from the talk folder, where
+scripts/make_kmedoids_video.py makes it. It is remuxed without re-encoding so
+the index sits at the front of the file and a browser can show the first frame
+before the whole video has downloaded.
 """
 
 import base64
@@ -303,4 +308,6 @@ if __name__ == "__main__":
     for f in (fig_reduce, fig_families, fig_pipeline, fig_folds, fig_autoencoder, fig_vae):
         f()
     cards()
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(TALK / "K-medoids.mp4"),
+                    "-c", "copy", "-movflags", "+faststart", str(OUT / "K-medoids.mp4")], check=True)
     print("figures written to", OUT)

@@ -474,11 +474,33 @@ cluster may not have a name.
 [Correlations between pixels, sorted into the 8 clusters found by k-medoids. Pixels in one cluster correlate 0.59 on average, against 0.17 overall.](<$image.asset('fig-pixel-correlations.png').size(400,0).alt('Correlation heatmap of pixels with eight bright blocks along the diagonal')>)
 
 For the data-driven groups I clustered the 4,096 pixel positions with
-[`k`]($mathtex)-medoids [[11]](https://doi.org/10.1002/9780470316801), using
-CLARA to scale to thousands of features. Each cluster is summarized around its
-*medoid*, a real pixel whose brightness profile best represents the group.
-[`k`]($mathtex)-means would give an average profile instead, which is not any
-pixel you can point at.
+[`k`]($mathtex)-medoids [[11]](https://doi.org/10.1002/9780470316801). Each
+cluster is summarized around its *medoid*, a real pixel whose brightness
+profile best represents the group. [`k`]($mathtex)-means would give an average
+profile instead, which is not any pixel you can point at.
+
+The classic algorithm for [`k`]($mathtex)-medoids is PAM, partitioning around
+medoids. It picks [`k`]($mathtex) data points as the first medoids and assigns
+every point to the nearest one. The cost is the sum of the distances from each
+point to its medoid. PAM then tries swapping a medoid for another point, keeps
+the swap if the cost drops, undoes it if the cost rises, and stops when no swap
+helps. The animation runs PAM on 69 toy points in three blobs with
+[`k = 3`]($mathtex), few enough to follow every step.
+
+[k-medoids (PAM) on 69 toy points with k = 3. Each swap and each cost comes from the run itself. 78 seconds, no sound.](<$video.asset('K-medoids.mp4').controls(true).muted(true)>)
+
+The run starts at a cost of 117.2. The first swap it tries raises the cost to
+218.0 and is undone. Three of the six swaps shown are kept, and they bring the
+cost down to 97.1, 83.7 and finally 70.8, where no swap lowers it further. In
+the last part of the clip six points drift away from the blue cluster. The
+mean, which [`k`]($mathtex)-means would use as the centre, follows them. The
+medoid stays on the same point. A medoid is always one of the data points, so
+PAM needs only the distances between points, and any distance will do.
+
+PAM tries every medoid–point swap on each pass, which is slow for 4,096
+pixels. CLARA [[11]](https://doi.org/10.1002/9780470316801) runs PAM on a few
+random samples of the pixels, assigns every pixel to the nearest medoid from
+each sample, and keeps the set of medoids with the lowest total cost.
 
 [Left: averaging blocks of pixels, with accuracy on an unseen object colour. Right: the 8 pixel groups found by k-medoids; each colour becomes one new feature.](<$image.asset('fig-aggregation.png').alt('A red cube at full resolution, 4 by 4 blocks and 8 by 8 blocks with 99, 98 and 90 percent accuracy, next to a map of eight pixel groups')>)
 

@@ -50,6 +50,11 @@ figure img {
     max-width: 100%;
 }
 
+figure video {
+    max-width: 100%;
+    height: auto;
+}
+
 .post {
     display: flex;
     flex-direction: column;
