@@ -9,7 +9,15 @@
 </head>
 <body id="body">
     <main>
-        <div class="post" :html="$page.content()"></div>
+        <div class="post">
+            <ctx :if="$page.custom.getOr('toc', false)">
+                <details class="toc">
+                    <summary>Contents</summary>
+                    <ctx :html="$page.toc()"></ctx>
+                </details>
+            </ctx>
+            <ctx :html="$page.content()"></ctx>
+        </div>
         <div id="prev-next">
         <div class="prev" :if="$page.prevPage?()">
             <span class="arrow">←</span>

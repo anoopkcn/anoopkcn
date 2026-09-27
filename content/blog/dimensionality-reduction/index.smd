@@ -1,9 +1,9 @@
 ---
 .title  = "Dimensionality reduction: from pixels to a picture, a summary or a short list",
-.date   = @date("2026-09-27T12:57:21"),
-.author = "Anoop K Chandran",
+.date   = .date("2026-09-27T12:57:21"),
+.authors = ["Anoop K Chandran"],
 .layout = "post.shtml",
-.custom = {"math": true, "abstract":"Data preparation, then the three ways to reduce dimensions (transformation, aggregation and selection), all run on one small image dataset whose true factors are known."},
+.custom = {"math": true, "toc": true, "abstract":"Data preparation, then the three ways to reduce dimensions (transformation, aggregation and selection), all run on one small image dataset whose true factors are known."},
 .draft  = false,
 ---
 
@@ -17,7 +17,7 @@ covers the main slides; the backup slides are left out. Every figure is
 computed from one dataset, and the numbers in the text come from the same
 runs.*
 
-## One object on a table
+## [One object on a table]($heading.id('one-object-on-a-table'))
 
 Every example in this post uses the same data:
 [tabletop](https://github.com/anoopkcn/tabletop) [[2]](https://github.com/anoopkcn/tabletop),
@@ -49,7 +49,7 @@ The depth camera sees shape, size, rotation and position. It cannot see
 colour, light or the table, because none of those change a distance. That
 detail comes back when we join the two cameras.
 
-### What dimensionality reduction does
+### [What dimensionality reduction does]($heading.id('what-dimensionality-reduction-does'))
 
 A colour photo of 64 × 64 pixels with three channels is 12,288 numbers. Only
 seven things change from one photo to the next. If you had to describe a
@@ -74,7 +74,7 @@ each component mixes thousands of pixels, so the plot does not tell you which
 pixels matter. Feature selection is the exception, because it keeps original
 measurements you can point at.
 
-### The curse of dimensionality
+### [The curse of dimensionality]($heading.id('the-curse-of-dimensionality'))
 
 High-dimensional space behaves in ways that 2-D intuition does not prepare you
 for. The plot below places 500 uniformly random points in a cube of growing
@@ -93,7 +93,7 @@ tabletop photos occupy a thin, seven-dimensional sliver of the
 12,288-dimensional pixel space. Every method below is a different way of
 finding that sliver.
 
-### Three ways to get from p features to l
+### [Three ways to get from p features to l]($heading.id('three-ways-to-get-from-p-features-to-l'))
 
 The methods fall into three families. What separates them is what happens to
 the original features.
@@ -117,12 +117,12 @@ predicts a target. The split is only a tendency: linear discriminant
 analysis is a supervised transformation, and dropping low-variance features is
 unsupervised selection.
 
-## Preparing the data
+## [Preparing the data]($heading.id('preparing-the-data'))
 
 Before any method runs, the photos have to become a matrix of numbers on a
 common scale, and the data have to be split.
 
-### One step of a longer pipeline
+### [One step of a longer pipeline]($heading.id('one-step-of-a-longer-pipeline'))
 
 Dimensionality reduction sits in the middle of a longer chain of steps, and
 the order of those steps matters.
@@ -135,7 +135,7 @@ If they run before the split, the test data have already shaped them. So the
 split comes first, at step 5, and steps 6 to 8 are fitted on the training
 data alone.
 
-### From image files to an analysis matrix
+### [From image files to an analysis matrix]($heading.id('from-image-files-to-an-analysis-matrix'))
 
 The tabletop photos come in an HDF5 file. Turning them into a matrix with one
 row per photo takes a few lines:
@@ -162,7 +162,7 @@ Three things happen here:
   recover. They colour the plots and serve as targets, but they are never
   inputs.
 
-### Integer types overflow without warning
+### [Integer types overflow without warning]($heading.id('integer-types-overflow-without-warning'))
 
 Both of the bugs below came up while I was preparing the figures for this
 talk.
@@ -184,7 +184,7 @@ The fix is to convert first, with `.astype(np.float32)`. The habit that
 catches these bugs is to print each array's dtype, minimum and maximum right
 after loading.
 
-### Scale before you reduce
+### [Scale before you reduce]($heading.id('scale-before-you-reduce'))
 
 Suppose you join the two cameras into one matrix, so each row holds the
 colour photo followed by the depth image:
@@ -218,7 +218,7 @@ subtracting each pixel's mean is enough. The same problem appears whenever featu
 different units: centimetres and kilograms, gene counts and protein levels.
 Tree-based models are the exception; they need no scaling.
 
-### Fit preprocessing on the training data only
+### [Fit preprocessing on the training data only]($heading.id('fit-preprocessing-on-the-training-data-only'))
 
 Scaling, imputation, dimensionality reduction and feature selection all learn
 from data. Fit them on the training samples, and only apply them to the test
@@ -244,9 +244,9 @@ this reason.
 
 For plots with no test set, fitting on all samples is fine.
 
-## Feature transformation
+## [Feature transformation]($heading.id('feature-transformation'))
 
-### Principal component analysis
+### [Principal component analysis]($heading.id('principal-component-analysis'))
 
 Start with two pixels, three rows apart, across all 6,144 photos. They move
 together, with a correlation of 0.92.
@@ -273,7 +273,7 @@ dataset.
 The largest variance is not always the variation you care about. It may be
 technical, or a factor you are not studying, as the next figure shows.
 
-### Each component is an image
+### [Each component is an image]($heading.id('each-component-is-an-image'))
 
 For images, the weights of a component form an image themselves. You can see
 what a component does by starting from the mean photo and adding or
@@ -290,7 +290,7 @@ several factors, so not every component has a clean meaning.
 The largest source of variation in these photos is the table, which is rarely
 what anyone wants to study.
 
-### How many components should you keep?
+### [How many components should you keep?]($heading.id('how-many-components-should-you-keep'))
 
 The cumulative explained variance tells you how much each additional
 component adds.
@@ -306,7 +306,7 @@ show what the discarded components held: sharp edges and small details go
 first. With 20 components the position and colour of the object are already
 there.
 
-### Independent component analysis
+### [Independent component analysis]($heading.id('independent-component-analysis'))
 
 Independent component analysis (ICA) [[6]](https://doi.org/10.1016/S0893-6080(00)00026-5)
 solves a different problem. Imagine two people talking at a party and two
@@ -334,7 +334,7 @@ source.
 | Order | by variance | none |
 | Good for | dominant effects | mixed signals |
 
-### t-SNE and UMAP: neighbourhoods first
+### [t-SNE and UMAP: neighbourhoods first]($heading.id('t-sne-and-umap-neighbourhoods-first'))
 
 PCA and ICA are linear. t-SNE [[8]](https://jmlr.org/papers/v9/vandermaaten08a.html)
 and UMAP [[9]](https://arxiv.org/abs/1802.03426) are nonlinear methods built
@@ -370,7 +370,7 @@ follow curved structure and reveal groups that PCA smears together. You pay
 for that in interpretability, in stability across seeds, and for t-SNE in the
 ability to embed new points.
 
-### Autoencoders
+### [Autoencoders]($heading.id('autoencoders'))
 
 An autoencoder is a neural network trained to copy its input through a narrow
 middle layer. The encoder compresses a photo [`x`]($mathtex) to a small
@@ -397,7 +397,7 @@ biases. The convolutional autoencoder above has 380,779 parameters in total.
 PCA is a special case: an autoencoder with linear layers and squared loss
 learns a latent space that spans the top principal components.
 
-### Variational autoencoders
+### [Variational autoencoders]($heading.id('variational-autoencoders'))
 
 A variational autoencoder (VAE) [[10]](https://arxiv.org/abs/1906.02691)
 changes one thing. The encoder outputs a distribution, a mean
@@ -437,7 +437,7 @@ factor that changes the fewest pixels. Whether a model can separate the
 factors this way is called *disentanglement*, and it is the question tabletop
 was built to test.
 
-### Choosing a transformation method
+### [Choosing a transformation method]($heading.id('choosing-a-transformation-method'))
 
 Whether a method can embed new samples decides whether it can sit inside a
 prediction pipeline.
@@ -450,7 +450,7 @@ prediction pipeline.
 | UMAP | nonlinear | yes | visualization, and preprocessing for models |
 | Autoencoder | nonlinear | yes | learned representations, large data |
 
-## Feature aggregation
+## [Feature aggregation]($heading.id('feature-aggregation'))
 
 Aggregation replaces each group of features with one summary, usually the
 mean or median. Given groups [`G_1, \dots, G_l`]($mathtex) of the
@@ -515,9 +515,9 @@ The pixel clusters on the right range from 131 to 1,250 pixels. They are a
 map of pixel positions, not a photo, and without being told, they find the
 wall and the regions of the table where objects stand.
 
-## Feature selection
+## [Feature selection]($heading.id('feature-selection'))
 
-### The task: is the object a cube or a sphere?
+### [The task: is the object a cube or a sphere?]($heading.id('the-task-is-the-object-a-cube-or-a-sphere'))
 
 Selection needs a target, so this section uses a classification task. I took
 the 1,024 photos with a cube or a sphere in the middle of the frame and turned
@@ -543,7 +543,7 @@ There are three families of selection methods
   model.
 - **Embedded** methods select features while the model trains.
 
-### Filter methods: ReliefF
+### [Filter methods: ReliefF]($heading.id('filter-methods-relieff'))
 
 ReliefF [[13]](https://doi.org/10.1023/A:1025667309714) scores each pixel by
 how well it separates photos that are close to each other. For each photo
@@ -570,7 +570,7 @@ ReliefF only proposes features. A separate classifier makes the prediction,
 here a decision tree on the top 20 pixels. It gets 98% right on the unseen
 lime and violet objects, 84% on red and 76% on cyan.
 
-### Wrapper methods: forward selection
+### [Wrapper methods: forward selection]($heading.id('wrapper-methods-forward-selection'))
 
 Forward selection starts with no features and adds, at each step, the feature
 that most improves validation accuracy. To keep the search fast, the
@@ -590,7 +590,7 @@ Greedy search is far cheaper than trying every subset, but it can miss the
 best combination and overfit the validation data. Backward elimination is the
 mirror image: start with all features and remove one at a time.
 
-### Embedded methods: the elastic net
+### [Embedded methods: the elastic net]($heading.id('embedded-methods-the-elastic-net'))
 
 The elastic net [[14]](https://doi.org/10.1111/j.1467-9868.2005.00503.x)
 [[15]](https://doi.org/10.18637/jss.v033.i01) fits a logistic regression with two penalties on the pixel coefficients
@@ -612,7 +612,7 @@ With [`\rho = 0.5`]($mathtex) and [`C = 0.05`]($mathtex), the models get 96%
 to 100% right on the unseen colour while keeping about 210 of the 4,096 pixels
 each. Selection happens during training, so there is no separate search loop.
 
-### Comparing the three families
+### [Comparing the three families]($heading.id('comparing-the-three-families'))
 
 | | Filter | Wrapper | Embedded |
 |---|---|---|---|
@@ -627,7 +627,7 @@ Wrappers need nested cross-validation, and embedded methods need their
 penalty tuned. In high dimensions a common, affordable combination is a filter
 to shrink the pool of features, followed by an embedded model.
 
-### Measuring selection stability
+### [Measuring selection stability]($heading.id('measuring-selection-stability'))
 
 Accuracy tells you whether the selected features predict. It does not tell
 you whether you would select the same features again. With four folds we have
@@ -653,7 +653,7 @@ This definition has a weakness: one unusual model can empty the
 intersection. Nogueira et al. [[16]](https://jmlr.org/papers/v18/17-514.html)
 discuss measures with better properties.
 
-### Stability separates what accuracy cannot
+### [Stability separates what accuracy cannot]($heading.id('stability-separates-what-accuracy-cannot'))
 
 The next figure runs the elastic net across a range of penalties and plots
 accuracy and stability side by side.
@@ -675,9 +675,9 @@ Stability stays well below 1 because neighbouring pixels carry nearly the
 same information. Many different pixel sets predict equally well, and a model
 has no reason to prefer one of them.
 
-## Wrap-up
+## [Wrap-up]($heading.id('wrap-up'))
 
-### A starting point for your own data
+### [A starting point for your own data]($heading.id('a-starting-point-for-your-own-data'))
 
 | Goal | Try first | Watch out for |
 |---|---|---|
@@ -692,7 +692,7 @@ the same data. Binary or categorical data need other methods, such as multiple
 correspondence analysis, logistic PCA, or nonlinear methods on a Jaccard
 distance.
 
-### What to take home
+### [What to take home]($heading.id('what-to-take-home'))
 
 1. **Prepare before you reduce.** Convert the types, flatten, and scale. On
    tabletop, unscaled depth hides the table from PCA.
@@ -705,7 +705,7 @@ distance.
 5. **Report stability next to accuracy.** Several pixel sets can predict
    equally well.
 
-### Resources
+### [Resources]($heading.id('resources'))
 
 The course notebooks, which use a gene-expression dataset, are at
 [github.com/HelmholtzAI-Consultants-Munich/DimRed-Course](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course).
@@ -715,7 +715,7 @@ is at [github.com/anoopkcn/tabletop](https://github.com/anoopkcn/tabletop).
 The course material is by the Helmholtz AI consultant team and licensed CC BY
 4.0. tabletop is MIT-licensed.
 
-## References
+## [References]($heading.id('references'))
 
 1. Helmholtz AI consultant team. *Dimensionality reduction course.* CC BY 4.0. [GitHub](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course)
 2. A. Kaithalikunnel Chandran. *tabletop: a complete factor grid in colour, depth and words.* v2.0.0, 2026. [GitHub](https://github.com/anoopkcn/tabletop)

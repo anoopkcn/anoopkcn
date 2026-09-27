@@ -1,4 +1,8 @@
-Site {
+.zine_version = "0.14.0",
+.supermd = .{
+    .auto_target_blank = true,
+},
+.site = .simple(.{
     .title = "anoopkc",
     .host_url = "https://anoopkc.com",
     .content_dir_path = "content",
@@ -10,7 +14,6 @@ Site {
         "Temml.woff2",
         "404.html",
         "fonts/zed/zed-sans-extended.ttf",
-        "fonts/zed/zed-sans-extended.ttf",
         "fonts/zed/zed-sans-extendedextrabold.ttf",
         "fonts/zed/zed-sans-extendedlight.ttf",
         "fonts/zed/zed-sans-extendedbold.ttf",
@@ -20,4 +23,4 @@ Site {
         "fonts/zed/zed-sans-extendeditalic.ttf",
         "fonts/zed/zed-mono-extended.ttf",
     ],
-}
+})

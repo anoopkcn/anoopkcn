@@ -82,6 +82,44 @@ figure video {
     border-bottom-color: #5c6370;
 }
 
+/* Table of contents, enabled per post with .custom = {"toc": true} */
+.post > h1 {
+    order: -1; /* keep the post title above the contents box */
+}
+
+.toc {
+    margin: 0 0 1.5em;
+    padding: 8px 15px;
+    border: 1px solid #3a3e46;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.toc summary {
+    cursor: pointer;
+    color: #c9cbcf;
+}
+
+.toc ul {
+    margin: 0;
+    padding-left: 1.2em;
+}
+
+/* the top level of $page.toc() is the post title itself: hide it */
+.toc > ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.toc > ul > li {
+    font-size: 0;
+}
+
+.toc > ul > li > ul {
+    font-size: 0.9rem;
+    margin-top: 0.5em;
+}
+
 /* Media queries for responsive design */
 @media screen and (max-width: 600px) {
     #prev-next {
