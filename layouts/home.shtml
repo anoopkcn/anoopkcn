@@ -2,9 +2,10 @@
 <head id="head">
 </head>
 <body id="body">
-  <div :html="$page.content()"></div>
+  <div class="home-intro" :html="$page.content()"></div>
+  <h2 class="post-list-heading">Posts</h2>
   <div class="post-list">
-      <div :loop="$page.subpages()">
+      <div :loop="$site.page('blog').subpages()">
           <div class="post-item">
               <a class="title" href="$loop.it.link()">
                 <h3 :text="$loop.it.title"></h3>

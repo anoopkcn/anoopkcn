@@ -2,9 +2,14 @@
 .title = "About",
 .date = @date("2025-04-07T20:53:35"),
 .author = "Anoop K Chandran",
-.layout = "index.shtml",
+.layout = "page.shtml",
 .draft = false,
 ---
 
-># [NOTE]($block)
->Check back in a few weeks.
+# About
+
+I'm Anoop K Chandran, a researcher in the Applied Machine Learning Lab at the
+[Jülich Supercomputing Centre](https://www.fz-juelich.de/en/ias/jsc) (JSC),
+part of [Forschungszentrum Jülich](https://www.fz-juelich.de/en). 
+
+My code is on [GitHub](https://github.com/anoopkcn).
