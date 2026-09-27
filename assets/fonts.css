@@ -1,57 +1,42 @@
+/* Subsets of the Zed fonts: Latin, punctuation, arrows, math operators, box drawing.
+   Regenerate from the TTFs (see git history) with pyftsubset if a post needs more glyphs. */
+
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extended.ttf") format("truetype");
-    font-weight: normal;
+    src: url("fonts/zed/zed-sans-extended.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedextrabold.ttf ") format("truetype");
-    font-weight: bolder;
-}
-
-@font-face {
-    font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedextrabolditalic.ttf") format("truetype");
-    font-weight: bolder;
+    src: url("fonts/zed/zed-sans-extendeditalic.woff2") format("woff2");
+    font-weight: 400;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedbold.ttf") format("truetype");
-    font-weight: bold;
+    src: url("fonts/zed/zed-sans-extendedbold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedbolditalic.ttf ") format("truetype");
-    font-weight: bold;
+    src: url("fonts/zed/zed-sans-extendedbolditalic.woff2") format("woff2");
+    font-weight: 700;
     font-style: italic;
-}
-
-@font-face {
-    font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendeditalic.ttf") format("truetype");
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedlight.ttf") format("truetype");
-    font-weight: light;
-}
-
-@font-face {
-    font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedlightitalic.ttf") format("truetype");
-    font-weight: light;
-    font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ZedMono";
-    src: url("fonts/zed/zed-mono-extended.ttf") format("truetype");
-    font-weight: normal;
+    src: url("fonts/zed/zed-mono-extended.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }

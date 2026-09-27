@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1">
     <title :text="$site.title"></title>
     <link rel="icon" href="$site.asset('favicon.ico').link()" type="image/x-icon">
+    <link rel="preload" href="$site.asset('fonts/zed/zed-sans-extended.woff2').link()" as="font" type="font/woff2" crossorigin>
     <link type="text/css" rel="stylesheet" href="$site.asset('fonts.css').link()">
     <link type="text/css" rel="stylesheet" href="$site.asset('style.css').link()">
     <link type="text/css" rel="stylesheet" href="$site.asset('highlight.css').link()">

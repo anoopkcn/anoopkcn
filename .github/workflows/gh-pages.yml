@@ -34,6 +34,9 @@ jobs:
       - name: Build
         run: zine release
 
+      - name: Prerender math
+        run: node scripts/prerender-math.mjs public
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
