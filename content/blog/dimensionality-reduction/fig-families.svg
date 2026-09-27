@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" width="760" height="290" role="img" aria-label="Three families: transformation, aggregation and selection">
+<title>Three families: transformation, aggregation and selection</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+</defs>
+<rect width="760" height="290" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<rect x="24.0" y="20.0" width="230.0" height="250.0" rx="8" fill="#2c3036" stroke="#3a3e46"/>
+<rect x="43.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="59.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="75.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="91.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="107.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="123.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="139.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="155.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="171.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="187.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="203.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="219.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<line x1="43.0" y1="60.0" x2="233.0" y2="60.0" stroke="#199e70" stroke-width="2"/>
+<line x1="43.0" y1="65.0" x2="233.0" y2="65.0" stroke="#c98500" stroke-width="2"/>
+<line x1="139.0" y1="72.0" x2="139.0" y2="104.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="123.0" y="110.0" width="15.0" height="15.0" rx="2" fill="#199e70"/>
+<rect x="140.0" y="110.0" width="15.0" height="15.0" rx="2" fill="#c98500"/>
+<text x="139.0" y="156.0" font-size="15" fill="#d7dae0" text-anchor="middle" font-weight="700">Transformation</text>
+<text x="139.0" y="178.0" font-size="13" fill="#b9bdc6" text-anchor="middle">New features mix</text>
+<text x="139.0" y="196.0" font-size="13" fill="#b9bdc6" text-anchor="middle">all originals</text>
+<text x="139.0" y="228.0" font-size="12" fill="#7f8590" text-anchor="middle">PCA, ICA, t-SNE,</text>
+<text x="139.0" y="245.0" font-size="12" fill="#7f8590" text-anchor="middle">UMAP, autoencoders</text>
+<rect x="270.0" y="20.0" width="230.0" height="250.0" rx="8" fill="#2c3036" stroke="#3a3e46"/>
+<rect x="289.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="305.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="321.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="337.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="353.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="369.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="385.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<rect x="401.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<rect x="417.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<rect x="433.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<rect x="449.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<rect x="465.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<line x1="336.0" y1="60.0" x2="336.0" y2="104.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="328.5" y="110.0" width="15.0" height="15.0" rx="2" fill="#199e70"/>
+<line x1="432.0" y1="60.0" x2="432.0" y2="104.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="424.5" y="110.0" width="15.0" height="15.0" rx="2" fill="#c98500"/>
+<text x="385.0" y="156.0" font-size="15" fill="#d7dae0" text-anchor="middle" font-weight="700">Aggregation</text>
+<text x="385.0" y="178.0" font-size="13" fill="#b9bdc6" text-anchor="middle">Each group becomes</text>
+<text x="385.0" y="196.0" font-size="13" fill="#b9bdc6" text-anchor="middle">one summary</text>
+<text x="385.0" y="228.0" font-size="12" fill="#7f8590" text-anchor="middle">pixel blocks, gene sets,</text>
+<text x="385.0" y="245.0" font-size="12" fill="#7f8590" text-anchor="middle">k-medoids</text>
+<rect x="516.0" y="20.0" width="230.0" height="250.0" rx="8" fill="#2c3036" stroke="#3a3e46"/>
+<rect x="535.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="551.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="567.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="583.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#199e70"/>
+<rect x="599.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="615.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="631.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="647.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="663.0" y="40.0" width="14.0" height="14.0" rx="2" fill="#c98500"/>
+<rect x="679.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="695.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="711.0" y="40.0" width="14.0" height="14.0" rx="2" fill="none" stroke="#7f8590" stroke-width="1"/>
+<line x1="590.0" y1="60.0" x2="590.0" y2="104.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="582.5" y="110.0" width="15.0" height="15.0" rx="2" fill="#199e70"/>
+<line x1="670.0" y1="60.0" x2="670.0" y2="104.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="662.5" y="110.0" width="15.0" height="15.0" rx="2" fill="#c98500"/>
+<text x="631.0" y="156.0" font-size="15" fill="#d7dae0" text-anchor="middle" font-weight="700">Selection</text>
+<text x="631.0" y="178.0" font-size="13" fill="#b9bdc6" text-anchor="middle">A subset of the</text>
+<text x="631.0" y="196.0" font-size="13" fill="#b9bdc6" text-anchor="middle">originals is kept</text>
+<text x="631.0" y="228.0" font-size="12" fill="#7f8590" text-anchor="middle">ReliefF, forward</text>
+<text x="631.0" y="245.0" font-size="12" fill="#7f8590" text-anchor="middle">selection, elastic net</text>
+</g>
+</svg>

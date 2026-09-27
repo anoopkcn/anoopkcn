@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 262" width="760" height="262" role="img" aria-label="Ten-step data pipeline with the split before the steps that learn from data">
+<title>Ten-step data pipeline with the split before the steps that learn from data</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+</defs>
+<rect width="760" height="262" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<rect x="14.0" y="132.0" width="436.0" height="94.0" rx="8" fill="#2a3140"/>
+<text x="24.0" y="214.0" font-size="10" fill="#769dce" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">FITTED ON TRAINING DATA ONLY</text>
+<rect x="24.0" y="30.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="30.0" y="42.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">1</text>
+<text x="86.0" y="62.0" font-size="12" fill="#d7dae0" text-anchor="middle">Raw data files</text>
+<line x1="150.0" y1="57.0" x2="167.0" y2="57.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="170.0" y="30.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="176.0" y="42.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">2</text>
+<text x="232.0" y="55.0" font-size="12" fill="#d7dae0" text-anchor="middle">Data matrix</text>
+<text x="232.0" y="71.0" font-size="12" fill="#d7dae0" text-anchor="middle">samples × features</text>
+<line x1="296.0" y1="57.0" x2="313.0" y2="57.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="316.0" y="30.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="322.0" y="42.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">3</text>
+<text x="378.0" y="55.0" font-size="12" fill="#d7dae0" text-anchor="middle">Normalize,</text>
+<text x="378.0" y="71.0" font-size="12" fill="#d7dae0" text-anchor="middle">transform</text>
+<line x1="442.0" y1="57.0" x2="459.0" y2="57.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="462.0" y="30.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="468.0" y="42.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">4</text>
+<text x="524.0" y="55.0" font-size="12" fill="#d7dae0" text-anchor="middle">Aggregate</text>
+<text x="524.0" y="71.0" font-size="12" fill="#d7dae0" text-anchor="middle">replicates</text>
+<line x1="588.0" y1="57.0" x2="605.0" y2="57.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="608.0" y="30.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#769dce"/>
+<text x="614.0" y="42.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">5</text>
+<text x="670.0" y="55.0" font-size="12" fill="#d7dae0" text-anchor="middle">Split data</text>
+<text x="670.0" y="71.0" font-size="12" fill="#d7dae0" text-anchor="middle">train / test</text>
+<rect x="24.0" y="142.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="30.0" y="154.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">6</text>
+<text x="86.0" y="174.0" font-size="12" fill="#d7dae0" text-anchor="middle">Missing values</text>
+<line x1="150.0" y1="169.0" x2="167.0" y2="169.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="170.0" y="142.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="176.0" y="154.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">7</text>
+<text x="232.0" y="174.0" font-size="12" fill="#d7dae0" text-anchor="middle">Scale features</text>
+<line x1="296.0" y1="169.0" x2="313.0" y2="169.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="316.0" y="142.0" width="124.0" height="54.0" rx="6" fill="#769dce" stroke="#769dce"/>
+<text x="322.0" y="154.0" font-size="9" fill="#101114" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">8</text>
+<text x="378.0" y="167.0" font-size="12" fill="#101114" text-anchor="middle" font-weight="600">Dimensionality</text>
+<text x="378.0" y="183.0" font-size="12" fill="#101114" text-anchor="middle" font-weight="600">reduction</text>
+<line x1="442.0" y1="169.0" x2="459.0" y2="169.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="462.0" y="142.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="468.0" y="154.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">9</text>
+<text x="524.0" y="174.0" font-size="12" fill="#d7dae0" text-anchor="middle">Quality control</text>
+<line x1="588.0" y1="169.0" x2="605.0" y2="169.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="608.0" y="142.0" width="124.0" height="54.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="614.0" y="154.0" font-size="9" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">10</text>
+<text x="670.0" y="167.0" font-size="12" fill="#d7dae0" text-anchor="middle">Integrate</text>
+<text x="670.0" y="183.0" font-size="12" fill="#d7dae0" text-anchor="middle">data sets</text>
+<path d="M670.0,84 L670.0,106 L86.0,106 L86.0,139" fill="none" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<line x1="670.0" y1="198.0" x2="670.0" y2="226.0" stroke="#b9bdc6" stroke-width="1.4" marker-end="url(#ah)"/>
+<text x="670.0" y="244.0" font-size="12" fill="#b9bdc6" text-anchor="middle">model building</text>
+</g>
+</svg>

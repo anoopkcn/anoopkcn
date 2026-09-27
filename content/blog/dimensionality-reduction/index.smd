@@ -1,0 +1,713 @@
+---
+.title  = "Dimensionality reduction: from 12,288 pixels to a picture, a summary or a short list",
+.date   = @date("2026-09-27T12:57:21"),
+.author = "Anoop K Chandran",
+.layout = "post.shtml",
+.custom = {"math": true, "abstract":"Data preparation, then the three ways to reduce dimensions (transformation, aggregation and selection), all run on one small image dataset whose true factors are known."},
+.draft  = false,
+---
+
+# Dimensionality reduction: from 12,288 pixels to a picture, a summary or a short list
+
+*This is the written version of a 45-minute talk I gave in September 2026 on
+data preparation and dimensionality reduction. It follows the Helmholtz AI
+consultant team's course material
+[[1]](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course) and
+covers the main slides; the backup slides are left out. Every figure is
+computed from one dataset, and the numbers in the text come from the same
+runs.*
+
+## One object on a table
+
+Every example in this post uses the same data:
+[tabletop](https://github.com/anoopkcn/tabletop) [[2]](https://github.com/anoopkcn/tabletop),
+a set of synthetic photos of a single object standing on a table. A small ray
+caster renders each photo, so every photo comes with the true values of the
+seven factors that produced it:
+
+| Factor | Levels |
+|---|---|
+| Shape | 4 (cube, sphere, cylinder, capsule) |
+| Colour | 12 |
+| Size | 8 |
+| Rotation | 12 |
+| Position | 8 |
+| Light | 4 |
+| Table | 2 (beige, grey-blue) |
+
+Two cameras look at each scene. One takes a colour photo, the other a depth
+image that stores the distance from the camera along each pixel's ray. Both
+are 64 × 64 pixels.
+
+[Six scenes from tabletop. Top row: the colour photo. Bottom row: the depth image of the same scene.](<$image.asset('fig-tabletop.png').alt('Six colour photos of objects on a table with the matching depth images below them')>)
+
+The full grid of factors gives 294,912 photos. I use a subset of 6,144 that
+is still a complete grid on its own: 4 colours (red, lime, cyan and violet),
+4 rotations, 3 positions, 2 lights, and every shape, size and table.
+
+The depth camera sees shape, size, rotation and position. It cannot see
+colour, light or the table, because none of those change a distance. That
+detail comes back when we join the two cameras.
+
+### What dimensionality reduction does
+
+A colour photo of 64 × 64 pixels with three channels is 12,288 numbers. Only
+seven things change from one photo to the next. If you had to describe a
+photo in as few numbers as possible and knew the factors, seven would do.
+
+[Each photo is one row of p = 12,288 numbers. Dimensionality reduction describes it with l numbers instead.](<$image.asset('fig-reduce.svg').alt('A wide grid of n rows and p columns, an arrow labelled reduce, and a narrow grid of n rows and l columns')>)
+
+Formally, you start with [`n`]($mathtex) samples, each described by
+[`p`]($mathtex) features, and end with [`l`]($mathtex) features per sample,
+where [`l \ll p`]($mathtex). Some information is always lost on the way. Each
+method makes its own choice of what to keep, and most of this post is about
+those choices.
+
+The reduced data are useful in three ways. You can **look** at them: scatter
+plots, heatmaps and quality control need two or three dimensions. You can
+**model** with them: clustering, classification and trajectories work better
+on a few informative features. And they make **computing** cheaper: less
+storage, faster training and fewer parameters to fit.
+
+A plot of two principal components is easier to read than 12,288 numbers, but
+each component mixes thousands of pixels, so the plot does not tell you which
+pixels matter. Feature selection is the exception, because it keeps original
+measurements you can point at.
+
+### The curse of dimensionality
+
+High-dimensional space behaves in ways that 2-D intuition does not prepare you
+for. The plot below places 500 uniformly random points in a cube of growing
+dimension. For 20 query points, it compares the distance to the nearest point
+with the distance to the farthest.
+
+[The ratio of nearest to farthest distance for uniform random points. At 12,288 dimensions, the size of one photo, it reaches 0.97.](<$image.asset('fig-curse.png').size(560,0).alt('Line chart: nearest over farthest distance rises from near 0 in 2 dimensions to 0.97 at 12,288 dimensions')>)
+
+In two dimensions the nearest point is close compared with the farthest. At
+12,288 dimensions the nearest point is 97% as far away as the farthest one
+[[3]](https://doi.org/10.1007/3-540-49257-7_15). When every point is about
+equally far from every other, neighbourhoods and clusters lose their contrast.
+
+Real data are not uniform, and that is what makes reduction possible. The
+tabletop photos occupy a thin, seven-dimensional sliver of the
+12,288-dimensional pixel space. Every method below is a different way of
+finding that sliver.
+
+### Three ways to get from p features to l
+
+The methods fall into three families. What separates them is what happens to
+the original features.
+
+[Transformation mixes all features into new ones. Aggregation summarizes groups. Selection keeps a subset.](<$image.asset('fig-families.svg').alt('Three panels showing feature bars for transformation, aggregation and selection')>)
+
+- **Transformation** builds new features, each a mix of *all* the originals:
+  PCA, ICA, t-SNE, UMAP and autoencoders.
+- **Aggregation** splits the features into groups and summarizes each group
+  with one number: pixel blocks, gene sets, clusters found by
+  [`k`]($mathtex)-medoids.
+- **Selection** keeps a *subset* of the original features: ReliefF, forward
+  selection, the elastic net.
+
+Only selection keeps measurements you can still point at, in our case single
+pixels. The other two trade that for compactness.
+
+There is also a rough split by supervision. Transformation and aggregation
+usually run without a target variable. Selection usually keeps whatever
+predicts a target. The split is only a tendency: linear discriminant
+analysis is a supervised transformation, and dropping low-variance features is
+unsupervised selection.
+
+## Preparing the data
+
+Before any method runs, the photos have to become a matrix of numbers on a
+common scale, and the data have to be split.
+
+### One step of a longer pipeline
+
+Dimensionality reduction sits in the middle of a longer chain of steps, and
+the order of those steps matters.
+
+[A typical pipeline. The split into training and test data comes before every step that learns from the data.](<$image.asset('fig-pipeline.svg').alt('Ten numbered pipeline steps in two rows; steps 6 to 8 are marked as fitted on training data only')>)
+
+Missing-value imputation, scaling and dimensionality reduction all learn
+something from the data: a mean, a standard deviation, a set of components.
+If they run before the split, the test data have already shaped them. So the
+split comes first, at step 5, and steps 6 to 8 are fitted on the training
+data alone.
+
+### From image files to an analysis matrix
+
+The tabletop photos come in an HDF5 file. Turning them into a matrix with one
+row per photo takes a few lines:
+
+```python
+with h5py.File("smoke.h5") as f:
+    images = f["images"][:]      # uint8,  (6144, 64, 64, 3)
+    depth  = f["depth"][:]       # uint16, (6144, 64, 64)
+    labels = f["labels"][:]      # int8,   (6144, 7): one level per factor
+
+X = images.astype(np.float32) / 255        # integers 0-255 -> numbers 0-1
+X = X.reshape(len(X), -1)                  # (6144, 12288): one row per photo
+D = depth.astype(np.float32) * 8 / 65535   # stored steps -> scene units
+```
+
+Three things happen here:
+
+- **The types change.** Pixel values arrive as small integers. They become
+  floats before any arithmetic, for a reason the next section shows.
+- **The photos are flattened.** Each photo becomes one row of 12,288 columns.
+  This throws away which pixel sits next to which. Methods that use the
+  neighbourhood, such as convolutional networks, keep the 2-D shape instead.
+- **The labels stay out of `X`.** The seven factors are what we hope to
+  recover. They colour the plots and serve as targets, but they are never
+  inputs.
+
+### Integer types overflow without warning
+
+Both of the bugs below came up while I was preparing the figures for this
+talk.
+
+| Expression | Expected | Got |
+|---|---|---|
+| `(depth * 8 / 65535).max()` | 8.0 | 1.0 |
+| `labels[:, 1] * 30` for cyan | 180 | −76 |
+| `labels[:, 1] * 30` for violet | 270 | 14 |
+
+`depth` is `uint16`, which holds 0 to 65,535. Multiplying the largest value by
+8 does not fit in 16 bits, so NumPy wraps the product around and the depth
+range comes out as 0 to 1 instead of 0 to 8. `labels` is `int8`, which holds
+−128 to 127. A hue level times 30 degrees gives 180 for cyan and 270 for
+violet; both wrap, to 180 − 256 = −76 and 270 − 256 = 14, and the plot
+colours come out wrong. Neither case raises an error.
+
+The fix is to convert first, with `.astype(np.float32)`. The habit that
+catches these bugs is to print each array's dtype, minimum and maximum right
+after loading.
+
+### Scale before you reduce
+
+Suppose you join the two cameras into one matrix, so each row holds the
+colour photo followed by the depth image:
+
+| Camera | Features | Range | Share of total variance |
+|---|---|---|---|
+| Colour | 12,288 | 0 to 1 | 13% |
+| Depth | 4,096 | 1.8 to 8 | 87% |
+
+Most reduction methods follow the largest variance. Joined as stored, depth
+holds 87% of the variance with a third as many features, so depth decides
+what the method sees.
+
+[1,500 random photos in the first two principal components, coloured by the table they stand on. Left: the cameras joined as stored. Right: each camera scaled first.](<$image.asset('fig-scaling.png').alt('Two scatter plots; on the left the beige and grey-blue tables overlap, on the right they separate')>)
+
+In the colour photos alone, the table is the largest source of variation. The
+depth camera cannot see the table at all. Joined unscaled, the table vanishes
+from the top components (left panel). With both cameras scaled to the same
+total variance, it separates cleanly (right panel).
+
+There are two common fixes:
+
+- **Standardize each feature**, subtracting its mean and dividing by its
+  standard deviation: [`z_{ij} = (x_{ij} - \bar{x}_j) / s_j`]($mathtex).
+- **Scale each block** (camera, assay, instrument) to the same total variance.
+
+For pixels from a single camera, standardizing is usually wrong. It would
+give the dull wall pixels, which barely change, as much weight as the pixels
+where the object appears. Pixels from one camera already share a scale, so
+subtracting each pixel's mean is enough. The same problem appears whenever features carry
+different units: centimetres and kilograms, gene counts and protein levels.
+Tree-based models are the exception; they need no scaling.
+
+### Fit preprocessing on the training data only
+
+Scaling, imputation, dimensionality reduction and feature selection all learn
+from data. Fit them on the training samples, and only apply them to the test
+samples:
+
+```python
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X[train])
+X_test  = scaler.transform(X[test])
+```
+
+The classic mistake is to choose the top features on all samples and then
+cross-validate a classifier on those features. The accuracy looks excellent
+and does not reproduce, because the test samples helped choose the features.
+scikit-learn's `Pipeline` [[4]](https://scikit-learn.org/stable/modules/compose.html)
+makes the correct version the easy one to write.
+
+Near-identical samples leak as well. A cube turned by 30° looks almost the
+same as the unturned cube, so a random split puts near-copies of each test
+photo into the training set. Holding out whole groups avoids that. The
+feature-selection section below holds out one object colour at a time for
+this reason.
+
+For plots with no test set, fitting on all samples is fine.
+
+## Feature transformation
+
+### Principal component analysis
+
+Start with two pixels, three rows apart, across all 6,144 photos. They move
+together, with a correlation of 0.92.
+
+[Two pixels three rows apart. The first principal component points along the diagonal and carries 96% of their joint variance.](<$image.asset('fig-pca-two-pixels.png').size(480,0).alt('Scatter plot of two pixel values with PC1 along the diagonal at 96 percent and PC2 across it at 4 percent')>)
+
+Principal component analysis (PCA) [[5]](https://doi.org/10.1098/rsta.2015.0202)
+finds the direction of largest variance in the data, then the direction of
+largest remaining variance at right angles to the first, and so on. For
+centred data [`X`]($mathtex), the first component is the unit vector
+
+```=mathtex
+w_1 = \arg\max_{\lVert w \rVert = 1} \operatorname{Var}(Xw)
+```
+
+For these two pixels, the first component alone carries 96% of the variance.
+With 12,288 pixels the same redundancy repeats in many directions at once.
+
+Each component is a weighted sum of *all* the features. PCA needs no labels,
+runs fast, gives the same answer every time, and can project new samples onto
+the components it has learned. It is the usual first look at any new
+dataset.
+
+The largest variance is not always the variation you care about. It may be
+technical, or a factor you are not studying, as the next figure shows.
+
+### Each component is an image
+
+For images, the weights of a component form an image themselves. You can see
+what a component does by starting from the mean photo and adding or
+subtracting a multiple of it.
+
+[The mean photo minus (top) and plus (bottom) three standard deviations of each of the first six components. The label above each column is the factor that explains most of that component's variance.](<$image.asset('fig-pca-images.png').alt('Six columns of blurry photos; PC1 turns the table from blue to beige, PC2 and PC3 move the object, PC4 changes the light, PC6 changes its colour')>)
+
+The factor names come from the data. For each component I checked which of
+the seven factors explains most of its variance; for PC1 the table explains
+94%. PC1 turns the table from grey-blue to beige. PC2 and PC3 move the
+object, PC4 changes the light, and PC6 changes the object's colour. PC5 mixes
+several factors, so not every component has a clean meaning.
+
+The largest source of variation in these photos is the table, which is rarely
+what anyone wants to study.
+
+### How many components should you keep?
+
+The cumulative explained variance tells you how much each additional
+component adds.
+
+[Left: cumulative explained variance. Right: photos rebuilt from their first k components.](<$image.asset('fig-pca-keep.png').alt('Cumulative variance curve reaching 50 percent at 5, 75 percent at 17 and 90 percent at 88 components, next to photos rebuilt from 5, 20 and 100 components')>)
+
+Five components reach 50% of the variance, 17 reach 75%, and 88 reach 90%.
+So 90% of the variance of a 12,288-number photo fits in 88 numbers.
+
+A variance target such as 75% or 90% is a convention. If the components feed
+a model, choose their number by cross-validation instead. The rebuilt photos
+show what the discarded components held: sharp edges and small details go
+first. With 20 components the position and colour of the object are already
+there.
+
+### Independent component analysis
+
+Independent component analysis (ICA) [[6]](https://doi.org/10.1016/S0893-6080(00)00026-5)
+solves a different problem. Imagine two people talking at a party and two
+microphones, each recording a different mix of both voices. ICA recovers the
+two voices from the two recordings.
+
+[The cocktail party with photos. Two source photos are mixed twice with different weights. ICA recovers both, in its own order.](<$image.asset('fig-ica.png').size(460,0).alt('Two source photos, two blended mixtures of them, and the two photos recovered by ICA in swapped order')>)
+
+Here the voices are two photos. I mixed their table regions with weights
+0.6/0.4 and 0.35/0.65, and ICA recovered both photos almost exactly. It
+returned them in swapped order, and another random seed could return the
+other order. Sign and scale are arbitrary too.
+
+ICA looks for components that are statistically *independent* and
+non-Gaussian [[7]](https://arxiv.org/abs/1404.2986). Independence is a
+stronger condition than the lack of correlation that PCA gives you.
+Independent components often line up with distinct underlying processes, even
+when those carry little variance. In the photos, one factor such as the light
+changes many pixels at once, and ICA tries to find one component per such
+source.
+
+| | PCA | ICA |
+|---|---|---|
+| Keeps | most variance | independent sources |
+| Order | by variance | none |
+| Good for | dominant effects | mixed signals |
+
+### t-SNE and UMAP: neighbourhoods first
+
+PCA and ICA are linear. t-SNE [[8]](https://jmlr.org/papers/v9/vandermaaten08a.html)
+and UMAP [[9]](https://arxiv.org/abs/1802.03426) are nonlinear methods built
+to preserve neighbourhoods: photos that are close in the original 12,288
+numbers should stay close in the 2-D map.
+
+[The same photos in three 2-D maps, drawn in the object's colour with a marker for its shape. t-SNE uses perplexity 30, UMAP 15 neighbours, both with fixed seeds.](<$image.asset('fig-embeddings.png').alt('Three scatter plots of the photos: PCA, t-SNE and UMAP, coloured by object colour with markers for shape')>)
+
+To compare the three maps, I counted **neighbours kept**: of each photo's 10
+nearest neighbours in the original space, the share that are still among its
+10 nearest neighbours in the 2-D map. PCA keeps 29%, t-SNE 63% and UMAP 60%.
+The measure works for any embedding, and it is worth computing before you
+trust the local structure of a map.
+
+PCA spreads the photos by size and colour. t-SNE and UMAP group them by
+colour and shape; in the UMAP map, the size of the object changes along each
+arm. Perplexity, t-SNE's main setting, is roughly the number of neighbours
+each point attends to.
+
+The two methods differ in ways that matter for how you use them:
+
+| | t-SNE | UMAP |
+|---|---|---|
+| Loss | KL divergence; repulsion only through normalization | cross-entropy with explicit attraction and repulsion |
+| New samples | no mapping | can be embedded |
+| Output | 2-D or 3-D for plots | any dimension; can feed a downstream model |
+| Global layout | distances between clusters mean little | keeps more of it |
+| Speed | slower | faster; approximate neighbours, worth checking on small data |
+
+Both methods find a local optimum, so a different seed can give a different
+layout. Run several seeds before you interpret one. A nonlinear method can
+follow curved structure and reveal groups that PCA smears together. You pay
+for that in interpretability, in stability across seeds, and for t-SNE in the
+ability to embed new points.
+
+### Autoencoders
+
+An autoencoder is a neural network trained to copy its input through a narrow
+middle layer. The encoder compresses a photo [`x`]($mathtex) to a small
+latent vector [`z`]($mathtex), and the decoder rebuilds a photo
+[`\hat{x}`]($mathtex) from it. Training minimizes the reconstruction error
+[`\lVert x - \hat{x} \rVert^2`]($mathtex).
+
+[A convolutional autoencoder with 8 latent numbers, trained for 20 epochs on all 6,144 photos. The photo on the right is rebuilt from those 8 numbers.](<$image.asset('fig-autoencoder.svg').alt('A photo of a red cube, an encoder, a column of 8 latent numbers, a decoder, and the rebuilt photo')>)
+
+The width of the latent layer sets the reduced dimension: 8 here, 2 if you
+want to plot it. Once trained, the encoder is a mapping, so new samples can be
+embedded without retraining.
+
+With the same budget of 8 numbers per photo, the autoencoder rebuilds far
+better than PCA. Its reconstruction error is 22.7 per photo (squared error
+summed over the pixels), against 63.0 for PCA with 8 components.
+
+[The same 8 numbers per photo. PCA blurs the object away; the autoencoder keeps it.](<$image.asset('fig-ae-vs-pca.png').size(300,0).alt('Three rows of photos: the original, the PCA reconstruction and the autoencoder reconstruction')>)
+
+Architecture matters at this size. A dense first layer of 128 units on a
+64 × 64 × 3 photo already has 12,288 × 128 + 128 = 1,572,992 weights and
+biases. The convolutional autoencoder above has 380,779 parameters in total.
+
+PCA is a special case: an autoencoder with linear layers and squared loss
+learns a latent space that spans the top principal components.
+
+### Variational autoencoders
+
+A variational autoencoder (VAE) [[10]](https://arxiv.org/abs/1906.02691)
+changes one thing. The encoder outputs a distribution, a mean
+[`\mu`]($mathtex) and a standard deviation [`\sigma`]($mathtex) for each
+latent number, and [`z`]($mathtex) is sampled from it. The loss adds a
+penalty that pulls each of those distributions towards a standard normal:
+
+```=mathtex
+\mathcal{L} = \underbrace{\lVert x - \hat{x} \rVert^2}_{\text{reconstruction}}
+  + w \, \underbrace{\mathrm{KL}\big(\mathcal{N}(\mu, \sigma^2) \,\Vert\, \mathcal{N}(0, 1)\big)}_{\text{regularization}}
+```
+
+The KL term stops the variances from shrinking to zero and the means from
+drifting apart. Without it, the VAE degenerates into a plain autoencoder. With
+it, nearby points in the latent space must decode to similar photos, so you
+can walk through the latent space and watch the photo change gradually.
+
+[Top: the VAE. Middle: changing only z6 changes the colour. Bottom: moving in a straight line from a red cube's code to a red capsule's code changes the shape.](<$image.asset('fig-vae.svg').alt('VAE diagram above two strips of seven decoded photos, one changing colour from cyan to red, one changing a cube into a capsule')>)
+
+The weight [`w`]($mathtex) sets the balance. Too small, and the latent space
+has little structure; too large, and the reconstructions blur. This VAE uses
+[`w = 1`]($mathtex) and 8 latent numbers. Its reconstruction error is 27.2
+per photo, a little above the plain autoencoder's 22.7. That gap is the price
+of the regularization.
+
+In the middle strip, only [`z_6`]($mathtex) changes, from −2.5 to 2.5.
+Across all photos, colour explains 64% of the variance of
+[`z_6`]($mathtex). Other latent numbers follow the light (63%) and the
+position (55%). No latent number follows shape; the best reaches 10%. So the
+bottom strip cannot vary one number. It moves in a straight line from the red
+cube's code to the code of a red capsule that matches it in every other
+factor, and the shape still changes smoothly.
+
+Ideally a VAE on tabletop would give each of the seven factors its own latent
+number. This one did for colour, light and position, but not for shape, the
+factor that changes the fewest pixels. Whether a model can separate the
+factors this way is called *disentanglement*, and it is the question tabletop
+was built to test.
+
+### Choosing a transformation method
+
+Whether a method can embed new samples decides whether it can sit inside a
+prediction pipeline.
+
+| Method | Type | Embeds new samples | Typical use |
+|---|---|---|---|
+| PCA | linear | yes | first exploration, quality control, preprocessing |
+| ICA | linear | yes | separating independent underlying signals |
+| t-SNE | nonlinear | no | local structure, visualization only |
+| UMAP | nonlinear | yes | visualization, and preprocessing for models |
+| Autoencoder | nonlinear | yes | learned representations, large data |
+
+## Feature aggregation
+
+Aggregation replaces each group of features with one summary, usually the
+mean or median. Given groups [`G_1, \dots, G_l`]($mathtex) of the
+[`p`]($mathtex) features, the new feature [`k`]($mathtex) of sample
+[`i`]($mathtex) is
+
+```=mathtex
+a_{ik} = \operatorname*{mean}_{j \in G_k} x_{ij}
+```
+
+Groups may overlap, and a feature may belong to no group. Turning a colour
+photo into a grey one is already aggregation: three channel values become
+one.
+
+The groups can come from two places. **Knowledge-based** groups are ones you
+already know: blocks of neighbouring pixels, or gene sets. They are easy to
+interpret. **Data-driven** groups come from clustering the features by how
+they change together. They can find structure you did not expect, but a
+cluster may not have a name.
+
+[Correlations between pixels, sorted into the 8 clusters found by k-medoids. Pixels in one cluster correlate 0.59 on average, against 0.17 overall.](<$image.asset('fig-pixel-correlations.png').size(400,0).alt('Correlation heatmap of pixels with eight bright blocks along the diagonal')>)
+
+For the data-driven groups I clustered the 4,096 pixel positions with
+[`k`]($mathtex)-medoids [[11]](https://doi.org/10.1002/9780470316801), using
+CLARA to scale to thousands of features. Each cluster is summarized around its
+*medoid*, a real pixel whose brightness profile best represents the group.
+[`k`]($mathtex)-means would give an average profile instead, which is not any
+pixel you can point at.
+
+[Left: averaging blocks of pixels, with accuracy on an unseen object colour. Right: the 8 pixel groups found by k-medoids; each colour becomes one new feature.](<$image.asset('fig-aggregation.png').alt('A red cube at full resolution, 4 by 4 blocks and 8 by 8 blocks with 99, 98 and 90 percent accuracy, next to a map of eight pixel groups')>)
+
+Downsampling a photo is knowledge-based aggregation: we know that
+neighbouring pixels belong together. To measure what it costs, I trained a
+logistic regression to tell cubes from spheres on three object colours and
+tested it on the fourth, averaged over the four colours. At full resolution it
+gets 99% right. Averaging 4 × 4 blocks leaves 768 features, 16 times fewer,
+and it still gets 98% right. With 8 × 8 blocks it drops to 90%.
+
+The pixel clusters on the right range from 131 to 1,250 pixels. They are a
+map of pixel positions, not a photo, and without being told, they find the
+wall and the regions of the table where objects stand.
+
+## Feature selection
+
+### The task: is the object a cube or a sphere?
+
+Selection needs a target, so this section uses a classification task. I took
+the 1,024 photos with a cube or a sphere in the middle of the frame and turned
+them grey, leaving 4,096 pixels per photo. Grey is the mean of the three
+colour channels, so each object colour becomes a different shade of grey.
+
+The test is whether the chosen pixels work for an object colour the model has
+never seen. Each fold trains on three colours (768 photos) and tests on the
+fourth (256 photos).
+
+[Leave-one-colour-out cross-validation. Each method is run four times, once per fold.](<$image.asset('fig-folds.svg').alt('A four by four grid of folds and object colours with one test colour per fold')>)
+
+Holding out a colour is harder than a random split. A random split would put
+photos of the same object, turned by 30°, into both the training and the test
+set. Each method also produces four models, one per fold, and comparing them
+tells us how stable the selection is.
+
+There are three families of selection methods
+[[12]](https://jmlr.org/papers/v3/guyon03a.html):
+
+- **Filter** methods score each feature first and keep the top ones.
+- **Wrapper** methods search over feature sets, scoring each set with a
+  model.
+- **Embedded** methods select features while the model trains.
+
+### Filter methods: ReliefF
+
+ReliefF [[13]](https://doi.org/10.1023/A:1025667309714) scores each pixel by
+how well it separates photos that are close to each other. For each photo
+[`i`]($mathtex), it finds the [`k`]($mathtex) nearest photos in each class
+and updates the score of every pixel [`f`]($mathtex):
+
+```=mathtex
+\text{score}_f \mathrel{+}= \sum_{o \in \text{other}} \lvert x_{if} - x_{of} \rvert
+  - \sum_{s \in \text{same}} \lvert x_{if} - x_{sf} \rvert
+```
+
+A pixel gains score when it differs between the classes and agrees within
+one.
+
+[The ReliefF score map, and the top 20 pixels drawn on a cube and a sphere.](<$image.asset('fig-relieff.png').size(580,0).alt('A score map tracing the outline of the object, and two photos with the top 20 pixels marked near the lower edge of the object')>)
+
+The score map traces the outline of the cube and its shadow, which is where
+cubes and spheres differ. All of the top 20 pixels sit together near the
+lower edge of the object. They are near-copies of one pixel, and twenty
+copies add little over one. This redundancy is the weakness of scoring
+features one at a time.
+
+ReliefF only proposes features. A separate classifier makes the prediction,
+here a decision tree on the top 20 pixels. It gets 98% right on the unseen
+lime and violet objects, 84% on red and 76% on cyan.
+
+### Wrapper methods: forward selection
+
+Forward selection starts with no features and adds, at each step, the feature
+that most improves validation accuracy. To keep the search fast, the
+candidates here are the 256 averages of 4 × 4 pixel blocks, and the model is
+a decision tree. Each step tries every remaining block, trains a model on each
+candidate set, scores it on the three inner validation colours, and keeps the
+best.
+
+[The first three blocks chosen with red held out. Block 1, at the base of the object, is picked first in all four folds.](<$image.asset('fig-forward-selection.png').size(480,0).alt('A cube and a sphere with three numbered pixel blocks marked')>)
+
+The number of features is now a hyperparameter, so it needs **nested**
+cross-validation: an inner loop chooses the features, and an outer loop tests
+them on the held-out colour. On the unseen colour, the selected blocks give
+95% on lime and violet, 90% on cyan and 78% on red.
+
+Greedy search is far cheaper than trying every subset, but it can miss the
+best combination and overfit the validation data. Backward elimination is the
+mirror image: start with all features and remove one at a time.
+
+### Embedded methods: the elastic net
+
+The elastic net [[14]](https://doi.org/10.1111/j.1467-9868.2005.00503.x)
+[[15]](https://doi.org/10.18637/jss.v033.i01) fits a logistic regression with two penalties on the pixel coefficients
+[`w`]($mathtex):
+
+```=mathtex
+\min_{w, c} \; C \sum_{i=1}^{n} \log\!\big(1 + e^{-y_i (x_i^\top w + c)}\big)
+  + \rho \lVert w \rVert_1 + \frac{1 - \rho}{2} \lVert w \rVert_2^2
+```
+
+The L1 penalty sets most coefficients to exactly zero, and the pixels with a
+non-zero coefficient are the selection. The L2 penalty keeps correlated pixels
+together instead of picking one of them at random. Neighbouring pixels are
+strongly correlated, which is the case the L2 term was designed for. This is
+scikit-learn's formulation: [`C`]($mathtex) multiplies the data term, so a smaller [`C`]($mathtex) means a
+stronger penalty.
+
+With [`\rho = 0.5`]($mathtex) and [`C = 0.05`]($mathtex), the models get 96%
+to 100% right on the unseen colour while keeping about 210 of the 4,096 pixels
+each. Selection happens during training, so there is no separate search loop.
+
+### Comparing the three families
+
+| | Filter | Wrapper | Embedded |
+|---|---|---|---|
+| Uses a model? | no | in the loop | in the objective |
+| Cost | low | high | moderate |
+| Finds joint effects? | often not | yes | partly |
+| Picks redundant features? | often | rarely | in groups |
+| Overfitting risk | low | high | moderate |
+| In this post | ReliefF | forward selection | elastic net |
+
+Wrappers need nested cross-validation, and embedded methods need their
+penalty tuned. In high dimensions a common, affordable combination is a filter
+to shrink the pool of features, followed by an embedded model.
+
+### Measuring selection stability
+
+Accuracy tells you whether the selected features predict. It does not tell
+you whether you would select the same features again. With four folds we have
+four models, and we can compare what they chose.
+
+Let model [`j`]($mathtex) of [`k`]($mathtex) select the positive predictors
+[`P_j`]($mathtex) and the negative predictors [`N_j`]($mathtex). The
+intersections [`P = P_1 \cap \dots \cap P_k`]($mathtex) and
+[`N = N_1 \cap \dots \cap N_k`]($mathtex) hold the pixels that every model
+chose. The stability is
+
+```=mathtex
+S = \frac{1}{2} \left( \frac{1}{k} \sum_{j=1}^{k} \frac{\lvert P \rvert}{\lvert P_j \rvert}
+  + \frac{1}{k} \sum_{j=1}^{k} \frac{\lvert N \rvert}{\lvert N_j \rvert} \right)
+```
+
+[`S = 1`]($mathtex) means every model picks the same pixels. A low
+[`S`]($mathtex) means the selection depends on the split. For the elastic net
+on cubes and spheres, each model keeps 203 to 218 pixels, only 146 of them
+appear in all four, and [`S = 0.69`]($mathtex).
+
+This definition has a weakness: one unusual model can empty the
+intersection. Nogueira et al. [[16]](https://jmlr.org/papers/v18/17-514.html)
+discuss measures with better properties.
+
+### Stability separates what accuracy cannot
+
+The next figure runs the elastic net across a range of penalties and plots
+accuracy and stability side by side.
+
+[Accuracy and selection stability of the elastic net as the penalty changes. Points are the mean over the four folds; bars span the minimum and maximum. The dashed line marks the best accuracy plus stability.](<$image.asset('fig-stability.png').alt('Two panels, cube versus sphere and cylinder versus capsule, with accuracy near 1 and stability between 0.45 and 0.8 across values of C')>)
+
+For cubes and spheres, compare [`C = 0.05`]($mathtex) and
+[`C = 0.2`]($mathtex). The accuracy ranges sit on top of each other, so
+choosing between them on accuracy alone is choosing on noise. The stability
+ranges do not overlap. With four folds these are ranges rather than confidence
+intervals, but the difference is still clear.
+
+Cylinder against capsule is a harder task and less stable, with stability
+between 0.45 and 0.56. Choosing on accuracy plus stability picks
+[`C = 0.1`]($mathtex) there, at almost the same accuracy (97.7% against 97.9%
+for the most accurate setting).
+
+Stability stays well below 1 because neighbouring pixels carry nearly the
+same information. Many different pixel sets predict equally well, and a model
+has no reason to prefer one of them.
+
+## Wrap-up
+
+### A starting point for your own data
+
+| Goal | Try first | Watch out for |
+|---|---|---|
+| First look, quality control | PCA on scaled data | the largest variance may not be the one you care about |
+| Show group structure | t-SNE or UMAP | seeds, local optima |
+| Input for a model | PCA, UMAP, autoencoder | fit inside the cross-validation |
+| Interpretable summaries | known groups (aggregation) | only finds the groups you know |
+| Which measurements matter | feature selection | nested cross-validation, stability |
+
+Treat the table as a place to start. Try two methods and compare them on
+the same data. Binary or categorical data need other methods, such as multiple
+correspondence analysis, logistic PCA, or nonlinear methods on a Jaccard
+distance.
+
+### What to take home
+
+1. **Prepare before you reduce.** Convert the types, flatten, and scale. On
+   tabletop, unscaled depth hides the table from PCA.
+2. **Split first.** Fit scalers, reducers and selectors on the training data
+   only.
+3. **Know what you keep.** Transformation mixes features, aggregation groups
+   them, and selection keeps a subset.
+4. **Use nonlinear embeddings for looking.** Check seeds and neighbours kept
+   before you trust a layout.
+5. **Report stability next to accuracy.** Several pixel sets can predict
+   equally well.
+
+### Resources
+
+The course notebooks, which use a gene-expression dataset, are at
+[github.com/HelmholtzAI-Consultants-Munich/DimRed-Course](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course).
+The methods and code carry over to other data unchanged. The tabletop dataset
+is at [github.com/anoopkcn/tabletop](https://github.com/anoopkcn/tabletop).
+
+The course material is by the Helmholtz AI consultant team and licensed CC BY
+4.0. tabletop is MIT-licensed.
+
+## References
+
+1. Helmholtz AI consultant team. *Dimensionality reduction course.* CC BY 4.0. [GitHub](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course)
+2. A. Kaithalikunnel Chandran. *tabletop: a complete factor grid in colour, depth and words.* v2.0.0, 2026. [GitHub](https://github.com/anoopkcn/tabletop)
+3. K. Beyer, J. Goldstein, R. Ramakrishnan, U. Shaft. *When Is "Nearest Neighbor" Meaningful?* ICDT 1999. [doi:10.1007/3-540-49257-7_15](https://doi.org/10.1007/3-540-49257-7_15)
+4. scikit-learn developers. *Pipelines and composite estimators.* [scikit-learn.org](https://scikit-learn.org/stable/modules/compose.html)
+5. I. T. Jolliffe, J. Cadima. *Principal component analysis: a review and recent developments.* Phil. Trans. R. Soc. A 374, 2016. [doi:10.1098/rsta.2015.0202](https://doi.org/10.1098/rsta.2015.0202)
+6. A. Hyvärinen, E. Oja. *Independent component analysis: algorithms and applications.* Neural Networks 13, 2000. [doi:10.1016/S0893-6080(00)00026-5](https://doi.org/10.1016/S0893-6080(00)00026-5)
+7. J. Shlens. *A Tutorial on Independent Component Analysis.* 2014. [arXiv:1404.2986](https://arxiv.org/abs/1404.2986)
+8. L. van der Maaten, G. Hinton. *Visualizing Data using t-SNE.* JMLR 9, 2008. [jmlr.org](https://jmlr.org/papers/v9/vandermaaten08a.html)
+9. L. McInnes, J. Healy, J. Melville. *UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.* 2018. [arXiv:1802.03426](https://arxiv.org/abs/1802.03426)
+10. D. P. Kingma, M. Welling. *An Introduction to Variational Autoencoders.* 2019. [arXiv:1906.02691](https://arxiv.org/abs/1906.02691)
+11. L. Kaufman, P. J. Rousseeuw. *Finding Groups in Data: An Introduction to Cluster Analysis.* Wiley, 1990. [doi:10.1002/9780470316801](https://doi.org/10.1002/9780470316801)
+12. I. Guyon, A. Elisseeff. *An Introduction to Variable and Feature Selection.* JMLR 3, 2003. [jmlr.org](https://jmlr.org/papers/v3/guyon03a.html)
+13. M. Robnik-Šikonja, I. Kononenko. *Theoretical and Empirical Analysis of ReliefF and RReliefF.* Machine Learning 53, 2003. [doi:10.1023/A:1025667309714](https://doi.org/10.1023/A:1025667309714)
+14. H. Zou, T. Hastie. *Regularization and variable selection via the elastic net.* JRSS B 67, 2005. [doi:10.1111/j.1467-9868.2005.00503.x](https://doi.org/10.1111/j.1467-9868.2005.00503.x)
+15. J. Friedman, T. Hastie, R. Tibshirani. *Regularization Paths for Generalized Linear Models via Coordinate Descent.* J. Stat. Softw. 33, 2010. [doi:10.18637/jss.v033.i01](https://doi.org/10.18637/jss.v033.i01)
+16. S. Nogueira, K. Sechidis, G. Brown. *On the Stability of Feature Selection Algorithms.* JMLR 18, 2018. [jmlr.org](https://jmlr.org/papers/v18/17-514.html)
