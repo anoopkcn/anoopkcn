@@ -1,5 +1,5 @@
 ---
-.title  = "Dimensionality reduction: from 12,288 pixels to a picture, a summary or a short list",
+.title  = "Dimensionality reduction: from pixels to a picture, a summary or a short list",
 .date   = @date("2026-09-27T12:57:21"),
 .author = "Anoop K Chandran",
 .layout = "post.shtml",
@@ -7,7 +7,7 @@
 .draft  = false,
 ---
 
-# Dimensionality reduction: from 12,288 pixels to a picture, a summary or a short list
+# Dimensionality reduction: from pixels to a picture, a summary or a short list
 
 *This is the written version of a 45-minute talk I gave in September 2026 on
 data preparation and dimensionality reduction. It follows the Helmholtz AI
