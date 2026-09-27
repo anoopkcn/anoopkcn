@@ -9,13 +9,10 @@
 
 # Dimensionality reduction: from pixels to a picture, a summary or a short list
 
-*This is the written version of a 45-minute talk I gave in September 2026 on
-data preparation and dimensionality reduction. It follows the Helmholtz AI
-consultant team's course material
-[[1]](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course) and
-covers the main slides; the backup slides are left out. Every figure is
-computed from one dataset, and the numbers in the text come from the same
-runs.*
+*This is the written version of a 45-minute talk I gave in September 2026 on 
+data preparation and dimensionality reduction. Every figure is computed 
+from [tabletop](https://github.com/anoopkcn/tabletop) dataset, 
+and the numbers in the text come from the same runs.*
 
 ## [One object on a table]($heading.id('one-object-on-a-table'))
 
