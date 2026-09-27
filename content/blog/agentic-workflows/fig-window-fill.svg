@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 150" width="760" height="150" role="img" aria-label="Context window filling up, with the fresh-session zone and the autocompaction threshold">
+<title>Context window filling up, with the fresh-session zone and the autocompaction threshold</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="150" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<rect x="30.0" y="70.0" width="40.0" height="40.0" rx="3" fill="#9085e9"/>
+<text x="50.0" y="94.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Sys</text>
+<rect x="72.0" y="70.0" width="54.0" height="40.0" rx="3" fill="#d55181"/>
+<text x="99.0" y="94.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="128.0" y="70.0" width="19.0" height="40.0" rx="3" fill="#3987e5"/>
+<rect x="149.0" y="70.0" width="26.0" height="40.0" rx="3" fill="#199e70"/>
+<rect x="177.0" y="70.0" width="68.0" height="40.0" rx="3" fill="#c98500"/>
+<rect x="247.0" y="70.0" width="19.0" height="40.0" rx="3" fill="#3987e5"/>
+<rect x="268.0" y="70.0" width="26.0" height="40.0" rx="3" fill="#199e70"/>
+<rect x="296.0" y="70.0" width="75.0" height="40.0" rx="3" fill="#c98500"/>
+<rect x="373.0" y="70.0" width="19.0" height="40.0" rx="3" fill="#199e70"/>
+<rect x="394.0" y="70.0" width="336.0" height="40.0" rx="3" fill="#3a3e46"/>
+<rect x="380.0" y="48.0" width="70.0" height="80.0" rx="0" fill="#769dce" fill-opacity="0.22"/>
+<text x="415.0" y="32.0" font-size="13" fill="#769dce" text-anchor="middle" font-weight="600">50–60%: start a fresh session</text>
+<line x1="674.0" y1="48.0" x2="674.0" y2="118.0" stroke="#d7dae0" stroke-width="2"/>
+<text x="674.0" y="40.0" font-size="13" fill="#d7dae0" text-anchor="middle">autocompaction</text>
+<text x="30.0" y="134.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0%</text>
+<text x="205.0" y="134.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">25%</text>
+<text x="380.0" y="134.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">50%</text>
+<text x="555.0" y="134.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">75%</text>
+<text x="730.0" y="134.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">100%</text>
+</g>
+</svg>

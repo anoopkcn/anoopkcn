@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 285" width="760" height="285" role="img" aria-label="Next-token probabilities at temperature 0.5, 1 and 2">
+<title>Next-token probabilities at temperature 0.5, 1 and 2</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="285" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<text x="40.0" y="36.0" font-size="15" fill="#d7dae0" font-weight="600">T = 0.5</text>
+<text x="102.0" y="36.0" font-size="13" fill="#7f8590">focused</text>
+<line x1="40.0" y1="220.0" x2="240.0" y2="220.0" stroke="#3a3e46" stroke-width="1"/>
+<path d="M48,220 L48,92.2 Q48,88.2 52,88.2 L68,88.2 Q72,88.2 72,92.2 L72,220 Z" fill="#3987e5"/>
+<text x="60.0" y="82.2" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.88</text>
+<text x="60.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">dog</text>
+<path d="M88,220 L88,212.1 Q88,208.1 92,208.1 L108,208.1 Q112,208.1 112,212.1 L112,220 Z" fill="#3987e5"/>
+<text x="100.0" y="202.1" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.08</text>
+<text x="100.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">cat</text>
+<path d="M128,220 L128,220.3 Q128,216.3 132,216.3 L148,216.3 Q152,216.3 152,220.3 L152,220 Z" fill="#3987e5"/>
+<text x="140.0" y="210.3" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.02</text>
+<text x="140.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">wolf</text>
+<path d="M168,220 L168,222.2 Q168,218.2 172,218.2 L188,218.2 Q192,218.2 192,222.2 L192,220 Z" fill="#3987e5"/>
+<text x="180.0" y="212.2" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.01</text>
+<text x="180.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">fox</text>
+<path d="M208,220 L208,223.1 Q208,219.1 212,219.1 L228,219.1 Q232,219.1 232,223.1 L232,220 Z" fill="#3987e5"/>
+<text x="220.0" y="213.1" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.01</text>
+<text x="220.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">car</text>
+<text x="280.0" y="36.0" font-size="15" fill="#d7dae0" font-weight="600">T = 1</text>
+<text x="342.0" y="36.0" font-size="13" fill="#7f8590">default</text>
+<line x1="280.0" y1="220.0" x2="480.0" y2="220.0" stroke="#3a3e46" stroke-width="1"/>
+<path d="M288,220 L288,134.0 Q288,130.0 292,130.0 L308,130.0 Q312,130.0 312,134.0 L312,220 Z" fill="#3987e5"/>
+<text x="300.0" y="124.0" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.60</text>
+<text x="300.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">dog</text>
+<path d="M328,220 L328,197.0 Q328,193.0 332,193.0 L348,193.0 Q352,193.0 352,197.0 L352,220 Z" fill="#3987e5"/>
+<text x="340.0" y="187.0" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.18</text>
+<text x="340.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">cat</text>
+<path d="M368,220 L368,209.0 Q368,205.0 372,205.0 L388,205.0 Q392,205.0 392,209.0 L392,220 Z" fill="#3987e5"/>
+<text x="380.0" y="199.0" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.10</text>
+<text x="380.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">wolf</text>
+<path d="M408,220 L408,213.5 Q408,209.5 412,209.5 L428,209.5 Q432,209.5 432,213.5 L432,220 Z" fill="#3987e5"/>
+<text x="420.0" y="203.5" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.07</text>
+<text x="420.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">fox</text>
+<path d="M448,220 L448,216.5 Q448,212.5 452,212.5 L468,212.5 Q472,212.5 472,216.5 L472,220 Z" fill="#3987e5"/>
+<text x="460.0" y="206.5" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.05</text>
+<text x="460.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">car</text>
+<text x="520.0" y="36.0" font-size="15" fill="#d7dae0" font-weight="600">T = 2</text>
+<text x="582.0" y="36.0" font-size="13" fill="#7f8590">creative</text>
+<line x1="520.0" y1="220.0" x2="720.0" y2="220.0" stroke="#3a3e46" stroke-width="1"/>
+<path d="M528,220 L528,166.0 Q528,162.0 532,162.0 L548,162.0 Q552,162.0 552,166.0 L552,220 Z" fill="#3987e5"/>
+<text x="540.0" y="156.0" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.39</text>
+<text x="540.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">dog</text>
+<path d="M568,220 L568,192.2 Q568,188.2 572,188.2 L588,188.2 Q592,188.2 592,192.2 L592,220 Z" fill="#3987e5"/>
+<text x="580.0" y="182.2" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.21</text>
+<text x="580.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">cat</text>
+<path d="M608,220 L608,200.3 Q608,196.3 612,196.3 L628,196.3 Q632,196.3 632,200.3 L632,220 Z" fill="#3987e5"/>
+<text x="620.0" y="190.3" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.16</text>
+<text x="620.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">wolf</text>
+<path d="M648,220 L648,204.2 Q648,200.2 652,200.2 L668,200.2 Q672,200.2 672,204.2 L672,220 Z" fill="#3987e5"/>
+<text x="660.0" y="194.2" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.13</text>
+<text x="660.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">fox</text>
+<path d="M688,220 L688,207.3 Q688,203.3 692,203.3 L708,203.3 Q712,203.3 712,207.3 L712,220 Z" fill="#3987e5"/>
+<text x="700.0" y="197.3" font-size="11" fill="#b9bdc6" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.11</text>
+<text x="700.0" y="238.0" font-size="12" fill="#b9bdc6" text-anchor="middle">car</text>
+<text x="40.0" y="268.0" font-size="12" fill="#7f8590">Prompt: “The animal that barks is the ___”. Probabilities of five candidate tokens.</text>
+</g>
+</svg>

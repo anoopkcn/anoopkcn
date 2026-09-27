@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 510" width="760" height="510" role="img" aria-label="Claimed versus effective context length for seventeen models">
+<title>Claimed versus effective context length for seventeen models</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="510" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<line x1="200.0" y1="54.0" x2="200.0" y2="434.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="200.0" y="450.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">1K</text>
+<line x1="346.7" y1="54.0" x2="346.7" y2="434.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="346.7" y="450.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">10K</text>
+<line x1="493.3" y1="54.0" x2="493.3" y2="434.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="493.3" y="450.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">100K</text>
+<line x1="640.0" y1="54.0" x2="640.0" y2="434.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="640.0" y="450.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">1M</text>
+<text x="730.0" y="48.0" font-size="9" fill="#7f8590" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">EFFECTIVE / CLAIMED</text>
+<rect x="200.0" y="18.0" width="12.0" height="12.0" rx="2" fill="#3a3e46"/>
+<text x="218.0" y="29.0" font-size="12" fill="#b9bdc6">claimed context length</text>
+<rect x="390.0" y="18.0" width="12.0" height="12.0" rx="2" fill="#3987e5"/>
+<text x="408.0" y="29.0" font-size="12" fill="#b9bdc6">effective length (RULER)</text>
+<text x="190.0" y="74.0" font-size="12" fill="#d7dae0" text-anchor="end" font-weight="600">Gemini-1.5-Pro</text>
+<rect x="200.0" y="63.0" width="440.0" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="63.0" width="309.1" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="74.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">12.8%</text>
+<text x="190.0" y="96.0" font-size="12" fill="#b9bdc6" text-anchor="end">GLM4 (9B)</text>
+<rect x="200.0" y="85.0" width="440.0" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="85.0" width="264.9" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="96.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">6.4%</text>
+<text x="190.0" y="118.0" font-size="12" fill="#b9bdc6" text-anchor="end">GradientAI/Llama3 (70B)</text>
+<rect x="200.0" y="107.0" width="440.0" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="107.0" width="176.6" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="118.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">1.6%</text>
+<text x="190.0" y="140.0" font-size="12" fill="#b9bdc6" text-anchor="end">LWM (7B)</text>
+<rect x="200.0" y="129.0" width="440.0" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="129.0" width="88.3" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="140.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0.4%</text>
+<text x="190.0" y="162.0" font-size="12" fill="#b9bdc6" text-anchor="end">Yi (34B)</text>
+<rect x="200.0" y="151.0" width="337.5" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="151.0" width="220.8" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="162.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">16%</text>
+<text x="190.0" y="184.0" font-size="12" fill="#d7dae0" text-anchor="end" font-weight="600">GPT-4</text>
+<rect x="200.0" y="173.0" width="309.1" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="173.0" width="264.9" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="184.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">50%</text>
+<text x="190.0" y="206.0" font-size="12" fill="#b9bdc6" text-anchor="end">Llama3.1 (70B)</text>
+<rect x="200.0" y="195.0" width="309.1" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="195.0" width="264.9" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="206.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">50%</text>
+<text x="190.0" y="228.0" font-size="12" fill="#b9bdc6" text-anchor="end">Qwen2 (72B)</text>
+<rect x="200.0" y="217.0" width="309.1" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="217.0" width="220.8" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="228.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">25%</text>
+<text x="190.0" y="250.0" font-size="12" fill="#b9bdc6" text-anchor="end">Command-R-plus (104B)</text>
+<rect x="200.0" y="239.0" width="309.1" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="239.0" width="220.8" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="250.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">25%</text>
+<text x="190.0" y="272.0" font-size="12" fill="#b9bdc6" text-anchor="end">Llama3.1 (8B)</text>
+<rect x="200.0" y="261.0" width="309.1" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="261.0" width="220.8" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="272.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">25%</text>
+<text x="190.0" y="294.0" font-size="12" fill="#b9bdc6" text-anchor="end">Phi3-medium (14B)</text>
+<rect x="200.0" y="283.0" width="309.1" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="283.0" width="220.8" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="294.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">25%</text>
+<text x="190.0" y="316.0" font-size="12" fill="#b9bdc6" text-anchor="end">Mixtral-8x22B (39B/141B)</text>
+<rect x="200.0" y="305.0" width="264.9" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="305.0" width="220.8" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="316.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">50%</text>
+<text x="190.0" y="338.0" font-size="12" fill="#b9bdc6" text-anchor="end">Mistral-v0.2 (7B)</text>
+<rect x="200.0" y="327.0" width="220.8" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="327.0" width="176.6" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="338.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">50%</text>
+<text x="190.0" y="360.0" font-size="12" fill="#b9bdc6" text-anchor="end">DBRX (36B/132B)</text>
+<rect x="200.0" y="349.0" width="220.8" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="349.0" width="132.5" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="360.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">25%</text>
+<text x="190.0" y="382.0" font-size="12" fill="#b9bdc6" text-anchor="end">Together (7B)</text>
+<rect x="200.0" y="371.0" width="220.8" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="371.0" width="88.3" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="382.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">12.5%</text>
+<text x="190.0" y="404.0" font-size="12" fill="#b9bdc6" text-anchor="end">LongChat (7B)</text>
+<rect x="200.0" y="393.0" width="220.8" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="393.0" width="88.3" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="404.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">12.5%</text>
+<text x="190.0" y="426.0" font-size="12" fill="#b9bdc6" text-anchor="end">LongAlpaca (13B)</text>
+<rect x="200.0" y="415.0" width="220.8" height="13.0" rx="3" fill="#3a3e46"/>
+<rect x="200.0" y="415.0" width="88.3" height="13.0" rx="3" fill="#3987e5"/>
+<text x="730.0" y="426.0" font-size="12" fill="#b9bdc6" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">12.5%</text>
+<text x="30.0" y="478.0" font-size="12" fill="#7f8590">Data: Hsieh et al., RULER (2024), as tabulated in Liu et al., A Comprehensive Survey on Long</text>
+<text x="30.0" y="494.0" font-size="12" fill="#7f8590">Context Language Modeling (2025), §7.1.1. Log scale.</text>
+</g>
+</svg>

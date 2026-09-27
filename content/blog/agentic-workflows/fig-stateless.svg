@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 212" width="760" height="212" role="img" aria-label="Each request re-sends the full conversation">
+<title>Each request re-sends the full conversation</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="212" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<text x="30.0" y="50.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">REQUEST 1</text>
+<rect x="120.0" y="30.0" width="70.0" height="30.0" rx="3" fill="#9085e9"/>
+<text x="155.0" y="49.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">System</text>
+<rect x="192.0" y="30.0" width="60.0" height="30.0" rx="3" fill="#d55181"/>
+<text x="222.0" y="49.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="254.0" y="30.0" width="38.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="273.0" y="49.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">U1</text>
+<line x1="298.0" y1="45.0" x2="324.0" y2="45.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="328.0" y="33.0" width="64.0" height="24.0" rx="12" fill="#2c3036" stroke="#7f8590"/>
+<text x="360.0" y="50.0" font-size="12" fill="#d7dae0" text-anchor="middle">model</text>
+<line x1="394.0" y1="45.0" x2="420.0" y2="45.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="424.0" y="30.0" width="40.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="444.0" y="49.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A1</text>
+<text x="30.0" y="102.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">REQUEST 2</text>
+<rect x="120.0" y="82.0" width="70.0" height="30.0" rx="3" fill="#9085e9"/>
+<text x="155.0" y="101.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">System</text>
+<rect x="192.0" y="82.0" width="60.0" height="30.0" rx="3" fill="#d55181"/>
+<text x="222.0" y="101.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="254.0" y="82.0" width="38.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="273.0" y="101.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">U1</text>
+<rect x="294.0" y="82.0" width="38.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="313.0" y="101.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A1</text>
+<rect x="334.0" y="82.0" width="38.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="353.0" y="101.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">U2</text>
+<line x1="378.0" y1="97.0" x2="404.0" y2="97.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="408.0" y="85.0" width="64.0" height="24.0" rx="12" fill="#2c3036" stroke="#7f8590"/>
+<text x="440.0" y="102.0" font-size="12" fill="#d7dae0" text-anchor="middle">model</text>
+<line x1="474.0" y1="97.0" x2="500.0" y2="97.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="504.0" y="82.0" width="40.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="524.0" y="101.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A2</text>
+<text x="30.0" y="154.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">REQUEST 3</text>
+<rect x="120.0" y="134.0" width="70.0" height="30.0" rx="3" fill="#9085e9"/>
+<text x="155.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">System</text>
+<rect x="192.0" y="134.0" width="60.0" height="30.0" rx="3" fill="#d55181"/>
+<text x="222.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="254.0" y="134.0" width="38.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="273.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">U1</text>
+<rect x="294.0" y="134.0" width="38.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="313.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A1</text>
+<rect x="334.0" y="134.0" width="38.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="353.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">U2</text>
+<rect x="374.0" y="134.0" width="38.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="393.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A2</text>
+<rect x="414.0" y="134.0" width="38.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="433.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">U3</text>
+<line x1="458.0" y1="149.0" x2="484.0" y2="149.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="488.0" y="137.0" width="64.0" height="24.0" rx="12" fill="#2c3036" stroke="#7f8590"/>
+<text x="520.0" y="154.0" font-size="12" fill="#d7dae0" text-anchor="middle">model</text>
+<line x1="554.0" y1="149.0" x2="580.0" y2="149.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="584.0" y="134.0" width="40.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="604.0" y="153.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A3</text>
+<path d="M120.0,168 L120.0,174 L252.0,174 L252.0,168" fill="none" stroke="#7f8590" stroke-width="1"/>
+<text x="186.0" y="192.0" font-size="12" fill="#b9bdc6" text-anchor="middle">stable prefix: cacheable</text>
+<text x="430.0" y="192.0" font-size="12" fill="#7f8590" text-anchor="middle">each answer is appended and re-sent with the next request</text>
+</g>
+</svg>

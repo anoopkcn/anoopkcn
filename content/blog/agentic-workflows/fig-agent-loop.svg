@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" width="760" height="350" role="img" aria-label="The agent loop: think, act, observe">
+<title>The agent loop: think, act, observe</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="350" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<rect x="90.0" y="88.0" width="120.0" height="44.0" rx="6" fill="#2c3036" stroke="#7f8590"/>
+<text x="150.0" y="115.0" font-size="15" fill="#d7dae0" text-anchor="middle" font-weight="600">Think</text>
+<rect x="350.0" y="88.0" width="120.0" height="44.0" rx="6" fill="#2c3036" stroke="#7f8590"/>
+<text x="410.0" y="115.0" font-size="15" fill="#d7dae0" text-anchor="middle" font-weight="600">Act</text>
+<rect x="220.0" y="228.0" width="120.0" height="44.0" rx="6" fill="#2c3036" stroke="#7f8590"/>
+<text x="280.0" y="255.0" font-size="15" fill="#d7dae0" text-anchor="middle" font-weight="600">Observe</text>
+<path d="M170,84 C210,30 350,30 390,84" fill="none" stroke="#769dce" stroke-width="1.8" marker-end="url(#ahA)"/>
+<text x="280.0" y="36.0" font-size="13" fill="#b9bdc6" text-anchor="middle">decide the next step</text>
+<path d="M440,134 C460,200 390,240 344,246" fill="none" stroke="#769dce" stroke-width="1.8" marker-end="url(#ahA)"/>
+<text x="468.0" y="190.0" font-size="13" fill="#b9bdc6">call a tool</text>
+<path d="M216,246 C120,240 100,180 120,136" fill="none" stroke="#769dce" stroke-width="1.8" marker-end="url(#ahA)"/>
+<text x="90.0" y="190.0" font-size="13" fill="#b9bdc6" text-anchor="end">not done:</text>
+<text x="90.0" y="207.0" font-size="13" fill="#b9bdc6" text-anchor="end">loop</text>
+<line x1="280.0" y1="274.0" x2="280.0" y2="308.0" stroke="#199e70" stroke-width="1.8" marker-end="url(#ahG)"/>
+<text x="280.0" y="328.0" font-size="14" fill="#d7dae0" text-anchor="middle" font-weight="600">done: respond</text>
+<text x="578.0" y="120.0" font-size="13" fill="#b9bdc6">“Done” means the</text>
+<text x="578.0" y="139.0" font-size="13" fill="#b9bdc6">model replied without</text>
+<text x="578.0" y="158.0" font-size="13" fill="#b9bdc6">requesting a tool:</text>
+<text x="578.0" y="180.0" font-size="11" fill="#d7dae0" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">stop_reason = end_turn</text>
+<line x1="566.0" y1="104.0" x2="566.0" y2="190.0" stroke="#769dce" stroke-width="3"/>
+</g>
+</svg>

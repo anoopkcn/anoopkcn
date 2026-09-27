@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 186" width="760" height="186" role="img" aria-label="Context window broken down into system prompt, tools, conversation and free space">
+<title>Context window broken down into system prompt, tools, conversation and free space</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="186" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<rect x="30.0" y="70.0" width="82.0" height="46.0" rx="3" fill="#9085e9"/>
+<text x="71.0" y="97.3" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">System</text>
+<rect x="114.0" y="70.0" width="124.0" height="46.0" rx="3" fill="#d55181"/>
+<text x="176.0" y="97.3" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="240.0" y="70.0" width="47.0" height="46.0" rx="3" fill="#3987e5"/>
+<text x="263.5" y="97.3" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">User</text>
+<rect x="289.0" y="70.0" width="68.0" height="46.0" rx="3" fill="#199e70"/>
+<text x="323.0" y="97.3" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Assistant</text>
+<rect x="359.0" y="70.0" width="159.0" height="46.0" rx="3" fill="#c98500"/>
+<text x="438.5" y="97.3" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Tool calls + results</text>
+<rect x="520.0" y="70.0" width="208.0" height="46.0" rx="3" fill="#3a3e46"/>
+<text x="624.0" y="97.3" font-size="12" fill="#b9bdc6" text-anchor="middle" font-weight="600">Free space</text>
+<path d="M30.0,58 L30.0,52 L238.0,52 L238.0,58" fill="none" stroke="#7f8590" stroke-width="1"/>
+<text x="134.0" y="44.0" font-size="12" fill="#b9bdc6" text-anchor="middle">sent with every request</text>
+<path d="M240.0,58 L240.0,52 L518.0,52 L518.0,58" fill="none" stroke="#7f8590" stroke-width="1"/>
+<text x="379.0" y="44.0" font-size="12" fill="#b9bdc6" text-anchor="middle">the conversation: grows every turn</text>
+<path d="M520.0,58 L520.0,52 L728.0,52 L728.0,58" fill="none" stroke="#7f8590" stroke-width="1"/>
+<text x="624.0" y="44.0" font-size="12" fill="#b9bdc6" text-anchor="middle">headroom</text>
+<text x="72.0" y="136.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">12%</text>
+<text x="177.0" y="136.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">18%</text>
+<text x="380.0" y="136.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">40%</text>
+<text x="625.0" y="136.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">30%</text>
+<text x="30.0" y="168.0" font-size="12" fill="#7f8590">Approximate breakdown of a typical mid-session coding-agent conversation.</text>
+</g>
+</svg>

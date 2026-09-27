@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="760" height="310" role="img" aria-label="MCP connects many clients to many tool servers through one protocol">
+<title>MCP connects many clients to many tool servers through one protocol</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="310" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<text x="110.0" y="26.0" font-size="10" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">CLIENTS</text>
+<text x="650.0" y="26.0" font-size="10" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">SERVERS</text>
+<path d="M190,65 C280,65 290,140 336,140" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="30.0" y="50.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="110.0" y="70.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">Claude Code</text>
+<path d="M190,123 C280,123 290,140 336,140" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="30.0" y="108.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="110.0" y="128.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">Cursor</text>
+<path d="M190,181 C280,181 290,140 336,140" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="30.0" y="166.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="110.0" y="186.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">Copilot</text>
+<path d="M190,239 C280,239 290,140 336,140" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="30.0" y="224.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="110.0" y="244.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">your own agent</text>
+<path d="M424,140 C470,140 480,57 570,57" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="570.0" y="42.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="650.0" y="62.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">GitHub</text>
+<path d="M424,140 C470,140 480,105 570,105" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="570.0" y="90.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="650.0" y="110.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">Sentry</text>
+<path d="M424,140 C470,140 480,153 570,153" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="570.0" y="138.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="650.0" y="158.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">PostgreSQL</text>
+<path d="M424,140 C470,140 480,201 570,201" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="570.0" y="186.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="650.0" y="206.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">Slack</text>
+<path d="M424,140 C470,140 480,249 570,249" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="570.0" y="234.0" width="160.0" height="30.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="650.0" y="254.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">Jira</text>
+<circle cx="380" cy="140" r="44" fill="#3987e5"/>
+<text x="380.0" y="147.0" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="700">MCP</text>
+<text x="380.0" y="292.0" font-size="12" fill="#7f8590" text-anchor="middle">Write a server once; any client can use it.</text>
+</g>
+</svg>

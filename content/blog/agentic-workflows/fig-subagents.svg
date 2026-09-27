@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 256" width="760" height="256" role="img" aria-label="Subagents run noisy work in their own context and return only a summary">
+<title>Subagents run noisy work in their own context and return only a summary</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="256" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<text x="30.0" y="32.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">MAIN AGENT</text>
+<rect x="30.0" y="42.0" width="38.0" height="30.0" rx="3" fill="#9085e9"/>
+<rect x="70.0" y="42.0" width="34.0" height="30.0" rx="3" fill="#d55181"/>
+<rect x="106.0" y="42.0" width="24.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="132.0" y="42.0" width="28.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="162.0" y="42.0" width="54.0" height="30.0" rx="3" fill="#c98500"/>
+<text x="189.0" y="61.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">task</text>
+<rect x="218.0" y="42.0" width="78.0" height="30.0" rx="3" fill="#c98500"/>
+<text x="257.0" y="61.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">summary</text>
+<rect x="298.0" y="42.0" width="28.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="328.0" y="42.0" width="402.0" height="30.0" rx="3" fill="#3a3e46"/>
+<text x="529.0" y="62.0" font-size="11" fill="#b9bdc6" text-anchor="middle">free space</text>
+<text x="30.0" y="118.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">SUBAGENT</text>
+<rect x="30.0" y="128.0" width="38.0" height="30.0" rx="3" fill="#9085e9"/>
+<rect x="70.0" y="128.0" width="34.0" height="30.0" rx="3" fill="#d55181"/>
+<rect x="106.0" y="128.0" width="44.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="128.0" y="147.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">task</text>
+<rect x="152.0" y="128.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="168.0" y="128.0" width="30.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="200.0" y="128.0" width="18.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="220.0" y="128.0" width="26.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="248.0" y="128.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="264.0" y="128.0" width="34.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="300.0" y="128.0" width="18.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="320.0" y="128.0" width="22.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="344.0" y="128.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="360.0" y="128.0" width="30.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="392.0" y="128.0" width="20.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="414.0" y="128.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="440.0" y="128.0" width="78.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="479.0" y="147.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">summary</text>
+<text x="528.0" y="148.0" font-size="12" fill="#7f8590">noisy work stays here</text>
+<line x1="189.0" y1="76.0" x2="128.0" y2="124.0" stroke="#769dce" stroke-width="1.3" marker-end="url(#ahA)" stroke-dasharray="4 3"/>
+<path d="M479.0,124 C479.0,88 257.0,98 257.0,78" fill="none" stroke="#769dce" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahA)"/>
+<text x="491.0" y="100.0" font-size="12" fill="#769dce">only the conclusion returns</text>
+<text x="30.0" y="196.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">SUBAGENT</text>
+<rect x="30.0" y="206.0" width="38.0" height="30.0" rx="3" fill="#9085e9"/>
+<rect x="70.0" y="206.0" width="34.0" height="30.0" rx="3" fill="#d55181"/>
+<rect x="106.0" y="206.0" width="44.0" height="30.0" rx="3" fill="#3987e5"/>
+<text x="128.0" y="225.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">task</text>
+<rect x="152.0" y="206.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="168.0" y="206.0" width="30.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="200.0" y="206.0" width="18.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="220.0" y="206.0" width="26.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="248.0" y="206.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="264.0" y="206.0" width="34.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="300.0" y="206.0" width="18.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="320.0" y="206.0" width="22.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="344.0" y="206.0" width="14.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="370.0" y="206.0" width="78.0" height="30.0" rx="3" fill="#199e70"/>
+<text x="409.0" y="225.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">summary</text>
+<text x="458.0" y="226.0" font-size="12" fill="#7f8590">noisy work stays here</text>
+</g>
+</svg>

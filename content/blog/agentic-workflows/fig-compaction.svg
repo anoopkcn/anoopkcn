@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 196" width="760" height="196" role="img" aria-label="Compaction replaces older turns with a summary">
+<title>Compaction replaces older turns with a summary</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="196" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<text x="30.0" y="50.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">BEFORE</text>
+<rect x="100.0" y="30.0" width="38.0" height="30.0" rx="3" fill="#9085e9"/>
+<text x="119.0" y="49.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Sys</text>
+<rect x="140.0" y="30.0" width="54.0" height="30.0" rx="3" fill="#d55181"/>
+<text x="167.0" y="49.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="196.0" y="30.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="210.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="226.0" y="30.0" width="22.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="250.0" y="30.0" width="16.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="268.0" y="30.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="282.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="298.0" y="30.0" width="26.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="326.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="342.0" y="30.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="356.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="372.0" y="30.0" width="22.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="396.0" y="30.0" width="16.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="414.0" y="30.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="428.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="444.0" y="30.0" width="26.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="472.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="488.0" y="30.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="502.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="518.0" y="30.0" width="22.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="542.0" y="30.0" width="16.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="560.0" y="30.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="574.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="590.0" y="30.0" width="26.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="618.0" y="30.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="634.0" y="30.0" width="96.0" height="30.0" rx="3" fill="#3a3e46"/>
+<text x="30.0" y="140.0" font-size="10" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">AFTER</text>
+<rect x="100.0" y="120.0" width="38.0" height="30.0" rx="3" fill="#9085e9"/>
+<text x="119.0" y="139.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Sys</text>
+<rect x="140.0" y="120.0" width="54.0" height="30.0" rx="3" fill="#d55181"/>
+<text x="167.0" y="139.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Tools</text>
+<rect x="196.0" y="120.0" width="108.0" height="30.0" rx="3" fill="#4b5263"/>
+<text x="250.0" y="139.0" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">Summary</text>
+<rect x="306.0" y="120.0" width="22.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="330.0" y="120.0" width="16.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="348.0" y="120.0" width="12.0" height="30.0" rx="3" fill="#3987e5"/>
+<rect x="362.0" y="120.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="378.0" y="120.0" width="26.0" height="30.0" rx="3" fill="#c98500"/>
+<rect x="406.0" y="120.0" width="14.0" height="30.0" rx="3" fill="#199e70"/>
+<rect x="422.0" y="120.0" width="308.0" height="30.0" rx="3" fill="#3a3e46"/>
+<text x="100.0" y="174.0" font-size="12" fill="#7f8590">Manual control: /compact [focus] summarizes now; /clear drops everything.</text>
+<path d="M196.0,62 L196.0,68 L516.0,68 L516.0,62" fill="none" stroke="#7f8590" stroke-width="1"/>
+<text x="356.0" y="86.0" font-size="12" fill="#b9bdc6" text-anchor="middle"></text>
+<path d="M357.0,76 C357.0,102 248.0,90 248.0,114" fill="none" stroke="#769dce" stroke-width="1.5" marker-end="url(#ahA)"/>
+<text x="369.0" y="100.0" font-size="13" fill="#769dce" font-weight="600">summarize</text>
+</g>
+</svg>

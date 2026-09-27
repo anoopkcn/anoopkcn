@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" width="760" height="250" role="img" aria-label="Git worktrees: one repository, several working directories">
+<title>Git worktrees: one repository, several working directories</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="250" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<rect x="40.0" y="95.0" width="90.0" height="60.0" rx="8" fill="#101114"/>
+<text x="85.0" y="131.0" font-size="16" fill="#f2f3f5" text-anchor="middle" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">.git</text>
+<text x="85.0" y="176.0" font-size="11" fill="#7f8590" text-anchor="middle">shared history</text>
+<text x="85.0" y="190.0" font-size="11" fill="#7f8590" text-anchor="middle">and remotes</text>
+<path d="M130,125 C170,125 170,49 210,49" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="210.0" y="20.0" width="220.0" height="58.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="226.0" y="44.0" font-size="14" fill="#d7dae0" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">app/</text>
+<text x="226.0" y="64.0" font-size="12" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">branch main</text>
+<path d="M130,125 C170,125 170,125 210,125" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="210.0" y="96.0" width="220.0" height="58.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="226.0" y="120.0" font-size="14" fill="#d7dae0" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">app-auth/</text>
+<text x="226.0" y="140.0" font-size="12" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">branch feature-auth</text>
+<path d="M130,125 C170,125 170,201 210,201" fill="none" stroke="#7f8590" stroke-width="1"/>
+<rect x="210.0" y="172.0" width="220.0" height="58.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="226.0" y="196.0" font-size="14" fill="#d7dae0" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">app-flaky/</text>
+<text x="226.0" y="216.0" font-size="12" fill="#7f8590" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">branch fix-flaky-test</text>
+<text x="470.0" y="50.0" font-size="13" fill="#b9bdc6">Each worktree: own files,</text>
+<text x="470.0" y="69.0" font-size="13" fill="#b9bdc6">branch and working state.</text>
+<text x="470.0" y="88.0" font-size="13" fill="#b9bdc6"></text>
+<text x="470.0" y="107.0" font-size="13" fill="#b9bdc6">Shared: commit history</text>
+<text x="470.0" y="126.0" font-size="13" fill="#b9bdc6">and remotes.</text>
+<text x="470.0" y="145.0" font-size="13" fill="#b9bdc6"></text>
+<text x="470.0" y="164.0" font-size="13" fill="#b9bdc6">Run parallel sessions without</text>
+<text x="470.0" y="183.0" font-size="13" fill="#b9bdc6">them overwriting each other.</text>
+</g>
+</svg>

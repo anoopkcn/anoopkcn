@@ -56,6 +56,27 @@ figure img {
     width: 100%;
 }
 
+.post table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0.5em 0 1em;
+    font-size: 0.9em;
+    line-height: 1.45em;
+}
+
+.post th,
+.post td {
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #3a3e46;
+}
+
+.post th {
+    color: #c9cbcf;
+    border-bottom-color: #5c6370;
+}
+
 /* Media queries for responsive design */
 @media screen and (max-width: 600px) {
     #prev-next {
@@ -77,5 +98,10 @@ figure img {
     figure {
     margin-left: 0;
     margin-right: 0;
+    }
+
+    .post table {
+    display: block;
+    overflow-x: auto;
     }
 }

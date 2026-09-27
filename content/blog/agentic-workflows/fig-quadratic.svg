@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 352" width="760" height="352" role="img" aria-label="Cumulative input tokens grow quadratically with the number of turns">
+<title>Cumulative input tokens grow quadratically with the number of turns</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+  <marker id="ahY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98500"/></marker>
+  <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#199e70"/></marker>
+  <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3987e5"/></marker>
+</defs>
+<rect width="760" height="352" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<line x1="80.0" y1="270.0" x2="640.0" y2="270.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="72.0" y="274.0" font-size="11" fill="#7f8590" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">0</text>
+<line x1="80.0" y1="212.5" x2="640.0" y2="212.5" stroke="#3a3e46" stroke-width="1"/>
+<text x="72.0" y="216.5" font-size="11" fill="#7f8590" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">1M</text>
+<line x1="80.0" y1="155.0" x2="640.0" y2="155.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="72.0" y="159.0" font-size="11" fill="#7f8590" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">2M</text>
+<line x1="80.0" y1="97.5" x2="640.0" y2="97.5" stroke="#3a3e46" stroke-width="1"/>
+<text x="72.0" y="101.5" font-size="11" fill="#7f8590" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">3M</text>
+<line x1="80.0" y1="40.0" x2="640.0" y2="40.0" stroke="#3a3e46" stroke-width="1"/>
+<text x="72.0" y="44.0" font-size="11" fill="#7f8590" text-anchor="end" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">4M</text>
+<text x="80.0" y="288.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">1</text>
+<text x="209.2" y="288.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">10</text>
+<text x="352.8" y="288.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">20</text>
+<text x="496.4" y="288.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">30</text>
+<text x="640.0" y="288.0" font-size="11" fill="#7f8590" text-anchor="middle" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">40</text>
+<text x="360.0" y="308.0" font-size="12" fill="#b9bdc6" text-anchor="middle">turn</text>
+<text x="80.0" y="24.0" font-size="12" fill="#b9bdc6">cumulative input tokens sent</text>
+<polyline points="80.0,268.6 94.4,267.0 108.7,265.2 123.1,263.1 137.4,260.8 151.8,258.3 166.2,255.5 180.5,252.5 194.9,249.3 209.2,245.8 223.6,242.2 237.9,238.3 252.3,234.1 266.7,229.8 281.0,225.2 295.4,220.3 309.7,215.3 324.1,210.0 338.5,204.4 352.8,198.7 367.2,192.7 381.5,186.5 395.9,180.1 410.3,173.4 424.6,166.5 439.0,159.4 453.3,152.0 467.7,144.4 482.1,136.6 496.4,128.6 510.8,120.3 525.1,111.8 539.5,103.0 553.8,94.0 568.2,84.8 582.6,75.4 596.9,65.8 611.3,55.9 625.6,45.8 640.0,35.4" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="640.0" cy="35.4" r="4.5" fill="#3987e5" stroke="#22252a" stroke-width="2"/>
+<polyline points="80.0,268.6 94.4,268.4 108.7,268.2 123.1,267.9 137.4,267.7 151.8,267.5 166.2,267.2 180.5,267.0 194.9,266.8 209.2,266.6 223.6,266.3 237.9,266.1 252.3,265.9 266.7,265.6 281.0,265.4 295.4,265.2 309.7,264.9 324.1,264.7 338.5,264.5 352.8,264.2 367.2,264.0 381.5,263.8 395.9,263.6 410.3,263.3 424.6,263.1 439.0,262.9 453.3,262.6 467.7,262.4 482.1,262.2 496.4,261.9 510.8,261.7 525.1,261.5 539.5,261.3 553.8,261.0 568.2,260.8 582.6,260.6 596.9,260.3 611.3,260.1 625.6,259.9 640.0,259.6" fill="none" stroke="#d95926" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="640.0" cy="259.6" r="4.5" fill="#d95926" stroke="#22252a" stroke-width="2"/>
+<text x="650.0" y="39.4" font-size="12" fill="#d7dae0" font-weight="600">4.1M</text>
+<text x="650.0" y="263.6" font-size="12" fill="#d7dae0" font-weight="600">180K</text>
+<line x1="96.0" y1="48.0" x2="114.0" y2="48.0" stroke="#3987e5" stroke-width="2"/>
+<text x="122.0" y="52.0" font-size="12" fill="#b9bdc6">re-sent in full every turn (what actually happens)</text>
+<line x1="96.0" y1="68.0" x2="114.0" y2="68.0" stroke="#d95926" stroke-width="2"/>
+<text x="122.0" y="72.0" font-size="12" fill="#b9bdc6">only the new tokens (if the model had memory)</text>
+<text x="30.0" y="334.0" font-size="12" fill="#7f8590">Illustrative: 20K-token prefix (system + tools), each turn adds 4K tokens of messages and tool traffic.</text>
+</g>
+</svg>
