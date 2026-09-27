@@ -9,10 +9,11 @@
 
 # Dimensionality reduction: from pixels to a picture, a summary or a short list
 
-*This is the written version of a 45-minute talk I gave in September 2026 on 
-data preparation and dimensionality reduction. Every figure is computed 
-from [tabletop](https://github.com/anoopkcn/tabletop) dataset, 
-and the numbers in the text come from the same runs.*
+*This is the written version of a 45-minute talk I gave in September 2026 on
+data preparation and dimensionality reduction. Every data figure except the
+curse-of-dimensionality plot is computed from the
+[tabletop](https://github.com/anoopkcn/tabletop) dataset, and the numbers in
+the text come from the same runs.*
 
 ## [One object on a table]($heading.id('one-object-on-a-table'))
 
@@ -40,7 +41,8 @@ are 64 x 64 pixels.
 
 The full grid of factors gives 294,912 photos. I use a subset of 6,144 that
 is still a complete grid on its own: 4 colours (red, lime, cyan and violet),
-4 rotations, 3 positions, 2 lights, and every shape, size and table.
+4 rotations (0°, 90°, 180° and 270°), 3 positions, 2 lights, and every shape,
+size and table.
 
 The depth camera sees shape, size, rotation and position. It cannot see
 colour, light or the table, because none of those change a distance. That
@@ -48,8 +50,9 @@ detail comes back when we join the two cameras.
 
 ### [What dimensionality reduction does]($heading.id('what-dimensionality-reduction-does'))
 
-A colour photo of 64 x 64 pixels with three channels is 12,288 numbers. Only
-seven things change from one photo to the next. If you had to describe a
+A colour photo of 64 x 64 pixels with three channels is 12,288 numbers. Apart
+from a little camera jitter and pixel noise, only seven things change from one
+photo to the next. If you had to describe a
 photo in as few numbers as possible and knew the factors, seven would do.
 
 [Each photo is one row of p = 12,288 numbers. Dimensionality reduction describes it with l numbers instead.](<$image.asset('fig-reduce.svg').alt('A wide grid of n rows and p columns, an arrow labelled reduce, and a narrow grid of n rows and l columns')>)
@@ -86,7 +89,7 @@ In two dimensions the nearest point is close compared with the farthest. At
 equally far from every other, neighbourhoods and clusters lose their contrast.
 
 Real data are not uniform, and that is what makes reduction possible. The
-tabletop photos occupy a thin, seven-dimensional sliver of the
+tabletop photos occupy a thin, roughly seven-dimensional sliver of the
 12,288-dimensional pixel space. Every method below is a different way of
 finding that sliver.
 
@@ -129,8 +132,8 @@ the order of those steps matters.
 Missing-value imputation, scaling and dimensionality reduction all learn
 something from the data: a mean, a standard deviation, a set of components.
 If they run before the split, the test data have already shaped them. So the
-split comes first, at step 5, and steps 6 to 8 are fitted on the training
-data alone.
+split comes before them, at step 5, and steps 6 to 8 are fitted on the
+training data alone.
 
 ### [From image files to an analysis matrix]($heading.id('from-image-files-to-an-analysis-matrix'))
 
@@ -146,13 +149,16 @@ with h5py.File("smoke.h5") as f:
 X = images.astype(np.float32) / 255        # integers 0-255 -> numbers 0-1
 X = X.reshape(len(X), -1)                  # (6144, 12288): one row per photo
 D = depth.astype(np.float32) * 8 / 65535   # stored steps -> scene units
+D = D.reshape(len(D), -1)                  # (6144, 4096)
 ```
 
 Three things happen here:
 
-- **The types change.** Pixel values arrive as small integers. They become
-  floats before any arithmetic, for a reason the next section shows.
-- **The photos are flattened.** Each photo becomes one row of 12,288 columns.
+- **The types change.** Pixels, depths and labels all arrive as small
+  integer types. Anything used in arithmetic becomes a float first, for a
+  reason the next section shows.
+- **The photos are flattened.** Each colour photo becomes one row of 12,288
+  columns, and each depth image one row of 4,096.
   This throws away which pixel sits next to which. Methods that use the
   neighbourhood, such as convolutional networks, keep the 2-D shape instead.
 - **The labels stay out of `X`.** The seven factors are what we hope to
@@ -175,9 +181,9 @@ talk.
 65,535 turns a step count back into a distance. Multiplying the largest value
 by 8 does not fit in 16 bits, so NumPy wraps the product around and the depth
 range comes out as 0 to 1 instead of 0 to 8. `labels` is `int8`, which holds
-−128 to 127. The hue label is a level from 0 to 11, and the twelve hues sit 30
-degrees apart on the colour wheel, so the level times 30 gives the hue angle:
-180 for cyan and 270 for violet. Both wrap, to 180 − 256 = −76 and
+−128 to 127. The colour label, `labels[:, 1]`, is a hue level from 0 to 11,
+and the twelve hues sit 30 degrees apart on the colour wheel, so the level
+times 30 gives the hue angle: 180 for cyan and 270 for violet. Both wrap, to 180 − 256 = −76 and
 270 − 256 = 14, and the plot colours come out wrong. Neither case raises an
 error.
 
@@ -204,7 +210,7 @@ what the method sees.
 In the colour photos alone, the table is the largest source of variation. The
 depth camera cannot see the table at all. Joined unscaled, the table vanishes
 from the top components (left panel). With both cameras scaled to the same
-total variance, it separates cleanly (right panel).
+total variance, it comes back as the second component (right panel).
 
 There are two common fixes:
 
@@ -216,23 +222,24 @@ Standardizing works column by column, so it gives the same result before or
 after the join. Block scaling needs to know which columns came from which
 camera.
 
-For pixels from a single camera, standardizing is usually wrong. It would
-give the dull wall pixels, which barely change, as much weight as the pixels
-where the object appears. Pixels from one camera already share a scale, so
-subtracting each pixel's mean is enough. The same problem appears whenever features carry
-different units: centimetres and kilograms, gene counts and protein levels.
-Tree-based models are the exception; they need no scaling.
+Standardizing is the usual fix when features carry different units:
+centimetres and kilograms, gene counts and protein levels. For pixels from a
+single camera it is usually wrong. It would give the dull wall pixels, which
+barely change, as much weight as the pixels where the object appears. Pixels
+from one camera already share a scale, so subtracting each pixel's mean is
+enough. (Tree-based models need no scaling at all, since a split on one
+feature does not care about its units.)
 
 ### [Fit preprocessing on the training data only]($heading.id('fit-preprocessing-on-the-training-data-only'))
 
-Scaling, imputation, dimensionality reduction and feature selection all learn
+Imputation, scaling, dimensionality reduction and feature selection all learn
 from data. Fit them on the training samples, and only apply them to the test
 samples:
 
 ```python
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X[train])
-X_test  = scaler.transform(X[test])
+pca = PCA(n_components=50)
+Z_train = pca.fit_transform(X[train])   # learns the mean and the components
+Z_test  = pca.transform(X[test])        # reuses them, learns nothing
 ```
 
 The classic mistake is to choose the top features on all samples and then
@@ -241,8 +248,8 @@ and does not reproduce, because the test samples helped choose the features.
 scikit-learn's `Pipeline` [[4]](https://scikit-learn.org/stable/modules/compose.html)
 makes the correct version the easy one to write.
 
-Near-identical samples leak as well. A cube turned by 30° looks almost the
-same as the unturned cube, so a random split puts near-copies of each test
+Near-identical samples leak as well. A cube one size step larger looks almost
+the same as the smaller cube, so a random split puts near-copies of each test
 photo into the training set. Holding out whole groups avoids that. The
 feature-selection section below holds out one object colour at a time for
 this reason.
@@ -270,6 +277,17 @@ w_1 = \arg\max_{\lVert w \rVert = 1} \operatorname{Var}(Xw)
 For these two pixels, the first component alone carries 96% of the variance.
 With 12,288 pixels the same redundancy repeats in many directions at once.
 
+With two pixels you can draw the original axes and the components on top of
+them, as above. With 12,288 pixels you cannot, so you plot the photos along
+two components instead. Each point is one photo, placed by its score on each
+component: the weighted sum of its pixels,
+[`z_1 = x w_1`]($mathtex). The scaling figure earlier is such a plot. PC1
+against PC2 shows the most variation of any pair, but for these photos that is
+only 34% (22% and 12%, as the next figure shows), so other pairs are worth
+plotting too. Every axis mixes all the pixels, so it means nothing on its own.
+You find out what it tracks by colouring the points by a known factor, as the
+scaling figure does with the table, or by drawing the component as an image.
+
 Each component is a weighted sum of *all* the features. PCA needs no labels,
 runs fast, gives the same answer every time, and can project new samples onto
 the components it has learned. It is the usual first look at any new
@@ -278,19 +296,26 @@ dataset.
 The largest variance is not always the variation you care about. It may be
 technical, or a factor you are not studying, as the next figure shows.
 
-### [Each component is an image]($heading.id('each-component-is-an-image'))
+### [For images, each component is an image]($heading.id('each-component-is-an-image'))
 
-For images, the weights of a component form an image themselves. You can see
-what a component does by starting from the mean photo and adding or
-subtracting a multiple of it.
+A component has one weight per feature. Here every feature is a pixel, so the
+12,288 weights can be put back into the 64 x 64 x 3 grid the pixels came from
+and shown as a picture. This works only because pixels have a fixed place in
+a grid. For most data it does not: if the features are age, weight and blood
+pressure, the weights are just a list. The picture is easier to read added to
+the mean photo: start from the mean and add or subtract a multiple of the
+component, and you see what changes along it.
 
-[The mean photo minus (top) and plus (bottom) three standard deviations of each of the first six components. The label above each column is the factor that explains most of that component's variance.](<$image.asset('fig-pca-images.webp').alt('Six columns of blurry photos; PC1 turns the table from blue to beige, PC2 and PC3 move the object, PC4 changes the light, PC6 changes its colour')>)
+[The mean photo minus (top) and plus (bottom) three standard deviations of each of the first six components. Above each column: its share of the variation, and the factor that sorts the photos along it.](<$image.asset('fig-pca-images.webp').alt('Six columns of blurry photos; PC1 turns the table from blue to beige, PC2 and PC3 move the object, PC4 changes the light, PC6 changes its colour')>)
 
-The factor names come from the data. For each component I checked which of
-the seven factors explains most of its variance; for PC1 the table explains
-94%. PC1 turns the table from grey-blue to beige. PC2 and PC3 move the
-object, PC4 changes the light, and PC6 changes the object's colour. PC5 mixes
-several factors, so not every component has a clean meaning.
+The number above each column is the component's share of all the variation
+in the photos. The word below it says what the component tracks. To find it,
+I gave every photo a score along the component and checked which of the seven
+factors sorts those scores best. Along PC1, the beige-table photos sit at one
+end and the grey-blue ones at the other, with almost no overlap, so PC1 is the
+table. PC2 and PC3 move the object, PC4 changes the light, and PC6 changes the
+object's colour. No single factor sorts PC5; it changes colour and position
+together, so not every component has a clean meaning.
 
 The largest source of variation in these photos is the table, which is rarely
 what anyone wants to study.
@@ -561,7 +586,10 @@ and updates the score of every pixel [`f`]($mathtex):
 ```
 
 A pixel gains score when it differs between the classes and agrees within
-one.
+one. Take a pixel where a cube has a corner and a sphere does not. It shows the
+object in cube photos and the background in sphere photos, so the first term
+is large, the second small, and the score high. A wall pixel looks almost the
+same in every photo: both terms are near zero, and so is its score.
 
 [The ReliefF score map, and the top 20 pixels drawn on a cube and a sphere.](<$image.asset('fig-relieff.webp').size(580,0).alt('A score map tracing the outline of the object, and two photos with the top 20 pixels marked near the lower edge of the object')>)
 
@@ -705,8 +733,9 @@ distance.
    only.
 3. **Know what you keep.** Transformation mixes features, aggregation groups
    them, and selection keeps a subset.
-4. **Use nonlinear embeddings for looking.** Check seeds and neighbours kept
-   before you trust a layout.
+4. **Check a nonlinear map before you trust it.** Run several seeds and count
+   the neighbours kept. t-SNE is for plots only; UMAP and autoencoders can also
+   feed a model.
 5. **Report stability next to accuracy.** Several pixel sets can predict
    equally well.
 
