@@ -3,7 +3,7 @@
 .date   = .date("2026-09-27T12:57:21"),
 .authors = ["Anoop K Chandran"],
 .layout = "post.shtml",
-.custom = {"math": true, "toc": true, "abstract":"Data preparation, then the three ways to reduce dimensions (transformation, aggregation and selection), all run on one small image dataset whose true factors are known."},
+.custom = {"math": true, "toc": true, "origin": "Written from a 45-minute talk", "abstract":"Data preparation, then the three ways to reduce dimensions (transformation, aggregation and selection), all run on one small image dataset whose true factors are known."},
 .draft  = false,
 ---
 

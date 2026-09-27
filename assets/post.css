@@ -1,8 +1,3 @@
-.post h1 {
-    margin-top: 0;
-    line-height: 1.2em;
-}
-
 #prev-next {
     display: flex;
     flex-direction: row;
@@ -74,7 +69,7 @@ figure video {
     padding: 6px 10px;
     text-align: left;
     vertical-align: top;
-    border-bottom: 1px solid #3a3e46;
+    border-bottom: 1px solid var(--rule);
 }
 
 .post th {
@@ -82,42 +77,183 @@ figure video {
     border-bottom-color: #5c6370;
 }
 
-/* Table of contents, enabled per post with .custom = {"toc": true} */
+/* Table of contents, enabled per post with .custom = {"toc": true}.
+   It sits in the right pane; below 1280px, where that pane is hidden, a
+   collapsed copy sits above the post instead. */
 .post > h1 {
-    order: -1; /* keep the post title above the contents box */
+    order: -1; /* keep the post title above the inline contents box */
+    margin-top: 0;
+    font-size: 2rem;
+    line-height: 1.2;
 }
 
-.toc {
+.toc-inline {
+    display: none;
     margin: 0 0 1.5em;
     padding: 8px 15px;
-    border: 1px solid #3a3e46;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
     font-size: 0.9em;
     line-height: 1.6;
 }
 
-.toc summary {
+.toc-inline summary {
     cursor: pointer;
-    color: #c9cbcf;
+    color: var(--bright);
 }
 
-.toc ul {
+.toc-inline ul {
     margin: 0;
     padding-left: 1.2em;
 }
 
 /* the top level of $page.toc() is the post title itself: hide it */
+.toc-inline > ul,
 .toc > ul {
     padding-left: 0;
     list-style: none;
 }
 
+.toc-inline > ul > li,
 .toc > ul > li {
     font-size: 0;
 }
 
-.toc > ul > li > ul {
+.toc-inline > ul > li > ul {
     font-size: 0.9rem;
     margin-top: 0.5em;
+}
+
+.toc {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc > ul > li > ul {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+/* sections: bright, with room above each group */
+.toc > ul > li > ul > li + li {
+    margin-top: 16px;
+}
+
+.toc > ul > li > ul > li > a {
+    color: var(--bright);
+}
+
+/* subsections: muted, hung on a guide line */
+.toc ul ul ul {
+    margin: 7px 0 0 2px;
+    border-left: 1px solid var(--rule);
+}
+
+.toc ul ul ul li + li {
+    margin-top: 6px;
+}
+
+.toc ul ul ul a {
+    display: block;
+    margin-left: -1px;
+    padding-left: 12px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+}
+
+.toc a:hover,
+.toc a.active {
+    color: var(--accent);
+}
+
+.toc ul ul ul a.active {
+    border-left-color: var(--accent);
+}
+
+.post h2[id],
+.post h3[id],
+.post h4[id] {
+    scroll-margin-top: 1rem;
+}
+
+/* post details in the left pane */
+.post-meta {
+    margin: 0;
+    padding: 20px 12px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.post-meta dt {
+    color: var(--label);
+}
+
+.post-meta dd {
+    margin: 2px 0 0;
+    color: var(--text);
+}
+
+/* previous and next post, above the contents in the right pane */
+.pane-prev-next {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pane-prev-next + .toc {
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+}
+
+.pane-prev-next:empty {
+    display: none;
+}
+
+/* the right pane has the links; the bottom row is for narrower screens */
+#prev-next {
+    display: none;
+}
+
+/* below 1280px the right pane is hidden: contents above the post,
+   previous and next below it */
+@media screen and (max-width: 1279px) {
+    .toc-inline {
+        display: block;
+    }
+
+    #prev-next {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .post-meta {
+        padding: 0;
+        border-top: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4px 20px;
+        font-size: 0.8rem;
+    }
+
+    .post-meta > div {
+        display: flex;
+        gap: 6px;
+    }
+
+    .post-meta dd {
+        margin: 0;
+    }
+
 }
 
 /* Media queries for responsive design */

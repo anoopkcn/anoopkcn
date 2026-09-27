@@ -199,3 +199,27 @@ code.diff .builtin {
 code.diff .attribute {
   color: var(--dark-yellow);
 }
+
+
+/* bash: order matters, a later rule wins for tokens with several classes
+   (a variable inside a string is .string.embedded.property) */
+code.bash .keyword {
+  color: var(--light-red);
+}
+
+code.bash .function {
+  color: var(--blue);
+}
+
+code.bash .string {
+  color: var(--dark-yellow);
+}
+
+code.bash .operator,
+code.bash .embedded {
+  color: var(--cyan);
+}
+
+code.bash .property {
+  color: var(--light-yellow);
+}

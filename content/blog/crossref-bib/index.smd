@@ -1,0 +1,96 @@
+---
+.title  = "Using crossref for building a bib",
+.date   = .date("2017-11-24T00:00:00"),
+.authors = ["Anoop K Chandran"],
+.layout = "post.shtml",
+.custom = {"math": false, "edited": "2026-09-27T00:00:00", "abstract":"Crossref API can be used to build a simple bash function which can be used to easily manipulate the details of an article. This bash function can be extended to view the details, tags, etc., for references when writing an article."},
+.draft  = false,
+---
+
+# Using crossref for building a bib
+
+## tl;dr
+
+This is based on a one-liner post. Provided a DOI of a paper or an article, the
+following will use the crossref API [[1]](https://www.crossref.org) and display
+the information regarding the document such as author, year, publication, etc.
+
+```bash
+#DOI=DOI of a paper
+DOI='DOI';
+curl -s "https://api.crossref.org/works/${DOI}/transform/application/x-bibtex"
+```
+
+The following is a bash function which makes use of this one-liner to do
+slightly complicated tasks such as appending the crossref info of a document to
+a file, selectively displaying the information when not given a file, etc.
+
+## Bash Function
+
+The `file` variable is initially empty, this is to store the file name the
+user would provide upon calling the function `doi2bib` with the flag `-f`.
+Likewise `info` is an empty string which would hold the information tag
+such as author, year, publisher, volume etc., provided by the user with the
+flag `-i`. The flags `-f` and `-i` are mutually exclusive in the following
+script. Flag `-d` is mandatory since this specifies the `DOI` of the document
+in question.
+
+```bash
+doi2bib() {
+  local doi="" info="" file=""
+  local api="https://api.crossref.org/works" trans="transform/application/x-bibtex"
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -h|--help)
+        echo "usage: doi2bib -d DOI [-i FIELD | -f FILE]"
+        return 0 ;;
+      -d|--doi)  doi=${2-};  shift ;;
+      -i|--info) info=${2-}; shift ;;
+      -f|--file) file=${2-}; shift ;;
+      *) echo "doi2bib: unknown option $1" >&2; return 1 ;;
+    esac
+    [ $# -gt 0 ] && shift
+  done
+  if [ -z "$doi" ]; then
+    echo "doi2bib: no DOI given, use -d DOI" >&2; return 1
+  fi
+
+  local bib
+  bib=$(curl -sfL "$api/$doi/$trans") || {
+    echo "doi2bib: crossref has no BibTeX for $doi" >&2; return 1
+  }
+
+  if [ -n "$file" ]; then
+    printf '\n%s\n' "$bib" >> "$file"
+  elif [ -n "$info" ]; then
+    grep -oE "$info=(\{[^}]*\}|[^,} ]*)" <<< "$bib"
+  else
+    printf '%s\n' "$bib"
+  fi
+}
+```
+
+A few typical examples of the usage of the above script are given as follows.
+
+To show the full info on the terminal:
+
+```bash
+doi2bib -d https://doi.org/10.1016/j.jssc.2016.08.030
+```
+
+To show the selective info on the terminal:
+
+```bash
+doi2bib -d https://doi.org/10.1016/j.jssc.2016.08.030 -i author
+```
+
+To append the full information in the bibtex format to a file named
+`mypaper.bib`:
+
+```bash
+doi2bib -d https://doi.org/10.1016/j.jssc.2016.08.030 -f mypaper.bib
+```
+
+## References
+
+- The online service of [crossref](https://www.crossref.org)

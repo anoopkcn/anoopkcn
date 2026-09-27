@@ -1,19 +1,29 @@
 <extend template="base.shtml">
 <head id="head">
 </head>
-<body id="body">
-  <div :html="$page.content()"></div>
-  <div class="post-list">
-      <div :loop="$page.subpages()">
-          <div class="post-item">
-              <a class="title" href="$loop.it.link()">
-                <h3 :text="$loop.it.title"></h3>
-              </a>
-              <span class="date" :text="$loop.it.date.format('January 02, 2006')"></span>
-              <div class="abstract" :if="$loop.it.custom.get?('abstract')">
-                  <span :text="$if"></span>
-              </div>
-          </div>
-      </div>
+<div id="pane-left">
+</div>
+<main id="main">
+  <div class="content">
+    <div :html="$page.content()"></div>
+    <div class="post-list" :loop="$site.page('blog').subpages()">
+      <article class="post-item">
+          <span class="date" :text="$loop.it.date.format('2 January 2006')"></span>
+          <a class="title" href="$loop.it.link()" :text="$loop.it.title"></a>
+          <p class="abstract" :if="$loop.it.custom.get?('abstract')" :text="$if"></p>
+      </article>
+    </div>
   </div>
-</body>
+</main>
+<div id="pane-right">
+  <div class="pane-group">
+    <span class="pane-label">Follow</span>
+    <a href="$site.page('blog').link().suffix('index.xml')">RSS feed</a>
+    <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
+  </div>
+  <div class="pane-group">
+    <span class="pane-label">Work</span>
+    <a href="https://www.fz-juelich.de/en/ias/jsc" target="_blank">Jülich Supercomputing Centre</a>
+    <a href="https://www.fz-juelich.de/en" target="_blank">Forschungszentrum Jülich</a>
+  </div>
+</div>

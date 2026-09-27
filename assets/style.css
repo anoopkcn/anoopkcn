@@ -1,67 +1,241 @@
+/* Workbench layout: site nav and page details on the left, the page in the
+   middle, and the contents or links on the right, like panes in an editor. */
+:root {
+    --ground: #292c32;
+    --pane: #25282d;
+    --rule: #3a3e46;
+    --selected: #32363e;
+    --text: #b9bdc6;
+    --bright: #d3d6dc;
+    --muted: #8b909a;
+    --label: #6f747e;
+    --accent: #769DCE;
+    --accent-hover: #9dbbe2;
+    --code-ground: #22252a;
+    --pane-top: 32px; /* all three columns start their content on this line */
+}
+
 h1,
 h2,
 h3,
 h4,
 h5 {
     font-family: "ZedSans", sans-serif;
+    color: var(--bright);
+    line-height: 1.25;
 }
 
 a {
     text-decoration: none;
-    color: #769DCE;
+    color: var(--accent);
+}
+
+a:hover {
+    color: var(--accent-hover);
 }
 
 b,
 strong {
-    color: #c9cbcf;
+    color: var(--bright);
 }
 
 html {
     font-family: "ZedSans", sans-serif;
-    background-color: #292c32;
-    color: #b9bdc6;
-    font-size: 1.1em;
-    line-height: 1.6em;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    background-color: var(--ground);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.6;
 }
 
 body {
-    font-family: "ZedSans", sans-serif;
-    background-color: #292c32;
-    color: #b9bdc6;
-    width: 800px;
-    padding: 15px;
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr) 288px;
+}
+
+/* panes */
+.pane {
+    background: var(--pane);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.pane-left {
+    border-right: 1px solid var(--rule);
+}
+
+.pane-right {
+    border-left: 1px solid var(--rule);
+}
+
+.pane-inner {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: thin;
     display: flex;
     flex-direction: column;
+    gap: 28px;
 }
 
-nav {
+.pane-left .pane-inner {
+    height: 100vh;
+    padding: var(--pane-top) 20px 32px;
+}
+
+.pane-right .pane-inner {
+    padding: var(--pane-top) 24px 32px;
+}
+
+.pane-label {
+    color: var(--label);
+    font-size: 0.8rem;
+}
+
+.pane-group {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.myname {
+    color: var(--bright);
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 0 12px;
+}
+
+.site-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.9rem;
+}
+
+.site-nav a {
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.site-nav a:hover {
+    color: var(--bright);
+}
+
+.site-nav a.current {
+    color: var(--bright);
+    background: var(--selected);
+}
+
+/* the page */
+main {
+    min-width: 0;
+    padding: var(--pane-top) 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 700px;
+}
+
+.content > :first-child {
+    margin-top: 0;
+}
+
+footer {
+    width: 100%;
+    max-width: 700px;
+    margin-top: auto;
+    padding-top: 64px;
+    color: var(--label);
+    font-size: 0.8rem;
+}
+
+/* post lists: blog index and home page */
+.home-intro {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--bright);
+}
+
+.home-intro > :first-child {
+    margin-top: 0;
+}
+
+.home-intro > :last-child {
+    margin-bottom: 48px;
+}
+
+.post-list-heading {
+    margin: 0 0 32px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: var(--label);
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.post-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.post-item .date {
+    font-size: 0.82rem;
+    color: var(--label);
+}
+
+.post-item .title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.post-item .abstract {
+    margin: 2px 0 0;
+    font-size: 0.95rem;
+    color: #a3a8b1;
+}
+
+/* code */
+pre > code {
+    border: none;
+    padding: 15px;
+    font-family: "ZedMono", monospace;
     font-size: 1em;
-    margin-bottom: 40px;
-    gap: 1em;
-}
-nav a {
-    text-decoration: none;
-}
-
-nav > .left{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 2em;
+    line-height: 1.3em !important;
+    display: inline-block;
+    box-sizing: border-box;
+    min-width: 100%;
 }
 
-nav > .right{
-    display: flex;
-    flex-direction: row;
+pre {
+    color: #b1b4bc;
+    font-size: 0.85em;
+    border-radius: 6px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--code-ground) !important;
+    overflow: auto;
 }
-nav > .myname{
-    font-weight: 600;
+
+code {
+    border-radius: 4px;
+    border: 1px solid rgba(211, 211, 211, 0.5);
+    padding: 0 4px;
+    font-family: "ZedMono", monospace;
+    font-size: 1em;
 }
 
 .block {
@@ -84,126 +258,61 @@ nav > .myname{
     font-size: 0.8em;
 }
 
-.wave {
-    background: #111;
-    color: #fff;
-    text-shadow:
-        1px 1px 10px #fff,
-        1px 1px 10px #ccc;
+/* Below 1280px the right pane goes; posts show their contents inline. */
+@media screen and (max-width: 1279px) {
+    body {
+        grid-template-columns: 240px minmax(0, 1fr);
+    }
+
+    .pane-right {
+        display: none;
+    }
 }
 
-/* post lists: blog index and home page */
-.post-item {
-    margin-bottom: 30px;
-}
-
-.post-item .date {
-    font-size: 0.9em;
-    opacity: 0.5;
-}
-
-.post-item .title h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.post-item .abstract {
-    font-size: 0.9em;
-}
-
-/* space below the home intro only when there is one */
-.home-intro > :last-child {
-    margin-bottom: 2em;
-}
-
-.post-list-heading {
-    margin-top: 0;
-}
-
-footer {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-footer hr {
-    width: 100%;
-}
-
-pre > code {
-    border: none;
-    padding: 15px;
-    font-family: "ZedMono", monospace;
-    font-size: 1em;
-    line-height: 1.3em !important;
-    display: inline-block;
-    box-sizing: border-box;
-    min-width: 100%;
-}
-
-pre {
-    color: #b1b4bc;
-    font-size: 0.9em;
-    border-radius: 5px;
-    margin: 0;
-    padding: 0;
-    background-color: #22252a !important;
-    overflow: auto;
-}
-
-code {
-    border-radius: 5px;
-    border: 1px solid rgba(211, 211, 211, 0.5);
-    padding: 4px;
-    font-size: 1.1em;
-}
-
-/* Media Queries for Responsive Design */
-
-/* Small screens (mobile) */
-@media screen and (max-width: 600px) {
+/* Below 800px the left pane becomes a header above the page. */
+@media screen and (max-width: 799px) {
     html {
-        font-size: 1em;
+        font-size: 16px;
     }
 
     body {
-        width: 100%;
-        padding: 10px;
+        display: block;
     }
 
-    nav {
-        flex-direction: column;
-        margin-bottom: 20px;
+    .pane-left {
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
     }
 
-    nav > .left {
-        flex-direction: column;
-        gap: 1em;
-        margin-bottom: 1em;
+    .pane-left .pane-inner {
+        position: static;
+        height: auto;
+        max-height: none;
+        padding: 16px;
+        gap: 12px;
     }
 
-    nav > .right {
-        justify-content: flex-start;
+    .myname {
+        padding: 0;
     }
 
-    .block {
-        margin: 0 0 10px 0;
-        padding: 5px 10px;
-    }
-
-    pre, code {
-        font-size: 0.9em;
-    }
-}
-
-/* Medium screens (tablets) */
-@media screen and (min-width: 601px) and (max-width: 830px) {
-    body {
-        width: 90%;
-    }
-
-    nav {
+    .site-nav {
+        flex-direction: row;
         flex-wrap: wrap;
+        gap: 4px 16px;
+    }
+
+    .site-nav a {
+        padding: 4px 0;
+        border-radius: 0;
+    }
+
+    .site-nav a.current {
+        background: none;
+        box-shadow: inset 0 -2px var(--accent);
+    }
+
+    main {
+        padding: 32px 16px 24px;
     }
 }

@@ -6,19 +6,41 @@
         <script defer src="$site.asset('temml.min.js').link()"></script>
         <script defer src="$site.asset('render-mathtex.js').link()"></script>
     </ctx>
+    <ctx :if="$page.custom.getOr('toc', false)">
+        <script defer src="$site.asset('toc.js').link()"></script>
+    </ctx>
 </head>
-<body id="body">
-    <main>
-        <div class="post">
-            <ctx :if="$page.custom.getOr('toc', false)">
-                <details class="toc">
-                    <summary>Contents</summary>
-                    <ctx :html="$page.toc()"></ctx>
-                </details>
-            </ctx>
-            <ctx :html="$page.content()"></ctx>
+<div id="pane-left">
+    <dl class="post-meta">
+        <div>
+            <dt>Published</dt>
+            <dd :text="$page.date.format('2 January 2006')"></dd>
         </div>
-        <div id="prev-next">
+        <ctx :if="$page.custom.get?('edited')">
+            <div>
+                <dt>Edited</dt>
+                <dd :text="$if.parseDate().format('2 January 2006')"></dd>
+            </div>
+        </ctx>
+        <ctx :if="$page.custom.get?('origin')">
+            <div>
+                <dt>Origin</dt>
+                <dd :text="$if"></dd>
+            </div>
+        </ctx>
+    </dl>
+</div>
+<main id="main">
+    <div class="content post">
+        <ctx :if="$page.custom.getOr('toc', false)">
+            <details class="toc-inline">
+                <summary>Contents</summary>
+                <ctx :html="$page.toc()"></ctx>
+            </details>
+        </ctx>
+        <ctx :html="$page.content()"></ctx>
+    </div>
+    <div id="prev-next" class="content">
         <div class="prev" :if="$page.prevPage?()">
             <span class="arrow">←</span>
             <a href="$if.link()">
@@ -31,6 +53,23 @@
             </a>
             <span class="arrow">→</span>
         </div>
+    </div>
+</main>
+<div id="pane-right">
+    <div class="pane-prev-next">
+        <div class="pane-group" :if="$page.prevPage?()">
+            <span class="pane-label">Previous post</span>
+            <a href="$if.link()" :text="$if.title"></a>
         </div>
-    </main>
-</body>
+        <div class="pane-group" :if="$page.nextPage?()">
+            <span class="pane-label">Next post</span>
+            <a href="$if.link()" :text="$if.title"></a>
+        </div>
+    </div>
+    <ctx :if="$page.custom.getOr('toc', false)">
+        <nav class="toc" aria-label="On this page">
+            <span class="pane-label">On this page</span>
+            <ctx :html="$page.toc()"></ctx>
+        </nav>
+    </ctx>
+</div>

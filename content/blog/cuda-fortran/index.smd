@@ -1,0 +1,179 @@
+---
+.title  = "CUDA Programming Model and CUDA Fortran",
+.date   = .date("2018-04-18T00:00:00"),
+.authors = ["Anoop K Chandran"],
+.layout = "post.shtml",
+.custom = {"math": false, "abstract":"A quick dive into CUDA Fortran programming model to convert fortran code to a GPU compatible code with fewer modifications."},
+.draft  = false,
+---
+
+# CUDA Programming Model and CUDA Fortran
+
+*Note, September 2026: this post is from 2018. Since then the PGI compilers
+have become part of the NVIDIA HPC SDK, and `pgf90` is now `nvfortran`. With
+`nvfortran`, `-cuda` enables CUDA Fortran and `-gpu=cc60` selects the compute
+capability. The commands below keep the 2018 names.*
+
+CUDA-enabled GPUs are capable of running tens of thousands of threads
+concurrently. This functionality is possible due to a large number of
+processor cores available on each GPU device. They are grouped into
+multiprocessors. The design of the CUDA programming model is done such that it
+can utilise the massive parallelism capability of the GPUs. A subroutine or a
+kernel is launched with a grid of threads grouped into thread blocks. These
+thread blocks can operate independently of one another thereby allowing
+scalability of a program. In addition to that data can be shared between these
+threads enabling more granular data parallelism.
+
+The available multiprocessors can schedule these blocks of threads in any order
+allowing the program to be executed on any device with any number of
+multiprocessors. This scheduling is performed automatically so that one can
+concentrate on the partition of the program into fractions that can be run and
+parallelised on a block of threads.
+
+CUDA programming model allows utilising both CPU and GPU to perform
+computations. This hybrid computing capability can be used to achieve massive
+performance improvements. A typical sequence of operations for a simple CUDA
+Fortran code are:
+
+- Declare and allocate host (CPU) and device (GPU) memory
+- Initialize host data
+- Transfer data from the host to the device
+- Execute one or more kernels which perform operations on the device data
+- Transfer results from the device to the host
+
+There are a number of good programming practices to be observed when moving
+data back and forth from host to device and vice-versa. Among those the most
+noticeable being the bandwidth of PCI and bandwidth between device's memory and
+GPU, where the former is an order of magnitude lower than that of the latter.
+From a performance point of view, the less number of data transfers between the
+host and the device the better will be the performance.
+
+The `allocate()` command and the assignment operators are overloaded in the
+CUDA Fortran model so that it can also allow allocation of the device memory
+(using `device` attribute) and data transfer between the host and device memory
+spaces. The Fortran2003 source allocation construct, `allocate(A, source=B)`,
+for cloning `B` into `A` is also extended. In CUDA Fortran, if the `A` array is
+defined as a device array and `B` is defined as host array, then contents of
+`B` will be copied over the PCI bus to `A`. These methods of data transfer are
+all blocking transfers, in that control is not returned to the CPU thread until
+the transfer is complete. This prevents the possibility of overlapping data
+transfers with computation on both the host and device. For concurrent
+computation one might employ CUDA API function `cudaMemcpyAsync()` to perform
+asynchronous data transfers.
+
+Kernels, or subroutines are typically invoked in host code just as any
+subroutine is called, but since the kernel code is executed by many threads in
+parallel an additional execution configuration has to be provided to indicate
+thread specifications. Data elements are mapped to threads using the
+automatically defined variables `threadIdx`, `blockIdx`, `blockDim`, and
+`gridDim`.
+
+One of the functionalities provided by CUDA Fortran is that it can
+automatically generate and invoke kernel code from a region of host code
+containing tightly nested loops. Such type of kernels are referred to as CUF
+kernels. A simple example of a CUF kernel is:
+
+```
+!$cuf kernel do <<<*,*>>>
+do i=1, n
+ ! a_d is a device array, b is a host scalar
+ a_d(i) = a_d(i) + b
+end do
+```
+
+In the above code wild-cards are used to make the runtime system determine the
+execution configuration. Even though the scalar `b` is a host variable it is
+passed as a kernel argument by value upon the execution of the CUF kernel.
+
+In the following code subroutine `add_scalar` is making use of the module
+`array_def` which defines the array `a(n)`
+
+```
+module array_def
+ real :: a(n)
+end module array_def
+!
+! Following subroutine make use of the module array_def
+subroutine add_scalar
+ use array_def, only: a
+ do i=1, n
+  a(i) = a(i) + b
+ end do
+end subroutine add_scalar
+```
+
+Converting this code to a GPU friendly one can be done as follows:
+
+```
+module array_def
+ real :: a(n)
+ real,device :: a_d(n)
+end module array_def
+!
+subroutine add_scalar
+#ifdef USE_GPU
+ use array_def, only: a => a_d
+#else
+ use array_def, only: a
+#endif
+!$cuf kernel do <<<*,*>>>
+ do i=1, n
+  a(i) = a(i) + b
+ end do
+end subroutine add_scalar
+```
+
+When compiling without the preprocessor directive `USE_GPU`, the code will
+behave the same as the CPU version, ignoring the CUF kernel execution
+configuration. When GPU is enabled the device allocated array `a_d(n)` is used
+instead, for a calculation respecting the CUF kernel.
+
+If the arrays used in the subroutine are explicitly passed then one can make use
+of the `device` attribute to achieve the same effect as above. The following
+code illustrates the same.
+
+```
+subroutine add_scalar(a,n)
+ real:: a(n)
+#ifdef USE_GPU
+ attributes(device) :: a
+#endif
+!$cuf kernel do <<<*,*>>>
+ do i=1, n
+  a(i) = a(i) + b
+ end do
+end subroutine add_scalar
+```
+
+## Compiling and Running the Code
+
+Any code in a file with a `.cuf` or `.CUF` extension is compiled with CUDA
+Fortran automatically enabled. Otherwise, the compiler flag `-Mcuda` can be used
+to compile CUDA Fortran code with other extensions. If above code is in a file
+named `cufortran.cuf`, compilation and execution of the code is as simple as:
+
+```bash
+pgf90 -o cufortran cufortran.cuf
+./cufortran
+```
+
+For files that are intended to compile both on CPU and GPU, as explained in
+this post, one can compile the code using the following sequence.
+
+```bash
+pgf90 -Mcuda=cc60 -O3 -Mpreprocess -DUSE_GPU cufortran.F90
+```
+
+The preprocessor directive `-Mpreprocess -DUSE_GPU` will activate the CUDA
+parts of the code when used. The value of the `-Mcuda=cc60` flag will be
+inferred by the GPU card one is using: `cc60` is for NVIDIA P100 cards and
+`cc35` is for K80 cards and so on.
+
+A community edition of the PGI compiler (>= version 16.10) is available at the
+NVIDIA website, where CUDA Fortran is implemented.
+
+## References
+
+- [CUDA Fortran for NVIDIA](https://developer.nvidia.com/cuda-fortran)
+- [An easy introduction](https://devblogs.nvidia.com/parallelforall/easy-introduction-cuda-fortran/)
+- [Graphene tight binding model for porting to fortran and then to gpu](https://github.com/anoopkcn/graphene-model)

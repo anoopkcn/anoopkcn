@@ -3,7 +3,7 @@
 .date   = .date("2026-08-01T12:35:28"),
 .authors = ["Anoop K Chandran"],
 .layout = "post.shtml",
-.custom = {"math": true, "toc": true, "abstract":"A walk through the four layers of a coding agent (model, context, loop and harness) and the levers each one gives you."},
+.custom = {"math": true, "toc": true, "origin": "Written from a talk in the AI-assisted coding course", "abstract":"A walk through the four layers of a coding agent (model, context, loop and harness) and the levers each one gives you."},
 .draft  = false,
 ---
 

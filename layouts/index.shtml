@@ -1,6 +1,20 @@
 <extend template="base.shtml">
 <head id="head">
 </head>
-<body id="body">
-  <div :html="$page.content()"></div>
-</body>
+<div id="pane-left">
+</div>
+<main id="main">
+  <div class="content" :html="$page.content()"></div>
+</main>
+<div id="pane-right">
+  <div class="pane-group">
+    <span class="pane-label">Follow</span>
+    <a href="$site.page('blog').link().suffix('index.xml')">RSS feed</a>
+    <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
+  </div>
+  <div class="pane-group">
+    <span class="pane-label">Work</span>
+    <a href="https://www.fz-juelich.de/en/ias/jsc" target="_blank">Jülich Supercomputing Centre</a>
+    <a href="https://www.fz-juelich.de/en" target="_blank">Forschungszentrum Jülich</a>
+  </div>
+</div>
