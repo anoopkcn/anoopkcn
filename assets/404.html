@@ -1,31 +1,49 @@
 <!DOCTYPE html>
+<!-- Static copy of the page layout (layouts/page.shtml on templates/base.shtml),
+     since GitHub Pages serves this file as-is for every missing URL.
+     Keep the panes in sync with base.shtml by hand. -->
 <html>
-  <head id="head">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <title>anoopkc</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="/fonts.css">
     <link type="text/css" rel="stylesheet" href="/style.css">
   </head>
-  <body id="body">
-    <nav>
-        <div class="left">
-            <a href="https://anoopkc.com">Home</a>
-           	&nbsp; • &nbsp;
-            <a href="https://anoopkc.com/about">About</a>
-           	&nbsp; • &nbsp;
-            <a href="https://anoopkc.com/blog">Blog</a>
-           	&nbsp; • &nbsp;
-            <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
+  <body>
+    <aside class="pane pane-left">
+      <div id="pane-left" class="pane-inner">
+        <a class="myname" href="/">Anoop K Chandran</a>
+        <nav class="site-nav" aria-label="Site">
+          <a href="/">Home</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
+        </nav>
+        <footer class="pane-footer">© Anoop K Chandran</footer>
+      </div>
+    </aside>
+    <main id="main">
+      <div class="content">
+        <h1>Page not found</h1>
+        <p>There is nothing at this address. The <a href="/blog/">blog</a> lists every post.</p>
+      </div>
+      <footer class="main-footer">© Anoop K Chandran</footer>
+    </main>
+    <aside class="pane pane-right">
+      <div id="pane-right" class="pane-inner">
+        <div class="pane-group">
+          <span class="pane-label">Follow</span>
+          <a href="/blog/index.xml">RSS feed</a>
+          <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
         </div>
-        <div class="right myname">
-            <a href="https://anoopkc.com">Anoop K Chandran</a>
+        <div class="pane-group">
+          <span class="pane-label">Work</span>
+          <a href="https://www.fz-juelich.de/en/ias/jsc" target="_blank">Jülich Supercomputing Centre</a>
+          <a href="https://www.fz-juelich.de/en" target="_blank">Forschungszentrum Jülich</a>
         </div>
-    </nav>
-    <p>Oops! Not Found</p>
-    <footer>
-        <p>© Anoop K Chandran</p>
-    </footer>
+      </div>
+    </aside>
   </body>
 </html>

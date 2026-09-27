@@ -34,7 +34,7 @@ seven factors that produced it:
 
 Two cameras look at each scene. One takes a colour photo, the other a depth
 image that stores the distance from the camera along each pixel's ray. Both
-are 64 × 64 pixels.
+are 64 x 64 pixels.
 
 [Six scenes from tabletop. Top row: the colour photo. Bottom row: the depth image of the same scene.](<$image.asset('fig-tabletop.png').alt('Six colour photos of objects on a table with the matching depth images below them')>)
 
@@ -48,7 +48,7 @@ detail comes back when we join the two cameras.
 
 ### [What dimensionality reduction does]($heading.id('what-dimensionality-reduction-does'))
 
-A colour photo of 64 × 64 pixels with three channels is 12,288 numbers. Only
+A colour photo of 64 x 64 pixels with three channels is 12,288 numbers. Only
 seven things change from one photo to the next. If you had to describe a
 photo in as few numbers as possible and knew the factors, seven would do.
 
@@ -170,12 +170,16 @@ talk.
 | `labels[:, 1] * 30` for cyan | 180 | −76 |
 | `labels[:, 1] * 30` for violet | 270 | 14 |
 
-`depth` is `uint16`, which holds 0 to 65,535. Multiplying the largest value by
-8 does not fit in 16 bits, so NumPy wraps the product around and the depth
+`depth` is `uint16`, which holds 0 to 65,535. The file spreads distances from
+0 to 8 scene units over those steps, so multiplying by 8 and dividing by
+65,535 turns a step count back into a distance. Multiplying the largest value
+by 8 does not fit in 16 bits, so NumPy wraps the product around and the depth
 range comes out as 0 to 1 instead of 0 to 8. `labels` is `int8`, which holds
-−128 to 127. A hue level times 30 degrees gives 180 for cyan and 270 for
-violet; both wrap, to 180 − 256 = −76 and 270 − 256 = 14, and the plot
-colours come out wrong. Neither case raises an error.
+−128 to 127. The hue label is a level from 0 to 11, and the twelve hues sit 30
+degrees apart on the colour wheel, so the level times 30 gives the hue angle:
+180 for cyan and 270 for violet. Both wrap, to 180 − 256 = −76 and
+270 − 256 = 14, and the plot colours come out wrong. Neither case raises an
+error.
 
 The fix is to convert first, with `.astype(np.float32)`. The habit that
 catches these bugs is to print each array's dtype, minimum and maximum right
@@ -207,6 +211,10 @@ There are two common fixes:
 - **Standardize each feature**, subtracting its mean and dividing by its
   standard deviation: [`z_{ij} = (x_{ij} - \bar{x}_j) / s_j`]($mathtex).
 - **Scale each block** (camera, assay, instrument) to the same total variance.
+
+Standardizing works column by column, so it gives the same result before or
+after the join. Block scaling needs to know which columns came from which
+camera.
 
 For pixels from a single camera, standardizing is usually wrong. It would
 give the dull wall pixels, which barely change, as much weight as the pixels

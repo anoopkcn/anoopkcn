@@ -1,6 +1,6 @@
 // Highlight the section being read in the right pane's contents list.
 const toc = document.querySelector('.toc');
-const pane = toc.closest('.pane-inner');
+const list = toc.querySelector(':scope > ul');
 const links = [...toc.querySelectorAll('a[href^="#"]')];
 const headings = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1))));
 
@@ -17,9 +17,9 @@ function highlight() {
     active = current;
     if (!active) return;
     active.classList.add('active');
-    // when the pane itself scrolls, keep the active link in its middle
-    const r = active.getBoundingClientRect(), t = pane.getBoundingClientRect();
-    pane.scrollTop += (r.top + r.bottom) / 2 - (t.top + t.bottom) / 2;
+    // when the contents list scrolls, keep the active link in its middle
+    const r = active.getBoundingClientRect(), t = list.getBoundingClientRect();
+    list.scrollTop += (r.top + r.bottom) / 2 - (t.top + t.bottom) / 2;
 }
 
 let queued = false;

@@ -183,9 +183,9 @@ figure video {
     scroll-margin-top: 1rem;
 }
 
-/* post details in the left pane */
+/* post details at the bottom of the left pane */
 .post-meta {
-    margin: 0;
+    margin: auto 0 0;
     padding: 20px 12px 0;
     border-top: 1px solid var(--rule);
     display: flex;
@@ -212,6 +212,25 @@ figure video {
 .pane-prev-next + .toc {
     padding-top: 24px;
     border-top: 1px solid var(--rule);
+}
+
+/* with contents, the pane fills the viewport and only the contents list
+   scrolls, so the previous and next links stay put above it */
+.pane-right .pane-inner:has(> .toc) {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.pane-right .toc {
+    flex: 1;
+    min-height: 0;
+}
+
+.pane-right .toc > ul {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
 }
 
 .pane-prev-next:empty {

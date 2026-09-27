@@ -149,12 +149,27 @@ main {
 }
 
 footer {
+    color: var(--label);
+    font-size: 0.8rem;
+}
+
+/* the copyright sits at the bottom of the left pane; below 800px, where
+   that pane is a header, it moves to the bottom of the page */
+.pane-footer {
+    margin-top: auto;
+    padding: 0 12px;
+}
+
+.post-meta + .pane-footer {
+    margin-top: 0;
+}
+
+.main-footer {
+    display: none;
     width: 100%;
     max-width: 700px;
     margin-top: auto;
     padding-top: 64px;
-    color: var(--label);
-    font-size: 0.8rem;
 }
 
 /* post lists: blog index and home page */
@@ -314,5 +329,13 @@ code {
 
     main {
         padding: 32px 16px 24px;
+    }
+
+    .pane-footer {
+        display: none;
+    }
+
+    .main-footer {
+        display: block;
     }
 }

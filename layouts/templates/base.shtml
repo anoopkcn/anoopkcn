@@ -21,11 +21,12 @@
           <a href="https://github.com/anoopkcn" target="_blank">GitHub</a>
         </nav>
         <super>
+        <footer class="pane-footer">© Anoop K Chandran</footer>
       </div>
     </aside>
     <main id="main">
       <super>
-      <footer>© Anoop K Chandran</footer>
+      <footer class="main-footer">© Anoop K Chandran</footer>
     </main>
     <aside class="pane pane-right">
       <div id="pane-right" class="pane-inner">
