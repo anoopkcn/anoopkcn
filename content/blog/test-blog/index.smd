@@ -16,7 +16,7 @@ x = \frac{1}{2}
 \end{equation}
 ```
 
-is an inline math eqn [`x+\sqrt{1-x^2}`]($mathtex),
+Is an inline math eqn [`x+\sqrt{1-x^2}`]($mathtex),
 [`a=b`]($mathtex) is inline aswell [`e=i`]($mathtex)
 
 
