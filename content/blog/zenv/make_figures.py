@@ -151,8 +151,9 @@ ACTIVATE = [
 
 
 def fig_speed():
-    """Hero: mean time per command on the Mac and on the HPC system, in panels with their own scales."""
-    x0, pw, rh, bh = 252, 410, 38, 11
+    """Hero: mean time per command on the Mac and on the HPC system, in inset panels with their own scales."""
+    x0, pw, rh, bh = 268, 400, 38, 11
+    px, left = 16, 32   # panel edge, row labels
     out = []
 
     out.append(text(24, 34, "Mean time per command, in milliseconds", 13, TXT, weight=600))
@@ -164,33 +165,36 @@ def fig_speed():
 
     def panel(top, title, rows, vmax, ticks):
         sx = lambda v: x0 + v / vmax * pw
-        y0 = top + 14
+        y0 = top + 46
         y1 = y0 + len(rows) * rh
-        out.append(text(24, top, title, 12, MUTED))
+        bottom = y1 + 30
+        # each section in its own box, so its bars are not read against the other section's scale
+        out.append(rect(px, top, W - 2 * px, bottom - top, BOX))
+        out.append(text(left, top + 28, title, 12, TXT2, weight=600))
         for v in ticks:
             out.append(f'<line x1="{sx(v):.1f}" y1="{y0 - 4}" x2="{sx(v):.1f}" y2="{y1}" stroke="{HAIR}" stroke-width="1"/>')
             lab = f"{v:,}" + (" ms" if v == ticks[-1] else "")
             out.append(text(sx(v), y1 + 16, lab, 11, MUTED, "middle", mono=True))
         for i, (cmd, note, *vals) in enumerate(rows):
             y = y0 + i * rh
-            out.append(text(24, y + 13, cmd, 12, TXT, mono=True))
-            out.append(text(24, y + 28, note, 11, MUTED))
+            out.append(text(left, y + 13, cmd, 12, TXT, mono=True))
+            out.append(text(left, y + 28, note, 11, MUTED))
             bars = [(v, col) for v, col in zip(vals, (MAC, HPC)) if v is not None]
             for j, (v, col) in enumerate(bars):
                 # a lone bar sits in the middle of the row
                 by = y + 4 + (j if len(bars) == 2 else 0.5) * (bh + 2)
                 out.append(hbar(x0, by, sx(v) - x0, bh, col))
-                # halo in the card colour, so a gridline behind the value breaks around it
+                # halo in the panel colour, so a gridline behind the value breaks around it
                 out.append(text(sx(v) + 6, by + bh - 1.5, f"{v:,}", 11, TXT2, mono=True)
-                           .replace("<text ", f'<text stroke="{BG}" stroke-width="4" paint-order="stroke" ', 1))
-        return y1 + 16
+                           .replace("<text ", f'<text stroke="{BOX}" stroke-width="4" paint-order="stroke" ', 1))
+        return bottom
 
-    end = panel(70, "Using an environment", USE, 3, [0, 1, 2, 3])
-    end = panel(end + 40, "Activating an environment with modules in a login shell, HPC system only",
+    end = panel(52, "Using an environment", USE, 3, [0, 1, 2, 3])
+    end = panel(end + 16, "Activating an environment with modules in a login shell, HPC system only",
                 ACTIVATE, 2000, [0, 500, 1000, 1500, 2000])
 
     # what was measured, and where, is in the caption in index.smd
-    svg("fig-speed.svg", end + 24, "\n".join(out),
+    svg("fig-speed.svg", end + 16, "\n".join(out),
         "Mean time per command on a Mac and an HPC system: the shell hook's call to zenv takes 1.9 and 2.5 ms, "
         "close to an empty process; activating an environment with modules in a login shell takes 525 ms "
         "with zenv and 1,586 ms by hand, against 495 ms for the shell alone")
