@@ -189,9 +189,8 @@ def fig_speed():
     end = panel(end + 40, "Activating an environment with modules in a login shell, HPC system only",
                 ACTIVATE, 2000, [0, 500, 1000, 1500, 2000])
 
-    out.append(text(24, end + 30, "hyperfine means, zenv 0.28.1 (login-shell panel: 0.27.8). "
-                    "HPC system: a shared JURECA login node, 256 CPUs, project on GPFS.", 11, MUTED))
-    svg("fig-speed.svg", end + 46, "\n".join(out),
+    # what was measured, and where, is in the caption in index.smd
+    svg("fig-speed.svg", end + 24, "\n".join(out),
         "Mean time per command on a Mac and an HPC system: the shell hook's call to zenv takes 1.9 and 2.5 ms, "
         "close to an empty process; activating an environment with modules in a login shell takes 525 ms "
         "with zenv and 1,586 ms by hand, against 495 ms for the shell alone")

@@ -9,7 +9,7 @@
 
 # zenv: project environments on laptops and HPC clusters
 
-[Mean time per command on an Apple Silicon Mac and an HPC system](<$image.asset('fig-speed.svg').attrs('full').alt('Horizontal bar chart of mean times on an Apple Silicon Mac and an HPC system.')>)
+[Mean time per command on an Apple Silicon Mac and an HPC system, as hyperfine means with zenv v0.28.1. The HPC system is a shared JURECA login node with 256 CPUs, and the project is on GPFS.](<$image.asset('fig-speed.svg').attrs('full').alt('Horizontal bar chart of mean times on an Apple Silicon Mac and an HPC system.')>)
 
 Before a Python project runs on JURECA, one of the clusters at the Jülich
 Supercomputing Centre, the shell needs three things: the site's modules for the
