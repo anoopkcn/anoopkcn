@@ -9,9 +9,11 @@
 
 # zenv: project environments on laptops and HPC clusters
 
+[Mean time per command on an Apple Silicon Mac and an HPC system. The two panels have different scales.](<$image.asset('fig-speed.svg').attrs('full').alt('Horizontal bar chart of mean times on an Apple Silicon Mac and an HPC system.')>)
+
 Before a Python project runs on JURECA, one of the clusters at the Jülich
 Supercomputing Centre, the shell needs three things: the site's modules for the
-compiler stack and Python, a virtual environment built on that Python, and the
+compiler stack including Python, a virtual environment built on that Python, and the
 variables the project reads. By hand, that is
 
 ```bash
@@ -20,19 +22,22 @@ source ~/sim/.venv/bin/activate
 export SIM_DATA=/p/scratch/myproject/sim/data
 ```
 
-typed again in every new shell and copied into every batch script. A Jupyter
-kernel needs its own copy, since the Jupyter server runs with the modules it was
-started with. The order matters as well: the venv's Python is the module's
-Python, and without the modules loaded it does not start at all, because it
+typed again in every new shell and copied into every batch script(+ a one time cost of setting up the environment).
+The order matters as well: the venv's Python is the module's Python, and without the modules loaded it does not start at all, because it
 cannot find its own `libpython3.13.so`. And the steps are slow. On a JURECA
 login node, loading the modules and starting Python takes about a second, of
-which Python itself needs 20 ms.
+which Python itself needs **20 ms**.
 
 zenv is a tool I wrote to keep these steps in a file next to the code, so that a
 project's environment can be rebuilt on any machine and entered by name. It
 covers the cluster side, the modules and their slow loading, as well as the
 Python side, and every part is optional: on a laptop, the same tool can manage
 nothing but a venv.
+
+It treates the environment as data. zenv records what activating an environment does, and replays that record in subsequent activations. The result is fast,
+reproducible, and usable from any shell, directory, batch script and Jupyter kernel.
+
+It also comes with a shell hook that activates the environment when you `cd` into the project and deactivates it when you leave the directory. No variable pollution, no stray entries in `PATH`, and no typing the same three lines over and over.
 
 ## [One file next to the code]($heading.id('one-file-next-to-the-code'))
 
@@ -56,30 +61,30 @@ file can hold several environments, here one for a laptop and one for JURECA:
 }
 ```
 
-`base_dir` is where the environments are built, relative to the file.
-`target_machines` names the machines an environment is meant for. zenv matches
-it against `$SYSTEMNAME` where a site sets it, as JSC does, and against the
-hostname elsewhere. Every JURECA node reports `jurecadc`, so one entry covers
-the login nodes and the compute nodes. In `env` values, zenv expands
-`${ZENV_PROJECT_DIR}` and `${ZENV_ENV_DIR}` and takes everything else
-literally, so a variable comes out the same in every shell.
+`base_dir` is where the environments are built, relative to the `zenv.json` file.
+`target_machines` names the machines an environment is meant for, zenv matches
+it against `$SYSTEMNAME` where a site sets it. So One can describe multiple environments that target 
+different machines in the same file. 
+zenv also expands variables like `$HOME`, `${ZENV_PROJECT_DIR}` and `${ZENV_ENV_DIR}` and takes everything else literally.
 
 Build the environment once on each machine, and use it from then on:
 
 ```bash
 zenv setup sim-jureca --uv            # modules, venv, requirements.txt
+# --uv flag makes setup install packages with uv instead of pip. 
+
 source $(zenv activate sim-jureca)    # activate; deactivate undoes it
 zenv run sim-jureca python train.py   # one command, no activation
 ```
 
-`--uv` makes setup install packages with uv instead of pip. Setup also registers
-the environment in `~/.zenv/registry.json`, which lets the other commands find
+
+Setup also registers the environment in `~/.zenv/registry.json`, which lets the other commands find
 it by name from any directory. Inside the project, `.` stands for the project's
 environment on the current machine, so `zenv run . python train.py` works
-unchanged on the laptop and on JURECA. For a new project, `zenv init` writes a
-`zenv.json` from what it finds, such as a `requirements.txt` or a
-`pyproject.toml`, and `zenv validate` reports mistakes in the file with line
-numbers.
+unchanged on the laptop and on JURECA. 
+
+For a new project, `zenv init` writes a `zenv.json` from what it finds, such as a `requirements.txt` or a
+`pyproject.toml`, and `zenv validate` reports mistakes in the file with line numbers.
 
 ## [Activation as data]($heading.id('activation-as-data'))
 
@@ -101,7 +106,7 @@ Every way of entering the environment reads that record. The activation scripts
 for bash and zsh, csh and tcsh, and fish are generated from it, and `zenv run`
 applies it to its own process without starting a shell.
 
-[zenv setup gathers what activation does into one record, which the activation scripts and zenv run then read.](<$image.asset('fig-env-as-data.svg').alt('Three inputs (module load, the venv, env in zenv.json) feed zenv-env.json, which is read by activate.sh, activate.csh, activate.fish and zenv run')>)
+[zenv setup gathers what activation does into one record, which the activation scripts and zenv run then read.](<$image.asset('fig-env-as-data.svg').attrs('full').alt('Three inputs (module load, the venv, env in zenv.json) feed zenv-env.json, which is read by activate.sh, activate.csh, activate.fish and zenv run')>)
 
 Replaying the record costs little. On a JURECA login node, `zenv run` starts
 Python from a module-based environment in 21 ms, where Python started directly
@@ -246,19 +251,24 @@ Python to run, so it works on a machine before any Python is set up. Its own
 commands cost about as much as starting an empty process. The time you notice
 comes from the programs it starts: uv, Lmod and Python.
 
-| Mean time (ms) | Mac | JURECA |
+| Mean time (ms) | Mac | HPC system |
 |---|---:|---:|
 | `true`, an empty process | 1.2 | 2.1 |
 | `zenv ls` | 1.9 | 2.0 |
 | `zenv activate <env>` | 2.0 | 2.2 |
 | `zenv run <env> true` | 3.1 | 3.9 |
+| `bash -l`, a login shell alone | – | 495 |
+| `source $(zenv activate <env>)` in a login shell, with modules | – | 525 |
+| `module load` and `source .venv/bin/activate` by hand, in a login shell | – | 1,586 |
 | `zenv setup <env> --uv`, nothing changed | 21 | 166 |
 | `zenv setup <env> --uv`, new environment without packages | 115 | 358 |
 | `python -m venv`, for comparison | 1,456 | 2,618 |
 
-The numbers are hyperfine means for zenv 0.28 on an Apple Silicon Mac and on a
-JURECA login node (256 CPUs, project on GPFS). The login node is shared with
-other users, so its numbers vary by about 0.8 ms.
+The numbers are hyperfine means for zenv 0.28 on an Apple Silicon Mac and on an
+HPC system, a JURECA login node (256 CPUs, project on GPFS). The login node is
+shared with other users, so its numbers vary by about 0.8 ms. The three
+login-shell rows need modules, so the Mac has none; they come from an earlier
+run with zenv 0.27.8, whose `zenv activate` took 1.9 ms longer.
 
 ## [Getting it]($heading.id('getting-it'))
 

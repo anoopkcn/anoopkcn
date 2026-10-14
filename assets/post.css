@@ -50,6 +50,19 @@ figure video {
     height: auto;
 }
 
+/* A full-width image spans the whole text column: $image.asset('…').attrs('full')
+   puts the class on the img, so the figure is found with :has(). */
+figure:has(> img.full) {
+    align-self: stretch;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+figure img.full {
+    width: 100%;
+    height: auto;
+}
+
 .post {
     display: flex;
     flex-direction: column;
