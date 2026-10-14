@@ -1,6 +1,12 @@
 <extend template="base.shtml">
 <head id="head">
     <link type="text/css" rel="stylesheet" href="$site.asset('post.css').link()">
+    <ctx :if="$page.content().contains('<em>').or($page.content().contains('<figure'))">
+        <link rel="preload" href="$site.asset('fonts/zed/zed-sans-extendeditalic.woff2').link()" as="font" type="font/woff2" crossorigin>
+    </ctx>
+    <ctx :if="$page.content().contains('<code')">
+        <link rel="preload" href="$site.asset('fonts/zed/zed-mono-extended.woff2').link()" as="font" type="font/woff2" crossorigin>
+    </ctx>
     <ctx :if="$page.custom.getOr('math', false)">
         <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
         <script defer src="$site.asset('temml.min.js').link()"></script>

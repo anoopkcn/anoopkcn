@@ -1,12 +1,15 @@
 /* Subsets of the Zed fonts: Latin, punctuation, arrows, math operators, box drawing.
-   Regenerate from the TTFs (see git history) with pyftsubset if a post needs more glyphs. */
+   Regenerate from the TTFs (see git history) with pyftsubset if a post needs more glyphs.
+   font-display: optional never swaps fonts on a shown page: a face that has not arrived
+   within ~100 ms is skipped for that page view and used from cache on the next one. The
+   preloads in base.shtml (regular, bold) and post.shtml (italic, mono) make it arrive in time. */
 
 @font-face {
     font-family: "ZedSans";
     src: url("fonts/zed/zed-sans-extended.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -14,7 +17,7 @@
     src: url("fonts/zed/zed-sans-extendeditalic.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -22,7 +25,7 @@
     src: url("fonts/zed/zed-sans-extendedbold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -30,7 +33,7 @@
     src: url("fonts/zed/zed-sans-extendedbolditalic.woff2") format("woff2");
     font-weight: 700;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -38,5 +41,5 @@
     src: url("fonts/zed/zed-mono-extended.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
