@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 306" width="760" height="306" role="img" aria-label="zenv setup records what activation does in zenv-env.json; the activation scripts and zenv run read that record">
+<title>zenv setup records what activation does in zenv-env.json; the activation scripts and zenv run read that record</title>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b9bdc6"/></marker>
+  <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#769dce"/></marker>
+</defs>
+<rect width="760" height="306" rx="8" fill="#22252a"/>
+<g font-family="ZedSans, Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#b9bdc6">
+<text x="24.0" y="36.0" font-size="12" fill="#7f8590">zenv setup, once</text>
+<rect x="24.0" y="52.0" width="196.0" height="58.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="122.0" y="78.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">module load</text>
+<text x="122.0" y="95.0" font-size="11" fill="#7f8590" text-anchor="middle">env -0 before and after</text>
+<rect x="24.0" y="125.0" width="196.0" height="58.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="122.0" y="151.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">the venv</text>
+<text x="122.0" y="168.0" font-size="11" fill="#7f8590" text-anchor="middle">VIRTUAL_ENV, bin/ on PATH</text>
+<rect x="24.0" y="198.0" width="196.0" height="58.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="122.0" y="224.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600">env in zenv.json</text>
+<text x="122.0" y="241.0" font-size="11" fill="#7f8590" text-anchor="middle">SIM_DATA and the like</text>
+<rect x="258.0" y="52.0" width="262.0" height="204.0" rx="6" fill="#2c3036" stroke="#769dce"/>
+<text x="389.0" y="76.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">zenv-env.json</text>
+<text x="274.0" y="102.0" font-size="11" fill="#7f8590">module cache: what module load changed</text>
+<text x="274.0" y="120.0" font-size="11" fill="#b9bdc6" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">PATH, LD_LIBRARY_PATH, …</text>
+<text x="274.0" y="148.0" font-size="11" fill="#7f8590">ops, applied in order</text>
+<text x="274.0" y="168.0" font-size="11" fill="#769dce" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">set</text>
+<text x="332.0" y="168.0" font-size="11" fill="#d7dae0" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">VIRTUAL_ENV</text>
+<text x="416.0" y="168.0" font-size="11" fill="#b9bdc6" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">…/sim</text>
+<text x="274.0" y="187.0" font-size="11" fill="#769dce" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">prepend</text>
+<text x="332.0" y="187.0" font-size="11" fill="#d7dae0" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">PATH</text>
+<text x="416.0" y="187.0" font-size="11" fill="#b9bdc6" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">…/sim/bin</text>
+<text x="274.0" y="206.0" font-size="11" fill="#769dce" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">unset</text>
+<text x="332.0" y="206.0" font-size="11" fill="#d7dae0" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">PYTHONHOME</text>
+<text x="416.0" y="206.0" font-size="11" fill="#b9bdc6" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace"></text>
+<text x="274.0" y="225.0" font-size="11" fill="#769dce" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">set</text>
+<text x="332.0" y="225.0" font-size="11" fill="#d7dae0" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">SIM_DATA</text>
+<text x="416.0" y="225.0" font-size="11" fill="#b9bdc6" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">/p/scratch/…</text>
+<line x1="222.0" y1="81.0" x2="254.0" y2="81.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="222.0" y1="154.0" x2="254.0" y2="154.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="222.0" y1="227.0" x2="254.0" y2="227.0" stroke="#b9bdc6" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="558.0" y="36.0" font-size="12" fill="#7f8590">every activation and run</text>
+<rect x="558.0" y="52.0" width="178.0" height="42.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="647.0" y="70.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">activate.sh</text>
+<text x="647.0" y="87.0" font-size="11" fill="#7f8590" text-anchor="middle">bash, zsh</text>
+<line x1="522.0" y1="73.0" x2="554.0" y2="73.0" stroke="#769dce" stroke-width="1.5" marker-end="url(#ahA)"/>
+<rect x="558.0" y="106.0" width="178.0" height="42.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="647.0" y="124.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">activate.csh</text>
+<text x="647.0" y="141.0" font-size="11" fill="#7f8590" text-anchor="middle">csh, tcsh</text>
+<line x1="522.0" y1="127.0" x2="554.0" y2="127.0" stroke="#769dce" stroke-width="1.5" marker-end="url(#ahA)"/>
+<rect x="558.0" y="160.0" width="178.0" height="42.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="647.0" y="178.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">activate.fish</text>
+<text x="647.0" y="195.0" font-size="11" fill="#7f8590" text-anchor="middle">fish</text>
+<line x1="522.0" y1="181.0" x2="554.0" y2="181.0" stroke="#769dce" stroke-width="1.5" marker-end="url(#ahA)"/>
+<rect x="558.0" y="214.0" width="178.0" height="42.0" rx="6" fill="#2c3036" stroke="#3a3e46"/>
+<text x="647.0" y="232.0" font-size="13" fill="#d7dae0" text-anchor="middle" font-weight="600" font-family="ZedMono, 'SF Mono', Menlo, Consolas, monospace">zenv run</text>
+<text x="647.0" y="249.0" font-size="11" fill="#7f8590" text-anchor="middle">no shell; Jupyter kernels</text>
+<line x1="522.0" y1="235.0" x2="554.0" y2="235.0" stroke="#769dce" stroke-width="1.5" marker-end="url(#ahA)"/>
+<text x="24.0" y="288.0" font-size="12" fill="#7f8590">deactivate reads the same record and gives each variable it changed its previous value back.</text>
+</g>
+</svg>
