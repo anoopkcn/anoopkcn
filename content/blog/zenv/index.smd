@@ -28,7 +28,7 @@ cannot find its own `libpython3.13.so`. And the steps are slow. On a JURECA
 login node, loading the modules and starting Python takes about a second, of
 which Python itself needs **20 ms**.
 
-zenv is a tool I wrote to keep these steps in a file next to the code, so that a
+[zenv](https://github.com/anoopkcn/zenv) is a tool I wrote to keep these steps in a file next to the code, so that a
 project's environment can be rebuilt on any machine and entered by name. It
 covers the cluster side, the modules and their slow loading, as well as the
 Python side, and every part is optional: on a laptop, the same tool can manage
