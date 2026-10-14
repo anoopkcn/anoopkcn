@@ -3,7 +3,7 @@
 .date   = .date("2026-10-14T18:14:11"),
 .authors = ["Anoop K Chandran"],
 .layout = "post.shtml",
-.custom = {"math": false, "toc": true, "abstract":"zenv keeps the environment a project needs (HPC modules, variables and a Python venv) in one zenv.json next to its code, records once what activating it does, and replays that record in every shell, batch job and Jupyter kernel."},
+.custom = {"math": false, "toc": true, "abstract":"zenv keeps the environment a project needs, records the activation, and replays that record in subsequent activations. The result is fast, reproducible, and usable from any shell, directory, batch script and Jupyter kernel."},
 .draft  = false,
 ---
 
