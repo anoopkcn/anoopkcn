@@ -11,6 +11,7 @@
     .static_assets = [
         "CNAME",
         "favicon.ico",
+        "favicon.png",
         "Temml.woff2",
         "404.html",
         "fonts/zed/zed-sans-extended.woff2",
