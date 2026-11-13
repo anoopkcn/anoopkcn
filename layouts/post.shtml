@@ -4,7 +4,7 @@
     <ctx :if="$page.content().contains('<em>').or($page.content().contains('<figure'))">
         <link rel="preload" href="$site.asset('fonts/zed/zed-sans-extendeditalic.woff2').link()" as="font" type="font/woff2" crossorigin>
     </ctx>
-    <ctx :if="$page.content().contains('<code')">
+    <ctx :if="$page.content().contains('<code').or($page.custom.getOr('toc', false))">
         <link rel="preload" href="$site.asset('fonts/zed/zed-mono-extended.woff2').link()" as="font" type="font/woff2" crossorigin>
     </ctx>
     <ctx :if="$page.custom.getOr('math', false)">
@@ -73,8 +73,15 @@
         </div>
     </div>
     <ctx :if="$page.custom.getOr('toc', false)">
+        <div class="read-progress" aria-hidden="true" hidden>
+            <div class="read-progress-row">
+                <span class="read-progress-bar"><span class="read-progress-fill"></span></span>
+                <span class="read-progress-pct">00%</span>
+            </div>
+            <span class="pane-label read-progress-time"></span>
+        </div>
         <nav class="toc" aria-label="On this page">
-            <span class="pane-label">On this page</span>
+            <span class="pane-label">TREE</span>
             <ctx :html="$page.toc()"></ctx>
         </nav>
     </ctx>

@@ -137,6 +137,12 @@ figure img.full {
     margin-top: 0.5em;
 }
 
+/* the sidebar contents and reading progress use the code font */
+.pane-right .toc,
+.read-progress {
+    font-family: "ZedMono", monospace;
+}
+
 .toc {
     display: flex;
     flex-direction: column;
@@ -222,9 +228,49 @@ figure img.full {
     gap: 18px;
 }
 
-.pane-prev-next + .toc {
-    padding-top: 24px;
-    border-top: 1px solid var(--rule);
+/* reading progress, between the previous and next links and the contents;
+   toc.js fills it in and unhides it */
+.read-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.read-progress[hidden] {
+    display: none;
+}
+
+.read-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* a dotted track with a dithered fill, like a terminal progress bar */
+.read-progress-bar {
+    position: relative;
+    flex: 1;
+    height: 10px;
+    background: radial-gradient(circle, var(--rule) 0.75px, transparent 1px) 0 0 / 3px 3px;
+}
+
+.read-progress-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: max(var(--progress, 0%), 4px);
+    background: repeating-conic-gradient(var(--bright) 0 25%, transparent 0 50%) 0 0 / 2px 2px;
+}
+
+.read-progress-pct {
+    min-width: 4ch;
+    text-align: right;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.read-progress-time {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 /* with contents, the pane fills the viewport and only the contents list
