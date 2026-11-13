@@ -414,60 +414,79 @@ def fig_compaction():
 # ---------------------------------------------------------------- 11. agent loop
 def fig_loop():
     b = []
-    T, A, O = (150, 110), (410, 110), (280, 250)
-    for (cx, cy), lab in ((T, "Think"), (A, "Act"), (O, "Observe")):
-        b.append(box(cx - 60, cy - 22, 120, 44, lab, fill="#2c3036", stroke=MUTED, size=15))
-    b.append(f'<path d="M{T[0] + 20},{T[1] - 26} C{T[0] + 60},{T[1] - 80} {A[0] - 60},{A[1] - 80} {A[0] - 20},{A[1] - 26}" fill="none" stroke="{ACCENT}" stroke-width="1.8" marker-end="url(#ahA)"/>')
-    b.append(text(280, 36, "decide the next step", 13, TXT2, "middle"))
-    b.append(f'<path d="M{A[0] + 30},{A[1] + 24} C{A[0] + 50},{A[1] + 90} {O[0] + 110},{O[1] - 10} {O[0] + 64},{O[1] - 4}" fill="none" stroke="{ACCENT}" stroke-width="1.8" marker-end="url(#ahA)"/>')
-    b.append(text(A[0] + 58, A[1] + 80, "call a tool", 13, TXT2))
-    b.append(f'<path d="M{O[0] - 64},{O[1] - 4} C{T[0] - 30},{O[1] - 10} {T[0] - 50},{T[1] + 70} {T[0] - 30},{T[1] + 26}" fill="none" stroke="{ACCENT}" stroke-width="1.8" marker-end="url(#ahA)"/>')
-    b.append(text(T[0] - 60, T[1] + 80, "not done:", 13, TXT2, "end"))
-    b.append(text(T[0] - 60, T[1] + 97, "loop", 13, TXT2, "end"))
-    b.append(arrow(O[0], O[1] + 24, O[0], O[1] + 58, ASST, "ahG", 1.8))
-    b.append(text(O[0], O[1] + 78, "done: respond", 14, TXT, "middle", 600))
-    # right-hand note
-    b.append(text(578, 120, "“Done” means the", 13, TXT2))
-    b.append(text(578, 139, "model replied without", 13, TXT2))
-    b.append(text(578, 158, "requesting a tool:", 13, TXT2))
-    b.append(text(578, 180, "stop_reason = end_turn", 11, TXT, mono=True))
-    b.append(line(566, 104, 566, 190, ACCENT, 3))
-    svg("fig-agent-loop.svg", 350, "\n".join(b), "The agent loop: think, act, observe")
+    # you: a small stick figure
+    px, py = 64, 152
+    b.append(f'<g stroke="{TXT2}" stroke-width="1.6" fill="none" stroke-linecap="round">'
+             f'<circle cx="{px}" cy="{py - 22}" r="7"/>'
+             f'<line x1="{px}" y1="{py - 15}" x2="{px}" y2="{py + 8}"/>'
+             f'<line x1="{px - 13}" y1="{py - 2}" x2="{px}" y2="{py - 9}"/><line x1="{px}" y1="{py - 9}" x2="{px + 13}" y2="{py - 2}"/>'
+             f'<line x1="{px - 11}" y1="{py + 28}" x2="{px}" y2="{py + 8}"/><line x1="{px}" y1="{py + 8}" x2="{px + 11}" y2="{py + 28}"/></g>')
+    b.append(text(px, py + 50, "you", 12, MUTED, "middle"))
+    # harness and model
+    hx, hy, hw, hh = 200, 120, 200, 64
+    mx, my, mw, mh = 548, 120, 180, 64
+    b.append(rect(hx, hy, hw, hh, "#2c3036", rx=8, extra=f' stroke="{ACCENT}" stroke-dasharray="5 4" stroke-width="1.4"'))
+    b.append(text(hx + hw / 2, hy + 28, "Harness", 16, TXT, "middle", 700))
+    b.append(text(hx + hw / 2, hy + 47, "keeps the list, runs tools", 11, MUTED, "middle"))
+    b.append(rect(mx, my, mw, mh, "#101114", rx=8))
+    b.append(text(mx + mw / 2, my + 28, "Model", 16, "#f2f3f5", "middle", 700))
+    b.append(text(mx + mw / 2, my + 47, "writes the next message", 11, MUTED, "middle"))
+    # you <-> harness
+    b.append(arrow(px + 24, 144, hx - 4, 144, USER, "ahB", 1.8))
+    b.append(text((px + hx) / 2 + 12, 136, "prompt", 12, TXT2, "middle"))
+    b.append(arrow(hx - 2, 162, px + 26, 162, ASST, "ahG", 1.8))
+    b.append(text((px + hx) / 2 + 12, 180, "answer", 12, TXT2, "middle"))
+    # harness -> model: the whole list, every call
+    b.append(f'<path d="M{hx + hw - 10},{hy - 2} C{hx + hw + 30},{hy - 70} {mx - 30},{my - 70} {mx + 10},{my - 4}" '
+             f'fill="none" stroke="{TXT2}" stroke-width="1.6" marker-end="url(#ah)"/>')
+    b.append(text((hx + hw + mx) / 2, 52, "the whole conversation, every call", 12, TXT2, "middle"))
+    # model -> harness: text ends the loop
+    b.append(arrow(mx - 2, 152, hx + hw + 4, 152, ASST, "ahG", 1.8))
+    b.append(text((hx + hw + mx) / 2, 145, "text only: done", 12, TXT, "middle", 600))
+    # model -> harness: a tool call goes round again
+    b.append(f'<path d="M{mx + 10},{my + mh + 2} C{mx - 30},{my + mh + 70} {hx + hw + 30},{hy + hh + 70} {hx + hw - 10},{hy + hh + 4}" '
+             f'fill="none" stroke="{CALL}" stroke-width="1.8" marker-end="url(#ahY)"/>')
+    b.append(text((hx + hw + mx) / 2, 262, "tool call: the harness runs it,", 12, TXT, "middle", 600))
+    b.append(text((hx + hw + mx) / 2, 279, "appends the result and calls again", 12, TXT2, "middle"))
+    svg("fig-agent-loop.svg", 300, "\n".join(b), "The agent loop: call the model, run its tool calls, repeat")
 
 
-# ---------------------------------------------------------------- 12. sequence diagram
-def fig_sequence():
-    cols = {"You": 90, "Harness": 270, "Model": 470, "Shell / files": 660}
+# ---------------------------------------------------------------- 12. one prompt, five model calls
+def fig_loop_replay():
     b = []
-    for name, x in cols.items():
-        b.append(box(x - 60, 20, 120, 34, name, fill="#2c3036", stroke=MUTED, size=14))
-        b.append(line(x, 54, x, 470, HAIR))
-    msgs = [
-        ("You", "Harness", "“fix the failing test”", USER, "ahB"),
-        ("Harness", "Model", "system + tools + history", TXT2, "ah"),
-        ("Model", "Harness", "tool_use: bash(\"pytest -x\")", CALL, "ahY"),
-        ("Harness", "Shell / files", "permission check, then run", TXT2, "ah"),
-        ("Shell / files", "Harness", "stdout + exit code (truncated)", CALL, "ahY"),
-        ("Harness", "Model", "history + tool_result", TXT2, "ah"),
-        ("Model", "Harness", "tool_use: edit_file(…)", CALL, "ahY"),
-    ]
-    y = 86
-    b.append(rect(200, 104, 540, 262, "none", rx=8, extra=f' stroke="{ACCENT}" stroke-dasharray="5 4"'))
-    b.append(text(730, 122, "AGENT LOOP", 10, ACCENT, "end", mono=True))
-    for i, (a, c, lab, col, mk) in enumerate(msgs):
-        if i == 1:
-            y = 140
-        x1, x2 = cols[a], cols[c]
-        d = 1 if x2 > x1 else -1
-        b.append(arrow(x1 + 2 * d, y, x2 - 4 * d, y, col, mk, 1.6))
-        b.append(text((x1 + x2) / 2, y - 7, lab, 12, TXT, "middle", mono="_" in lab or "(" in lab))
-        y += 36
-    b.append(text(370, 386, "… repeat until the model stops calling tools …", 12, MUTED, "middle"))
-    b.append(arrow(cols["Model"] - 2, 414, cols["Harness"] + 4, 414, ASST, "ahG", 1.6))
-    b.append(text(370, 407, "text, stop_reason = end_turn", 12, TXT, "middle", mono=True))
-    b.append(arrow(cols["Harness"] - 2, 450, cols["You"] + 4, 450, ASST, "ahG", 1.6))
-    b.append(text(180, 443, "“Fixed: the fixture was …”", 12, TXT, "middle"))
-    svg("fig-sequence.svg", 486, "\n".join(b), "One turn of a coding agent, step by step")
+    x0, rowh, step = 88, 30, 48
+    pairs = [("bash", "FAILED"), ("read", "file"), ("edit", "ok"), ("bash", "passed")]
+    outs = [("bash", "pytest -x"), ("read", "tests/conftest.py"), ("edit", "tests/conftest.py"),
+            ("bash", "pytest -x"), ("answer", "")]
+    prev_chip = None
+    for n in range(5):
+        y = 24 + n * step
+        b.append(text(24, y + 20, f"CALL {n + 1}", 10, MUTED, mono=True))
+        parts = [(40, SYS, "Sys"), (40, TOOLS, "Tools"), (50, USER, "prompt")]
+        for c, r in pairs[:n]:
+            parts += [(36, CALL, c), (46, CALL, r)]
+        s, x = segs(x0, y, rowh, parts, size=10)
+        b.append(s)
+        if prev_chip is not None:  # the previous call's tool call and result join this row
+            tx = x - 82 + 16
+            b.append(f'<path d="M{prev_chip:.1f},{y - step + rowh + 2} C{prev_chip:.1f},{y - 6} {tx:.1f},{y - 14} {tx:.1f},{y - 3}" '
+                     f'fill="none" stroke="{ACCENT}" stroke-width="1.3" marker-end="url(#ahA)"/>')
+        b.append(arrow(x + 2, y + 15, x + 24, y + 15))
+        b.append(rect(x + 28, y + 3, 58, 24, "#2c3036", rx=12, extra=f' stroke="{MUTED}"'))
+        b.append(text(x + 57, y + 20, "model", 12, TXT, "middle"))
+        b.append(arrow(x + 88, y + 15, x + 108, y + 15))
+        lab, arg = outs[n]
+        col = ASST if lab == "answer" else CALL
+        cw = 58 if lab == "answer" else 42
+        b.append(rect(x + 112, y, cw, rowh, col, rx=3))
+        b.append(text(x + 112 + cw / 2, y + 19, lab, 11, INK_ON, "middle", 600))
+        if arg:
+            b.append(text(x + 120 + cw, y + 19, arg, 11, TXT2, mono=True))
+        prev_chip = x + 112 + cw / 2
+    yb = 24 + 5 * step + 8
+    b.append(text(24, yb, "Each tool call and its result join the next call. Call 5 returns text, so the loop ends.", 12, MUTED))
+    svg("fig-loop-replay.svg", yb + 18, "\n".join(b),
+        "One prompt, five model calls: each call re-sends a longer list")
 
 
 # ---------------------------------------------------------------- 13. agent = model + harness
@@ -493,57 +512,6 @@ def fig_harness():
     b.append(text(mx + mw / 2, my + 28, "Model", 17, "#f2f3f5", "middle", 700))
     b.append(text(mx + mw / 2, my + 47, "weights + sampling", 11, MUTED, "middle"))
     svg("fig-harness.svg", 350, "\n".join(b), "An agent is a model plus a harness")
-
-
-# ---------------------------------------------------------------- 14. subagents
-def fig_subagents():
-    b = [text(30, 32, "MAIN AGENT", 10, MUTED, mono=True)]
-    main = [(40, SYS, ""), (36, TOOLS, ""), (26, USER, ""), (30, ASST, ""),
-            (56, CALL, "task"), (80, CALL, "summary"), (30, ASST, "")]
-    s, x = segs(30, 42, 30, main, size=11)
-    b.append(s)
-    b.append(rect(x, 42, 730 - x, 30, FREE, rx=3))
-    b.append(text((x + 730) / 2, 62, "free space", 11, TXT2, "middle"))
-    task_mid = 30 + 40 + 36 + 26 + 30 + 27
-    summ_mid = 30 + 40 + 36 + 26 + 30 + 56 + 39
-    rows = [(128, 12), (206, 9)]
-    for k, (y, n) in enumerate(rows):
-        b.append(text(30, y - 10, "SUBAGENT", 10, MUTED, mono=True))
-        s, x = segs(30, y, 30, [(40, SYS, ""), (36, TOOLS, ""), (46, USER, "task")], size=11)
-        b.append(s)
-        sub_task_mid = 30 + 40 + 36 + 22
-        for w in (14, 30, 18, 26, 14, 34, 18, 22, 14, 30, 20, 14)[:n]:
-            s, x = segs(x, y, 30, [(w + 2, CALL, "")])
-            b.append(s)
-        s, x_end = segs(x + 10, y, 30, [(80, ASST, "summary")], size=11)
-        b.append(s)
-        b.append(text(x_end + 8, y + 20, "noisy work stays here", 12, MUTED))
-        if k == 0:
-            b.append(arrow(task_mid, 76, sub_task_mid, y - 4, ACCENT, "ahA", 1.3, dash=True))
-            sm = x + 10 + 39
-            b.append(f'<path d="M{sm:.1f},{y - 4} C{sm:.1f},{y - 40} {summ_mid:.1f},{y - 30} {summ_mid:.1f},{78}" '
-                     f'fill="none" stroke="{ACCENT}" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahA)"/>')
-            b.append(text(sm + 12, 100, "only the conclusion returns", 12, ACCENT))
-    svg("fig-subagents.svg", 256, "\n".join(b),
-        "Subagents run noisy work in their own context and return only a summary")
-
-
-def fig_worktrees():
-    b = [rect(40, 95, 90, 60, "#101114", rx=8), text(85, 131, ".git", 16, "#f2f3f5", "middle", 600, mono=True),
-         text(85, 176, "shared history", 11, MUTED, "middle"), text(85, 190, "and remotes", 11, MUTED, "middle")]
-    trees = [("app/", "main"), ("app-auth/", "feature-auth"), ("app-flaky/", "fix-flaky-test")]
-    for i, (d, br) in enumerate(trees):
-        y = 20 + i * 76
-        b.append(f'<path d="M130,125 C170,125 170,{y + 29} 210,{y + 29}" fill="none" stroke="{MUTED}" stroke-width="1"/>')
-        b.append(rect(210, y, 220, 58, "#2c3036", rx=6, extra=f' stroke="{HAIR}"'))
-        b.append(text(226, y + 24, d, 14, TXT, weight=600, mono=True))
-        b.append(text(226, y + 44, f"branch {br}", 12, MUTED, mono=True))
-    notes = ["Each worktree: own files,", "branch and working state.", "",
-             "Shared: commit history", "and remotes.", "",
-             "Run parallel sessions without", "them overwriting each other."]
-    for i, s in enumerate(notes):
-        b.append(text(470, 50 + i * 19, s, 13, TXT2))
-    svg("fig-worktrees.svg", 250, "\n".join(b), "Git worktrees: one repository, several working directories")
 
 
 # ---------------------------------------------------------------- 16. MCP
@@ -602,7 +570,7 @@ def fig_hooks():
 
 if __name__ == "__main__":
     for f in (fig_layers, fig_tokens, fig_temperature, fig_topp, fig_context, fig_stateless,
-              fig_quadratic, fig_ruler, fig_fill, fig_compaction, fig_loop, fig_sequence,
-              fig_harness, fig_subagents, fig_worktrees, fig_mcp, fig_hooks):
+              fig_quadratic, fig_ruler, fig_fill, fig_compaction, fig_loop, fig_loop_replay,
+              fig_harness, fig_mcp, fig_hooks):
         f()
     print("figures written to", OUT)
