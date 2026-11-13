@@ -83,8 +83,11 @@ def arrow(x1, y1, x2, y2, color=TXT2, marker="ah", sw=1.4):
 
 
 def image(path, x, y, w, h):
-    data = base64.b64encode(Path(path).read_bytes()).decode()
-    return f'<image x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" href="data:image/png;base64,{data}"/>'
+    # embedded as lossy WebP: the PNGs made the VAE diagram four times as large
+    webp = subprocess.run(["magick", str(path), "-strip", "-quality", "85", "webp:-"],
+                          check=True, capture_output=True).stdout
+    data = base64.b64encode(webp).decode()
+    return f'<image x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" href="data:image/webp;base64,{data}"/>'
 
 
 def cells(x, y, n, size, fills, gap=2):
@@ -263,19 +266,19 @@ def fig_vae():
 def cards():
     """Rasterise the talk's PDF figures onto an off-white card."""
     single = {
-        "tabletop_examples": "fig-tabletop.webp",
-        "curse_of_dimensionality": "fig-curse.webp",
-        "prep_rgb_depth_scaling": "fig-scaling.webp",
-        "pca_two_pixels": "fig-pca-two-pixels.webp",
-        "pca_images": "fig-pca-images.webp",
-        "ica_unmix_photos": "fig-ica.webp",
-        "embeddings": "fig-embeddings.webp",
-        "ae_vs_pca": "fig-ae-vs-pca.webp",
-        "pixel_correlations": "fig-pixel-correlations.webp",
-        "aggregation": "fig-aggregation.webp",
-        "relieff": "fig-relieff.webp",
-        "forward_selection": "fig-forward-selection.webp",
-        "stability_vs_accuracy": "fig-stability.webp",
+        "tabletop_examples": "fig-tabletop.avif",
+        "curse_of_dimensionality": "fig-curse.avif",
+        "prep_rgb_depth_scaling": "fig-scaling.avif",
+        "pca_two_pixels": "fig-pca-two-pixels.avif",
+        "pca_images": "fig-pca-images.avif",
+        "ica_unmix_photos": "fig-ica.avif",
+        "embeddings": "fig-embeddings.avif",
+        "ae_vs_pca": "fig-ae-vs-pca.avif",
+        "pixel_correlations": "fig-pixel-correlations.avif",
+        "aggregation": "fig-aggregation.avif",
+        "relieff": "fig-relieff.avif",
+        "forward_selection": "fig-forward-selection.avif",
+        "stability_vs_accuracy": "fig-stability.avif",
     }
     tmp = OUT / "_tmp"
     tmp.mkdir(exist_ok=True)
@@ -293,12 +296,12 @@ def cards():
             cmd.append(str(s))
         if len(srcs) > 1:
             cmd += ["-gravity", "center", "+append", "+repage"]
-        cmd += ["-flatten", "-bordercolor", CARD, "-border", "36", "-strip", "-quality", "90", str(OUT / out)]
+        cmd += ["-flatten", "-bordercolor", CARD, "-border", "36", "-strip", "-quality", "60", str(OUT / out)]
         subprocess.run(cmd, check=True)
 
     for stem, out in single.items():
         card([raster(stem)], out)
-    card([raster("pca_cumulative_variance"), raster("pca_reconstruction")], "fig-pca-keep.webp")
+    card([raster("pca_cumulative_variance"), raster("pca_reconstruction")], "fig-pca-keep.avif")
     for f in tmp.iterdir():
         f.unlink()
     tmp.rmdir()

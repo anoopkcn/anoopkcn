@@ -41,15 +41,6 @@ figure {
     max-width: 100%;
 }
 
-figure img {
-    max-width: 100%;
-}
-
-figure video {
-    max-width: 100%;
-    height: auto;
-}
-
 /* A full-width image spans the whole text column: $image.asset('…').attrs('full')
    puts the class on the img, so the figure is found with :has(). */
 figure:has(> img.full) {

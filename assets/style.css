@@ -223,6 +223,14 @@ footer {
     color: #a3a8b1;
 }
 
+/* The build gives images and videos their width and height, which reserves
+   their space before they load; a scaled-down one keeps its proportions. */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
 /* code */
 pre > code {
     border: none;

@@ -1,19 +1,16 @@
 <extend template="base.shtml">
 <head id="head">
-    <link type="text/css" rel="stylesheet" href="$site.asset('post.css').link()">
+    <style :html="$site.asset('post.css').bytes()"></style>
     <ctx :if="$page.content().contains('<em>').or($page.content().contains('<figure'))">
-        <link rel="preload" href="$site.asset('fonts/zed/zed-sans-extendeditalic.woff2').link()" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="$site.asset('fonts/zed/zed-sans-italic.woff2').link()" as="font" type="font/woff2" crossorigin>
     </ctx>
     <ctx :if="$page.content().contains('<code').or($page.custom.getOr('toc', false))">
-        <link rel="preload" href="$site.asset('fonts/zed/zed-mono-extended.woff2').link()" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="$site.asset('fonts/zed/zed-mono-regular.woff2').link()" as="font" type="font/woff2" crossorigin>
     </ctx>
     <ctx :if="$page.custom.getOr('math', false)">
-        <link rel="stylesheet" href="$site.asset('Temml-Local.css').link()">
+        <style :html="$site.asset('Temml-Local.css').bytes()"></style>
         <script defer src="$site.asset('temml.min.js').link()"></script>
         <script defer src="$site.asset('render-mathtex.js').link()"></script>
-    </ctx>
-    <ctx :if="$page.custom.getOr('toc', false)">
-        <script defer src="$site.asset('toc.js').link()"></script>
     </ctx>
 </head>
 <div id="pane-left">
@@ -84,5 +81,9 @@
             <span class="pane-label">TREE</span>
             <ctx :html="$page.toc()"></ctx>
         </nav>
+        <script :html="$site.asset('toc.js').bytes()"></script>
+    </ctx>
+    <ctx :if="$page.content().contains('<video')">
+        <script :html="$site.asset('lazy-video.js').bytes()"></script>
     </ctx>
 </div>

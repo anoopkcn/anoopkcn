@@ -5,11 +5,13 @@
     <meta name="viewport" content="initial-scale=1">
     <title :text="$site.title"></title>
     <link rel="icon" href="$site.asset('favicon.png').link()" type="image/png">
-    <link rel="preload" href="$site.asset('fonts/zed/zed-sans-extended.woff2').link()" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="$site.asset('fonts/zed/zed-sans-extendedbold.woff2').link()" as="font" type="font/woff2" crossorigin>
-    <link type="text/css" rel="stylesheet" href="$site.asset('fonts.css').link()">
-    <link type="text/css" rel="stylesheet" href="$site.asset('style.css').link()">
-    <link type="text/css" rel="stylesheet" href="$site.asset('highlight.css').link()">
+    <link rel="preload" href="$site.asset('fonts/zed/zed-sans-regular.woff2').link()" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="$site.asset('fonts/zed/zed-sans-bold.woff2').link()" as="font" type="font/woff2" crossorigin>
+    <style :html="$site.asset('fonts.css').bytes()"></style>
+    <style :html="$site.asset('style.css').bytes()"></style>
+    <ctx :if="$page.content().contains('<pre')">
+      <style :html="$site.asset('highlight.css').bytes()"></style>
+    </ctx>
     <super>
   </head>
   <body>
@@ -35,5 +37,7 @@
         <super>
       </div>
     </aside>
+    <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.xml"}}]},"eagerness":"moderate"}]}</script>
+    <script :html="$site.asset('prefetch.js').bytes()"></script>
   </body>
 </html>

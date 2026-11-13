@@ -1,45 +1,150 @@
-/* Subsets of the Zed fonts: Latin, punctuation, arrows, math operators, box drawing.
-   Regenerate from the TTFs (see git history) with pyftsubset if a post needs more glyphs.
+/* The Zed fonts, each face split in three so a page downloads only what it shows:
+   - the core file: ASCII, Latin-1, common punctuation and four arrows (the mono core
+     also has box drawing);
+   - -latin-ext: Latin Extended-A, for names such as "Šmuc";
+   - -symbols: the other punctuation and arrows, math operators, and box drawing for
+     the sans faces.
+   unicode-range makes the browser fetch a file only for a page that uses one of its
+   characters. All are pyftsubset subsets of the zed-*-extended*.woff2 files that commit
+   9f055fc added. The sans files carry no OpenType features; the mono core keeps calt,
+   the code ligatures.
    font-display: optional never swaps fonts on a shown page: a face that has not arrived
    within ~100 ms is skipped for that page view and used from cache on the next one. The
-   preloads in base.shtml (regular, bold) and post.shtml (italic, mono) make it arrive in time. */
+   preloads in base.shtml (regular, bold) and post.shtml (italic, mono) make the core
+   files arrive in time.
+   The URLs are absolute because this file is inlined into every page. */
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extended.woff2") format("woff2");
+    src: url("/fonts/zed/zed-sans-regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: optional;
+    unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendeditalic.woff2") format("woff2");
+    src: url("/fonts/zed/zed-sans-regular-latin-ext.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-regular-symbols.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-italic.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
     font-display: optional;
+    unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedbold.woff2") format("woff2");
+    src: url("/fonts/zed/zed-sans-italic-latin-ext.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-italic-symbols.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: optional;
+    unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
 @font-face {
     font-family: "ZedSans";
-    src: url("fonts/zed/zed-sans-extendedbolditalic.woff2") format("woff2");
+    src: url("/fonts/zed/zed-sans-bold-latin-ext.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-bold-symbols.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-bolditalic.woff2") format("woff2");
     font-weight: 700;
     font-style: italic;
     font-display: optional;
+    unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-bolditalic-latin-ext.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
+}
+
+@font-face {
+    font-family: "ZedSans";
+    src: url("/fonts/zed/zed-sans-bolditalic-symbols.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
 }
 
 @font-face {
     font-family: "ZedMono";
-    src: url("fonts/zed/zed-mono-extended.woff2") format("woff2");
+    src: url("/fonts/zed/zed-mono-regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: optional;
+    unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212, U+2500-257F;
+}
+
+@font-face {
+    font-family: "ZedMono";
+    src: url("/fonts/zed/zed-mono-regular-latin-ext.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
+}
+
+@font-face {
+    font-family: "ZedMono";
+    src: url("/fonts/zed/zed-mono-regular-symbols.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD;
 }

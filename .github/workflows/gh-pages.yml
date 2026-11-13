@@ -37,6 +37,9 @@ jobs:
       - name: Prerender math
         run: node scripts/prerender-math.mjs public
 
+      - name: Optimize pages
+        run: node scripts/optimize-pages.mjs public
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
