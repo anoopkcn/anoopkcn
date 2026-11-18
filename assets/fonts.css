@@ -8,10 +8,11 @@
    characters. All are pyftsubset subsets of the zed-*-extended*.woff2 files that commit
    9f055fc added. The sans files carry no OpenType features; the mono core keeps calt,
    the code ligatures.
-   font-display: optional never swaps fonts on a shown page: a face that has not arrived
-   within ~100 ms is skipped for that page view and used from cache on the next one. The
-   preloads in base.shtml (regular, bold) and post.shtml (italic, mono) make the core
-   files arrive in time.
+   font-display: swap draws text in the fallback faces at the end of this file until a
+   Zed face arrives, then switches. Not optional: with the CSS inlined a page draws before
+   GitHub Pages serves a font (~200 ms on a cold cache), and optional then kept the
+   fallback for the whole page view. The preloads in base.shtml (regular, bold) and
+   post.shtml (italic, mono) still start the core files early.
    The URLs are absolute because this file is inlined into every page. */
 
 @font-face {
@@ -19,7 +20,7 @@
     src: url("/fonts/zed/zed-sans-regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
@@ -28,7 +29,7 @@
     src: url("/fonts/zed/zed-sans-regular-latin-ext.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
 }
 
@@ -37,7 +38,7 @@
     src: url("/fonts/zed/zed-sans-regular-symbols.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
 }
 
@@ -46,7 +47,7 @@
     src: url("/fonts/zed/zed-sans-italic.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
@@ -55,7 +56,7 @@
     src: url("/fonts/zed/zed-sans-italic-latin-ext.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
 }
 
@@ -64,7 +65,7 @@
     src: url("/fonts/zed/zed-sans-italic-symbols.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
 }
 
@@ -73,7 +74,7 @@
     src: url("/fonts/zed/zed-sans-bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
@@ -82,7 +83,7 @@
     src: url("/fonts/zed/zed-sans-bold-latin-ext.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
 }
 
@@ -91,7 +92,7 @@
     src: url("/fonts/zed/zed-sans-bold-symbols.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
 }
 
@@ -100,7 +101,7 @@
     src: url("/fonts/zed/zed-sans-bolditalic.woff2") format("woff2");
     font-weight: 700;
     font-style: italic;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212;
 }
 
@@ -109,7 +110,7 @@
     src: url("/fonts/zed/zed-sans-bolditalic-latin-ext.woff2") format("woff2");
     font-weight: 700;
     font-style: italic;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
 }
 
@@ -118,7 +119,7 @@
     src: url("/fonts/zed/zed-sans-bolditalic-symbols.woff2") format("woff2");
     font-weight: 700;
     font-style: italic;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD, U+2500-257F;
 }
 
@@ -127,7 +128,7 @@
     src: url("/fonts/zed/zed-mono-regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+20-7E, U+A0-FF, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+20AC, U+2122, U+2190-2193, U+2212, U+2500-257F;
 }
 
@@ -136,7 +137,7 @@
     src: url("/fonts/zed/zed-mono-regular-latin-ext.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+100-17F, U+2C6, U+2DA, U+2DC;
 }
 
@@ -145,6 +146,40 @@
     src: url("/fonts/zed/zed-mono-regular-symbols.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
     unicode-range: U+2000-200D, U+2010-2012, U+2015-2017, U+201A-201B, U+201E-2021, U+2023-2025, U+2027, U+202F-2040, U+2043-204B, U+204E, U+2050-2054, U+205D, U+2194-21FC, U+2200-2211, U+2213-22FF, U+27DC, U+FFFD;
+}
+
+/* Fallbacks shown until the Zed faces arrive, scaled to Zed's average letter width and
+   given its ascent and descent, so the text keeps its line breaks and baseline when the
+   font swaps. Arial, Liberation Sans and Arimo share metrics, as do Menlo and DejaVu Sans
+   Mono. Italic is synthesized from these. Computed with fontTools from the woff2 files
+   and the system fonts. */
+@font-face {
+    font-family: "ZedSans Fallback";
+    src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo");
+    font-weight: 400;
+    size-adjust: 127.36%;
+    ascent-override: 75.93%;
+    descent-override: 22.22%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "ZedSans Fallback";
+    src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("Arimo Bold");
+    font-weight: 700;
+    size-adjust: 117.60%;
+    ascent-override: 82.23%;
+    descent-override: 24.06%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "ZedMono Fallback";
+    src: local("Menlo"), local("Menlo-Regular"), local("DejaVu Sans Mono");
+    size-adjust: 99.65%;
+    ascent-override: 97.04%;
+    descent-override: 28.40%;
+    line-gap-override: 0%;
 }

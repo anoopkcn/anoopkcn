@@ -20,7 +20,7 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "ZedSans", sans-serif;
+    font-family: "ZedSans", "ZedSans Fallback", sans-serif;
     color: var(--bright);
     line-height: 1.25;
 }
@@ -40,7 +40,7 @@ strong {
 }
 
 html {
-    font-family: "ZedSans", sans-serif;
+    font-family: "ZedSans", "ZedSans Fallback", sans-serif;
     background-color: var(--ground);
     color: var(--text);
     font-size: 17px;
@@ -235,7 +235,7 @@ video {
 pre > code {
     border: none;
     padding: 15px;
-    font-family: "ZedMono", monospace;
+    font-family: "ZedMono", "ZedMono Fallback", monospace;
     font-size: 1em;
     line-height: 1.3em !important;
     display: inline-block;
@@ -257,7 +257,7 @@ code {
     border-radius: 4px;
     border: 1px solid rgba(211, 211, 211, 0.5);
     padding: 0 4px;
-    font-family: "ZedMono", monospace;
+    font-family: "ZedMono", "ZedMono Fallback", monospace;
     font-size: 1em;
 }
 

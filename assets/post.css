@@ -131,7 +131,7 @@ figure img.full {
 /* the sidebar contents and reading progress use the code font */
 .pane-right .toc,
 .read-progress {
-    font-family: "ZedMono", monospace;
+    font-family: "ZedMono", "ZedMono Fallback", monospace;
 }
 
 .toc {
