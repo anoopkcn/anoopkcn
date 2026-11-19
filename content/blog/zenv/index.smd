@@ -276,8 +276,6 @@ zenv runs on Linux and macOS, on x86_64 and aarch64:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/anoopkcn/zenv/HEAD/install.sh | bash
-# or
-brew install anoopkcn/zenv/zenv
 ```
 
 The source and the full reference, with every key of `zenv.json` and the rules
