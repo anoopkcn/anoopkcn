@@ -3,11 +3,13 @@
 .date   = .date("2026-10-14T18:14:11"),
 .authors = ["Anoop K Chandran"],
 .layout = "post.shtml",
-.custom = {"math": false, "toc": true, "abstract":"zenv keeps the environment a project needs, records the activation, and replays that record in subsequent activations. The result is fast, reproducible, and usable from any shell, directory, batch script and Jupyter kernel."},
+.custom = {"math": false, "toc": true, "edited": "2026-11-24T21:00:00", "abstract":"zenv keeps the environment a project needs, records the activation, and replays that record in subsequent activations. The result is fast, reproducible, and usable from any shell, directory, batch script and Jupyter kernel."},
 .draft  = false,
 ---
 
 # zenv: project environments on laptops and HPC clusters
+
+*I first wrote this post in October 2026 for zenv v0.28 and updated it in November 2026 for v0.34. The new parts are environments in Apptainer and Docker images, packages that modules provide being reused even when a dependency pulls them in, `zenv remove`, dependency groups, uv picked automatically, and bytecode kept in one directory.*
 
 [Mean time per command on an Apple Silicon Mac and an HPC system, as hyperfine means with zenv v0.28.1. The HPC system is a shared JURECA login node with 256 CPUs, and the project is on GPFS.](<$image.asset('fig-speed.svg').attrs('full').alt('Horizontal bar chart of mean times on an Apple Silicon Mac and an HPC system.')>)
 
@@ -34,7 +36,7 @@ covers the cluster side, the modules and their slow loading, as well as the
 Python side, and every part is optional: on a laptop, the same tool can manage
 nothing but a venv.
 
-It treates the environment as data. zenv records what activating an environment does, and replays that record in subsequent activations. The result is fast,
+It treats the environment as data. zenv records what activating an environment does, and replays that record in subsequent activations. The result is fast,
 reproducible, and usable from any shell, directory, batch script and Jupyter kernel.
 
 It also comes with a shell hook that activates the environment when you `cd` into the project and deactivates it when you leave the directory. No variable pollution, no stray entries in `PATH`, and no typing the same three lines over and over.
@@ -46,7 +48,7 @@ file can hold several environments, here one for a laptop and one for JURECA:
 
 ```json
 {
-  "base_dir": ".zenv",
+  // one environment for any machine, one for JURECA
   "sim": {
     "target_machines": ["*"],
     "dependency_file": "requirements.txt",
@@ -61,30 +63,25 @@ file can hold several environments, here one for a laptop and one for JURECA:
 }
 ```
 
-`base_dir` is where the environments are built, relative to the `zenv.json` file.
-`target_machines` names the machines an environment is meant for, zenv matches
-it against `$SYSTEMNAME` where a site sets it. So One can describe multiple environments that target 
-different machines in the same file. 
-zenv also expands variables like `$HOME`, `${ZENV_PROJECT_DIR}` and `${ZENV_ENV_DIR}` and takes everything else literally.
+`target_machines` names the machines an environment is meant for, and zenv matches it against `$SYSTEMNAME` where a site sets it. So one file can describe several environments for different machines. zenv builds the environments in `.zenv` next to `zenv.json`, or in the directory that a top-level `"base_dir"` key names. It expands variables like `$HOME`, `${ZENV_PROJECT_DIR}` and `${ZENV_ENV_DIR}` and takes everything else literally. The file may contain `//` and `/* */` comments, which plain JSON does not allow.
 
 Build the environment once on each machine, and use it from then on:
 
 ```bash
-zenv setup sim-jureca --uv            # modules, venv, requirements.txt
-# --uv flag makes setup install packages with uv instead of pip. 
-
+zenv setup sim-jureca                 # modules, venv, requirements.txt
 source $(zenv activate sim-jureca)    # activate; deactivate undoes it
 zenv run sim-jureca python train.py   # one command, no activation
 ```
 
+
+Setup installs the packages with [uv](https://docs.astral.sh/uv/) when uv is on `PATH` and with pip otherwise. `--uv` makes uv required, and `--pip` uses pip even when uv is there.
 
 Setup also registers the environment in `~/.zenv/registry.json`, which lets the other commands find
 it by name from any directory. Inside the project, `.` stands for the project's
 environment on the current machine, so `zenv run . python train.py` works
 unchanged on the laptop and on JURECA. 
 
-For a new project, `zenv init` writes a `zenv.json` from what it finds, such as a `requirements.txt` or a
-`pyproject.toml`, and `zenv validate` reports mistakes in the file with line numbers.
+For a new project, `zenv init` writes a `zenv.json` from what it finds, such as a `requirements.txt` or a `pyproject.toml`, and `zenv setup <name> --init` writes the file and builds the environment in one step. `zenv validate` reports mistakes in the file with line numbers.
 
 ## [Activation as data]($heading.id('activation-as-data'))
 
@@ -145,38 +142,28 @@ fit around the modules.
 
 zenv picks the interpreter in a fixed order: a Python from the loaded modules
 first, then the `fallback_python` named in `zenv.json`, then a Python installed
-and pinned with `zenv python install` and `zenv python pin`, then the system's
-`python3`. If the `pyproject.toml` that setup reads declares `requires-python`,
-setup checks the chosen interpreter against it before creating anything, and
-when it does not match, says which of these to change.
+and pinned with `zenv python install` and `zenv python pin`, then the system's `python3`. `zenv python install` builds CPython from source and passes the options after `--` on to its `./configure`, and `zenv python unpin` removes the pin. If the `pyproject.toml` that setup reads, as the dependency file or with `-e` (`--editable`, which installs the project itself), declares `requires-python`, setup checks the chosen interpreter against it before creating anything, and when it does not match, says which of these to change.
 
 zenv writes the venv itself. A venv is a `pyvenv.cfg` file, `bin/python` links
 to the base interpreter and empty `site-packages` directories, and zenv creates
-them directly, without `python -m venv` or `ensurepip`. It then installs pip
-into the venv, with uv when you pass `--uv`. A new environment without packages
-is ready in 115 ms on a Mac, where `python -m venv` alone takes 1.5 s.
+them directly, without `python -m venv` or `ensurepip`. It then installs pip into the venv, with uv when setup installs with uv. A new environment without packages is ready in 115 ms on a Mac, where `python -m venv` alone takes 1.5 s.
 
-Modules often ship Python packages of their own, such as numpy or mpi4py built
-against the site's libraries. Before installing, zenv reads the package metadata
-in the directories on the modules' `PYTHONPATH`, the same `*.dist-info` and
-`*.egg-info` entries that `importlib.metadata` reads, and leaves out every
-requirement a module already provides, listing what it left out. `--force`
-installs them anyway.
+Modules often ship Python packages of their own, such as numpy, mpi4py or PyTorch built against the site's libraries. Before installing, zenv reads the package metadata in the directories on the modules' `PYTHONPATH`, the same `*.dist-info` and `*.egg-info` entries that `importlib.metadata` reads, so it knows which packages the modules provide and in which versions.
 
-New dependencies go in with `zenv add`, which installs a package and then
-records it in the project's manifest:
+Leaving those packages out of the requirements is not enough, because a dependency can pull one in again. uv does not look at `PYTHONPATH`, so it would install a second torch into the venv for a requirement like `sentence-transformers`, and the module's copy would shadow it at runtime anyway. zenv therefore has uv resolve the requirements with the module packages pinned to the versions the modules ship, drops those packages from the result, and installs only the rest. A requirement that needs another version of a module package fails setup with uv's explanation of the conflict, instead of installing a copy that never gets imported. On JURECA, with the PyTorch module and `sentence-transformers` as the only requirement, zenv reused 13 packages from the modules and installed 17. The venv holds 5,406 files and directories, where v0.30 installed torch into it and made 29,749, which counts against the file quota on a cluster. With pip, zenv leaves out the requirements that a module provides and lists the ones whose version does not match. `--force` installs everything into the venv.
+
+New dependencies go in with `zenv add`, which installs a package and then records it in the project's manifest, and `zenv remove` undoes it:
 
 ```bash
-zenv add . "xarray>=2024.1" --uv   # recorded in the manifest
-zenv add . pytest --dev --uv       # as a development dependency
+zenv add . "xarray>=2024.1"     # recorded in the manifest
+zenv add . pytest --dev         # as a development dependency
+zenv add . sphinx --group docs  # in a PEP 735 dependency group
+zenv remove . pytest --dev      # out of the manifest and the venv
 ```
 
-Where the package goes depends on what the environment uses: a line appended to
-`requirements.txt`, an entry in `[project].dependencies` (or
-`[dependency-groups].dev` with `--dev`) of `pyproject.toml`, where zenv rewrites
-only that entry and leaves comments alone, or the `dependencies` list in
-`zenv.json`. The manifest changes only after the install succeeds, so a
-misspelled package name leaves the files as they were.
+Where the package goes depends on what the environment uses: a line appended to `requirements.txt`, an entry in `[project].dependencies` (or `[dependency-groups].dev` with `--dev`, and the named group with `--group`) of `pyproject.toml`, where zenv rewrites only that entry and leaves comments alone, or the `dependencies` list in `zenv.json`. The manifest changes only after the install succeeds, so a misspelled package name leaves the files as they were. A group recorded this way is installed again on every rebuild, and `zenv setup --group docs` installs an existing group. `zenv remove` takes the same flags, so that it looks where `zenv add` wrote. It leaves a package installed while another installed package still requires it.
+
+Python writes compiled bytecode next to every module it imports, which on a cluster means thousands of small files in the venv. `zenv init` therefore writes two `env` entries into a new Python environment: `PYTHONDONTWRITEBYTECODE` set to `""`, so Python keeps its bytecode and starts faster the next time, and `PYTHONPYCACHEPREFIX`, which collects it in one `pycache` directory under the base directory, or under `$ZENV_PYCACHE_DIR` when that is set, for example on a scratch filesystem. Both are plain entries that you can change or delete. `zenv clean` removes the bytecode an environment has left behind, and `--project` also removes the `__pycache__` directories in the project's own sources.
 
 ## [From any directory]($heading.id('from-any-directory'))
 
@@ -210,9 +197,7 @@ freshly cloned repository does nothing until you run `zenv setup`.
 zenv also keeps an environment in step with its configuration. `zenv run`,
 `zenv activate` and `zenv cd` compare the environment's entry in `zenv.json`,
 and the dependency and module files it names, with their state at the last
-setup. If anything changed, they rebuild first, with the flags of that setup, so
-`--uv` sticks. Add a line to `requirements.txt`, and the next `zenv run`
-installs the package before it runs your command. When the module list has not
+setup. If anything changed, they rebuild first, with the flags of that setup, so `--pip` and `--group` stick. `zenv jupyter create` checks the same way. Add a line to `requirements.txt`, and the next `zenv run` installs the package before it runs your command. `ZENV_NO_AUTO_SETUP=1` turns the rebuilds off. When the module list has not
 changed, the rebuild replays the module cache instead of calling Lmod again; on
 JURECA that brought the setup of a three-module environment from 1.25 s down to
 0.16 s. The `cd` hook is the exception. It never rebuilds, so that `cd` stays
@@ -244,6 +229,24 @@ activation does not set `VIRTUAL_ENV`, so uv and pip will not mistake the
 environment for one. Setting `"python": true` later adds a venv in the same
 directory and keeps the modules, the hooks and the files in `bin/`.
 
+## [Environments in containers]($heading.id('environments-in-containers'))
+
+Some software comes as a container image, such as a PyTorch or vLLM image built for a cluster's GPUs. An environment with a `container` key runs in an [Apptainer](https://apptainer.org) image, or in a [Docker](https://www.docker.com) image with `"runtime": "docker"`:
+
+```json
+{
+  "train": {
+    "target_machines": ["jupiter"],
+    "container": { "image": "containers/vllm.sif", "options": ["--nv"] },
+    "dependency_file": "pyproject.toml"
+  }
+}
+```
+
+Setup builds the venv on the image's Python and treats the image's packages as it treats a module's: they are resolved against and not installed again. On JUPITER, with a vLLM image and `peft` as the only requirement, zenv reused ten packages from the image, among them torch and transformers, and installed only `peft`. `zenv run train python finetune.py` then starts the command in the image, with the project, the environment and the current directory bound at the same paths.
+
+zenv stays on the host and only starts commands in the image, so the image needs `sh`, `env` and, for a Python environment, `python3` with pip, but nothing from zenv. A container environment cannot be activated in your shell, because the shell runs outside the image; `zenv run train bash` gives you a shell inside it. When the image file changes, the environment is rebuilt on its next use, as it is when `zenv.json` changes.
+
 ## [How fast it is]($heading.id('how-fast-it-is'))
 
 zenv is a single binary written in Zig, statically linked on Linux, and needs no
@@ -268,7 +271,7 @@ The numbers are hyperfine means for zenv 0.28 on an Apple Silicon Mac and on an
 HPC system, a JURECA login node (256 CPUs, project on GPFS). The login node is
 shared with other users, so its numbers vary by about 0.8 ms. The three
 login-shell rows need modules, so the Mac has none; they come from an earlier
-run with zenv 0.27.8, whose `zenv activate` took 1.9 ms longer.
+run with zenv 0.27.8, whose `zenv activate` took 1.9 ms longer. I have not measured v0.34 again.
 
 ## [Getting it]($heading.id('getting-it'))
 
@@ -278,6 +281,4 @@ zenv runs on Linux and macOS, on x86_64 and aarch64:
 curl -fsSL https://raw.githubusercontent.com/anoopkcn/zenv/HEAD/install.sh | bash
 ```
 
-The source and the full reference, with every key of `zenv.json` and the rules
-the `cd` hook and the module cache follow, are at
-[github.com/anoopkcn/zenv](https://github.com/anoopkcn/zenv).
+Run the same command again to update. `zenv help` prints the full reference, with every command and every key of `zenv.json`, and `zenv help <command>` prints the part for one command. The source is at [github.com/anoopkcn/zenv](https://github.com/anoopkcn/zenv).
